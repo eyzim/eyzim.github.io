@@ -1,0 +1,42 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>two pointers - Tag - EVIEEE</title>
+        <link>https://eyzim.github.io/tags/two-pointers/</link>
+        <description>two pointers - Tag - EVIEEE</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-TW</language><lastBuildDate>Mon, 21 Mar 2022 20:07:27 &#43;0800</lastBuildDate><atom:link href="https://eyzim.github.io/tags/two-pointers/" rel="self" type="application/rss+xml" /><item>
+    <title>LeetCode 763. Partition Labels 解題紀錄</title>
+    <link>https://eyzim.github.io/posts/leetcode/leetcode_763_partition_labels/</link>
+    <pubDate>Mon, 21 Mar 2022 20:07:27 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>https://eyzim.github.io/posts/leetcode/leetcode_763_partition_labels/</guid>
+    <description><![CDATA[將字串 <code>s</code> 分段，同一字母只能在一段中出現。Partition the string into as many parts as possible so that each letter appears in at most one part.]]></description>
+</item><item>
+    <title>LeetCode 141. Linked List Cycle 解題紀錄</title>
+    <link>https://eyzim.github.io/posts/leetcode/leetcode_141_linked_list_cycle/</link>
+    <pubDate>Mon, 28 Feb 2022 20:33:16 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>https://eyzim.github.io/posts/leetcode/leetcode_141_linked_list_cycle/</guid>
+    <description><![CDATA[檢查這個 linked list 是否內含迴圈。Given <code>head</code>, the head of a linked list, determine if the linked list has a cycle in it.]]></description>
+</item><item>
+    <title>LeetCode 350. Intersection of Two Arrays II 解題紀錄</title>
+    <link>https://eyzim.github.io/posts/leetcode/leetcode_350_intersection_of_two_arrays_ii/</link>
+    <pubDate>Mon, 24 Jan 2022 02:59:28 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>https://eyzim.github.io/posts/leetcode/leetcode_350_intersection_of_two_arrays_ii/</guid>
+    <description><![CDATA[檢查兩個 array 中相同的元素。Return elements must appear as many times as it shows in both arrays]]></description>
+</item><item>
+    <title>LeetCode 88. Merge Sorted Array 解題紀錄</title>
+    <link>https://eyzim.github.io/posts/leetcode/leetcode_88_merge_sorted_array/</link>
+    <pubDate>Mon, 10 Jan 2022 02:54:18 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>https://eyzim.github.io/posts/leetcode/leetcode_88_merge_sorted_array/</guid>
+    <description><![CDATA[將兩個已經排序過的 array 合併。<strong>Merge</strong> <code>nums1</code> and <code>nums2</code> into a single array sorted in <strong>non-decreasing order</strong>.]]></description>
+</item><item>
+    <title>LeetCode 2000. Reverse Prefix of Word 解題紀錄</title>
+    <link>https://eyzim.github.io/posts/leetcode/leetcode_2000_reverse_prefix_of_word/</link>
+    <pubDate>Fri, 17 Sep 2021 01:04:46 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>https://eyzim.github.io/posts/leetcode/leetcode_2000_reverse_prefix_of_word/</guid>
+    <description><![CDATA[將從 0 到指定位置的文字片段翻轉。Reverse the segment of <code>word</code> that starts at index 0 and ends at the index of the <code>ch</code>.]]></description>
+</item></channel>
+</rss>

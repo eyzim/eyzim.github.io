@@ -1,0 +1,70 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>sorting - Tag - EVIEEE</title>
+        <link>https://eyzim.github.io/tags/sorting/</link>
+        <description>sorting - Tag - EVIEEE</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-TW</language><lastBuildDate>Mon, 07 Mar 2022 23:01:11 &#43;0800</lastBuildDate><atom:link href="https://eyzim.github.io/tags/sorting/" rel="self" type="application/rss+xml" /><item>
+    <title>LeetCode 1356. Sort Integers by The Number of 1 Bits 解題紀錄</title>
+    <link>https://eyzim.github.io/posts/leetcode/leetcode_1356_sort_integers_by_the_number_of_1_bits/</link>
+    <pubDate>Mon, 07 Mar 2022 23:01:11 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>https://eyzim.github.io/posts/leetcode/leetcode_1356_sort_integers_by_the_number_of_1_bits/</guid>
+    <description><![CDATA[依照 1 bits 出現的次數排序。]]></description>
+</item><item>
+    <title>LeetCode 217. Contains Duplicate 解題紀錄</title>
+    <link>https://eyzim.github.io/posts/leetcode/leetcode_217_contains_duplicate/</link>
+    <pubDate>Mon, 21 Feb 2022 01:59:34 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>https://eyzim.github.io/posts/leetcode/leetcode_217_contains_duplicate/</guid>
+    <description><![CDATA[檢查陣列中是否有出現重複的值。Return if any value appears at least twice in the array.]]></description>
+</item><item>
+    <title>LeetCode 350. Intersection of Two Arrays II 解題紀錄</title>
+    <link>https://eyzim.github.io/posts/leetcode/leetcode_350_intersection_of_two_arrays_ii/</link>
+    <pubDate>Mon, 24 Jan 2022 02:59:28 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>https://eyzim.github.io/posts/leetcode/leetcode_350_intersection_of_two_arrays_ii/</guid>
+    <description><![CDATA[檢查兩個 array 中相同的元素。Return elements must appear as many times as it shows in both arrays]]></description>
+</item><item>
+    <title>LeetCode 88. Merge Sorted Array 解題紀錄</title>
+    <link>https://eyzim.github.io/posts/leetcode/leetcode_88_merge_sorted_array/</link>
+    <pubDate>Mon, 10 Jan 2022 02:54:18 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>https://eyzim.github.io/posts/leetcode/leetcode_88_merge_sorted_array/</guid>
+    <description><![CDATA[將兩個已經排序過的 array 合併。<strong>Merge</strong> <code>nums1</code> and <code>nums2</code> into a single array sorted in <strong>non-decreasing order</strong>.]]></description>
+</item><item>
+    <title>LeetCode 1502. Can Make Arithmetic Progression From Sequence 解題紀錄</title>
+    <link>https://eyzim.github.io/posts/leetcode/leetcode_1502_can_make_arithmetic_progression_from_sequence/</link>
+    <pubDate>Mon, 30 Mar 2020 01:42:49 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>https://eyzim.github.io/posts/leetcode/leetcode_1502_can_make_arithmetic_progression_from_sequence/</guid>
+    <description><![CDATA[檢查連續數組間是否存在相同的大小規則。Check if the difference between any two consecutive elements is the same.]]></description>
+</item><item>
+    <title>LeetCode 976. Largest Perimeter Triangle 解題紀錄</title>
+    <link>https://eyzim.github.io/posts/leetcode/leetcode_976_largest_perimeter_triangle/</link>
+    <pubDate>Mon, 27 Jan 2020 00:07:40 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>https://eyzim.github.io/posts/leetcode/leetcode_976_largest_perimeter_triangle/</guid>
+    <description><![CDATA[以現有長度組合出最大面積的三角形。Return the <em>largest perimeter of a triangle with a non-zero area, formed from three of these lengths</em>.]]></description>
+</item><item>
+    <title>LeetCode 1051. Height Checker 解題紀錄</title>
+    <link>https://eyzim.github.io/posts/leetcode/leetcode_1051_height_checker/</link>
+    <pubDate>Mon, 07 Jan 2019 13:13:13 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>https://eyzim.github.io/posts/leetcode/leetcode_1051_height_checker/</guid>
+    <description><![CDATA[給一個未經排列的整數 array，請給出排序前後位置不同的個數總和。You are given an unsorted integer array. Return the number of indices where <code>heights[i]</code> != <code>expected[i]</code>.]]></description>
+</item><item>
+    <title>LeetCode 414. Third Maximum Number 解題紀錄</title>
+    <link>https://eyzim.github.io/posts/leetcode/leetcode_414_third_maximum_number/</link>
+    <pubDate>Mon, 09 Jan 2017 21:07:11 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>https://eyzim.github.io/posts/leetcode/leetcode_414_third_maximum_number/</guid>
+    <description><![CDATA[給一個未經排列的 array，請給出「倒數第三大」的數值。Given an integer array <code>nums</code>, return the third distinct maximum number in this array.]]></description>
+</item><item>
+    <title>LeetCode 561. Array Partition I 解題紀錄</title>
+    <link>https://eyzim.github.io/posts/leetcode/leetcode_561_array_partition_i/</link>
+    <pubDate>Mon, 05 Jan 2015 13:49:30 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>https://eyzim.github.io/posts/leetcode/leetcode_561_array_partition_i/</guid>
+    <description><![CDATA[計算 input array 中任意兩數 $min$ 後的 $max$ 值。Return the sum of $min(a_i, b_i)$ for all $i$ is maximized.]]></description>
+</item></channel>
+</rss>

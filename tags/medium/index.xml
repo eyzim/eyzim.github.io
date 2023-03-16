@@ -1,0 +1,35 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>medium - Tag - EVIEEE</title>
+        <link>https://eyzim.github.io/tags/medium/</link>
+        <description>medium - Tag - EVIEEE</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-TW</language><lastBuildDate>Mon, 14 Feb 2022 12:27:07 &#43;0800</lastBuildDate><atom:link href="https://eyzim.github.io/tags/medium/" rel="self" type="application/rss+xml" /><item>
+    <title>LeetCode 24. Swap Nodes in Pairs 解題紀錄</title>
+    <link>https://eyzim.github.io/posts/leetcode/leetcode_24_swap_nodes_in_pairs/</link>
+    <pubDate>Mon, 14 Feb 2022 12:27:07 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>https://eyzim.github.io/posts/leetcode/leetcode_24_swap_nodes_in_pairs/</guid>
+    <description><![CDATA[將兩兩相鄰的 node 交換順序。Swap every two adjacent nodes.]]></description>
+</item><item>
+    <title>LeetCode 74. Search a 2D Matrix 解題紀錄</title>
+    <link>https://eyzim.github.io/posts/leetcode/leetcode_74_search_a_2d_matrix/</link>
+    <pubDate>Mon, 06 Dec 2021 21:00:25 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>https://eyzim.github.io/posts/leetcode/leetcode_74_search_a_2d_matrix/</guid>
+    <description><![CDATA[檢查是否矩陣中含有指定的元素。Check if the <code>target</code> exists in the mxn array.]]></description>
+</item><item>
+    <title>Amazon Online Assessment (OA) - Roll Dice 解題紀錄</title>
+    <link>https://eyzim.github.io/posts/amazon_online_assessment-roll_dice/</link>
+    <pubDate>Mon, 03 May 2021 23:22:10 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>https://eyzim.github.io/posts/amazon_online_assessment-roll_dice/</guid>
+    <description><![CDATA[Amazon Online Assessment (OA) - Roll Dice]]></description>
+</item><item>
+    <title>LeetCode 204. Count Primes 解題紀錄</title>
+    <link>https://eyzim.github.io/posts/leetcode/leetcode_204_count_primes/</link>
+    <pubDate>Mon, 07 Jul 2014 23:57:34 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>https://eyzim.github.io/posts/leetcode/leetcode_204_count_primes/</guid>
+    <description><![CDATA[請計算整數 n 以內有幾個質數。Given an integer n, return the number of prime numbers that are strictly less than n.]]></description>
+</item></channel>
+</rss>

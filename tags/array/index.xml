@@ -1,0 +1,77 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>array - Tag - EVIEEE</title>
+        <link>https://eyzim.github.io/tags/array/</link>
+        <description>array - Tag - EVIEEE</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-TW</language><lastBuildDate>Mon, 15 Aug 2022 21:44:36 &#43;0800</lastBuildDate><atom:link href="https://eyzim.github.io/tags/array/" rel="self" type="application/rss+xml" /><item>
+    <title>LeetCode 804. Unique Morse Code Words 解題紀錄</title>
+    <link>https://eyzim.github.io/posts/leetcode/leetcode_804_unique_morse_code_words/</link>
+    <pubDate>Mon, 15 Aug 2022 21:44:36 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>https://eyzim.github.io/posts/leetcode/leetcode_804_unique_morse_code_words/</guid>
+    <description><![CDATA[摩斯密碼對照表參照。Map char to integer then combine.]]></description>
+</item><item>
+    <title>LeetCode 1356. Sort Integers by The Number of 1 Bits 解題紀錄</title>
+    <link>https://eyzim.github.io/posts/leetcode/leetcode_1356_sort_integers_by_the_number_of_1_bits/</link>
+    <pubDate>Mon, 07 Mar 2022 23:01:11 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>https://eyzim.github.io/posts/leetcode/leetcode_1356_sort_integers_by_the_number_of_1_bits/</guid>
+    <description><![CDATA[依照 1 bits 出現的次數排序。]]></description>
+</item><item>
+    <title>LeetCode 217. Contains Duplicate 解題紀錄</title>
+    <link>https://eyzim.github.io/posts/leetcode/leetcode_217_contains_duplicate/</link>
+    <pubDate>Mon, 21 Feb 2022 01:59:34 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>https://eyzim.github.io/posts/leetcode/leetcode_217_contains_duplicate/</guid>
+    <description><![CDATA[檢查陣列中是否有出現重複的值。Return if any value appears at least twice in the array.]]></description>
+</item><item>
+    <title>LeetCode 53. Maximum Subarray 解題紀錄</title>
+    <link>https://eyzim.github.io/posts/leetcode/leetcode_53_maximum_subarray/</link>
+    <pubDate>Mon, 07 Feb 2022 02:43:42 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>https://eyzim.github.io/posts/leetcode/leetcode_53_maximum_subarray/</guid>
+    <description><![CDATA[找出一個陣列中連續整數相加的最大值。Find the contiguous subarray which has the largest sum.]]></description>
+</item><item>
+    <title>LeetCode 350. Intersection of Two Arrays II 解題紀錄</title>
+    <link>https://eyzim.github.io/posts/leetcode/leetcode_350_intersection_of_two_arrays_ii/</link>
+    <pubDate>Mon, 24 Jan 2022 02:59:28 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>https://eyzim.github.io/posts/leetcode/leetcode_350_intersection_of_two_arrays_ii/</guid>
+    <description><![CDATA[檢查兩個 array 中相同的元素。Return elements must appear as many times as it shows in both arrays]]></description>
+</item><item>
+    <title>LeetCode 1779. Find Nearest Point That Has the Same X or Y Coordinate 解題紀錄</title>
+    <link>https://eyzim.github.io/posts/leetcode/leetcode_1779_find_nearest_point_that_has_the_same_x_or_y_coordinate/</link>
+    <pubDate>Mon, 17 Jan 2022 00:33:46 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>https://eyzim.github.io/posts/leetcode/leetcode_1779_find_nearest_point_that_has_the_same_x_or_y_coordinate/</guid>
+    <description><![CDATA[回傳所有可行的座標中，距離最短的點。Return the index of the <em><strong>valid</strong></em> point with the smallest <em><strong>Manhattan distance</strong></em> from your current location.]]></description>
+</item><item>
+    <title>LeetCode 88. Merge Sorted Array 解題紀錄</title>
+    <link>https://eyzim.github.io/posts/leetcode/leetcode_88_merge_sorted_array/</link>
+    <pubDate>Mon, 10 Jan 2022 02:54:18 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>https://eyzim.github.io/posts/leetcode/leetcode_88_merge_sorted_array/</guid>
+    <description><![CDATA[將兩個已經排序過的 array 合併。<strong>Merge</strong> <code>nums1</code> and <code>nums2</code> into a single array sorted in <strong>non-decreasing order</strong>.]]></description>
+</item><item>
+    <title>LeetCode 121. Best Time to Buy and Sell Stock 解題紀錄</title>
+    <link>https://eyzim.github.io/posts/leetcode/leetcode_121_best_time_to_buy_and_sell_stock/</link>
+    <pubDate>Mon, 27 Dec 2021 03:05:53 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>https://eyzim.github.io/posts/leetcode/leetcode_121_best_time_to_buy_and_sell_stock/</guid>
+    <description><![CDATA[尋求低買高賣的最大獲利。Return the maximum of the profits.]]></description>
+</item><item>
+    <title>LeetCode 1822. Sign of the Product of an Array 解題紀錄</title>
+    <link>https://eyzim.github.io/posts/leetcode/leetcode_1822_sign_of_the_product_of_an_array/</link>
+    <pubDate>Mon, 20 Dec 2021 00:57:20 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>https://eyzim.github.io/posts/leetcode/leetcode_1822_sign_of_the_product_of_an_array/</guid>
+    <description><![CDATA[取得所有數字乘積的正負號。Get the sign of <code>product</code> of all values in the array <code>nums</code>]]></description>
+</item><item>
+    <title>LeetCode 566. Reshape the Matrix 解題紀錄</title>
+    <link>https://eyzim.github.io/posts/leetcode/leetcode_566_reshape_the_matrix/</link>
+    <pubDate>Mon, 13 Dec 2021 03:06:25 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>https://eyzim.github.io/posts/leetcode/leetcode_566_reshape_the_matrix/</guid>
+    <description><![CDATA[將 matrix 修改成指定大小。Reshape the matrix.]]></description>
+</item></channel>
+</rss>

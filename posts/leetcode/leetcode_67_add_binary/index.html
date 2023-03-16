@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>LeetCode 67. Add Binary 解題紀錄 - EVIEEE</title><meta name="Description" content="Empassion, Endearing, Enthusiastic"><meta property="og:title" content="LeetCode 67. Add Binary 解題紀錄" />
+<meta property="og:description" content="兩個字串進行二進位數值加法，並回傳字串。Given two binary strings a and b, return their sum as a binary string." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://eyzim.github.io/posts/leetcode/leetcode_67_add_binary/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-01-03T19:33:05+08:00" />
+<meta property="article:modified_time" content="2022-01-03T19:33:05+08:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="LeetCode 67. Add Binary 解題紀錄"/>
+<meta name="twitter:description" content="兩個字串進行二進位數值加法，並回傳字串。Given two binary strings a and b, return their sum as a binary string."/>
+<meta name="application-name" content="Evieees">
+<meta name="apple-mobile-web-app-title" content="Evieees"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://eyzim.github.io/posts/leetcode/leetcode_67_add_binary/" /><link rel="prev" href="https://eyzim.github.io/posts/leetcode/leetcode_121_best_time_to_buy_and_sell_stock/" /><link rel="next" href="https://eyzim.github.io/posts/leetcode/leetcode_88_merge_sorted_array/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "LeetCode 67. Add Binary 解題紀錄",
+        "inLanguage": "zh-TW",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/eyzim.github.io\/posts\/leetcode\/leetcode_67_add_binary\/"
+        },"genre": "posts","keywords": "math, string, bit manipulation, simulation, easy, c\u002b\u002b","wordcount":  426 ,
+        "url": "https:\/\/eyzim.github.io\/posts\/leetcode\/leetcode_67_add_binary\/","datePublished": "2022-01-03T19:33:05+08:00","dateModified": "2022-01-03T19:33:05+08:00","publisher": {
+            "@type": "Organization",
+            "name": "Evie"},"author": {
+                "@type": "Person",
+                "name": "Evie"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="" header-mobile=""><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : '' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="EVIEEE">EVIEEE</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 標籤 </a><a class="menu-item" href="/categories/"> 分類 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="EVIEEE">EVIEEE</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">標籤</a><a class="menu-item" href="/categories/" title="">分類</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">LeetCode 67. Add Binary 解題紀錄</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Evie</a></span>&nbsp;<span class="post-category">included in <a href="/categories/leetcode/"><i class="far fa-folder fa-fw"></i>leetcode</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-01-03">2022-01-03</time>&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;One minute&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#題目httpsleetcodecomproblemsadd-binary"><a href="https://leetcode.com/problems/add-binary/">題目</a></a></li>
+    <li><a href="#想法">想法</a></li>
+    <li><a href="#解法">解法</a>
+      <ul>
+        <li><a href="#縮寫">縮寫</a></li>
+      </ul>
+    </li>
+    <li><a href="#reference">Reference</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h2 id="題目httpsleetcodecomproblemsadd-binary"><a href="https://leetcode.com/problems/add-binary/" target="_blank" rel="noopener noreffer">題目</a></h2>
+<div class="details admonition quote open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-quote-right fa-fw"></i>Problem<i class="details-icon fas fa-angle-right fa-fw"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content"><p>Given two binary strings a and b, return their sum as a binary string.</p>
+<p><strong>Example 1:</strong></p>
+<pre tabindex="0"><code>Input: a = &quot;11&quot;, b = &quot;1&quot;
+Output: &quot;100&quot;
+</code></pre><p><strong>Example 2:</strong></p>
+<pre tabindex="0"><code>Input: a = &quot;1010&quot;, b = &quot;1011&quot;
+Output: &quot;10101&quot;
+</code></pre><p><strong>Constraints:</strong></p>
+<ul>
+<li>1 $\leq$ <code>a.length</code>, <code>b.length</code> $\leq$ $10^4$</li>
+<li><code>a</code> and <code>b</code> consist only of &lsquo;0&rsquo; or &lsquo;1&rsquo; characters.
+Each string does not contain leading zeros except for the zero itself.</li>
+</ul>
+</div>
+        </div>
+    </div>
+<h2 id="想法">想法</h2>
+<p>由 <code>a</code> 和 <code>b</code> 兩字串的尾端讀取，假如該位置合法 (&gt;=0)，則確認是否有較小位值的進位 (holder)，再依據二進位的進位法則進行計算。</p>
+<ul>
+<li>
+<p><a href="https://eyzim.github.io/posts/cpp/cpp_int_to_string/" target="_blank" rel="noopener noreffer">看這邊</a>或是下面的小抄</p>
+<ul>
+<li>string to int: <code>a[i] - '0'</code></li>
+<li>int to string: <code>to_string(intA)</code></li>
+</ul>
+<p>ps: 這個問題好像被我 google 了 n 遍了 🤣</p>
+</li>
+</ul>
+<h2 id="解法">解法</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">string</span> <span class="nf">addBinary</span><span class="p">(</span><span class="n">string</span> <span class="n">a</span><span class="p">,</span> <span class="n">string</span> <span class="n">b</span><span class="p">)</span> <span class="p">{</span>
+    
+    <span class="n">string</span> <span class="n">ans</span> <span class="o">=</span> <span class="s">&#34;&#34;</span><span class="p">;</span>
+    
+    <span class="c1">// 由最右邊/最小的位置開始計算
+</span><span class="c1"></span>    <span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="n">a</span><span class="p">.</span><span class="n">size</span><span class="p">()</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">j</span><span class="o">=</span><span class="n">b</span><span class="p">.</span><span class="n">size</span><span class="p">()</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">holder</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+    
+    <span class="k">while</span><span class="p">(</span><span class="n">i</span><span class="o">&gt;=</span><span class="mi">0</span> <span class="o">||</span> <span class="n">j</span><span class="o">&gt;=</span><span class="mi">0</span> <span class="o">||</span> <span class="n">holder</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">i</span><span class="o">&gt;=</span><span class="mi">0</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">holder</span> <span class="o">+=</span> <span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-</span><span class="sc">&#39;0&#39;</span><span class="p">);</span>
+            <span class="n">i</span><span class="o">--</span><span class="p">;</span>
+        <span class="p">}</span>
+        
+        <span class="k">if</span><span class="p">(</span><span class="n">j</span><span class="o">&gt;=</span><span class="mi">0</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">holder</span> <span class="o">+=</span> <span class="p">(</span><span class="n">b</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">-</span><span class="sc">&#39;0&#39;</span><span class="p">);</span>
+            <span class="n">j</span><span class="o">--</span><span class="p">;</span>
+        <span class="p">}</span>
+        
+        <span class="c1">// 檢查是否有進位後剩下的數值
+</span><span class="c1"></span>        <span class="n">ans</span> <span class="o">=</span> <span class="n">to_string</span><span class="p">(</span><span class="n">holder</span><span class="o">%</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="n">ans</span><span class="p">;</span>
+        
+        <span class="c1">// 已經進位
+</span><span class="c1"></span>        <span class="n">holder</span> <span class="o">/=</span> <span class="mi">2</span><span class="p">;</span>
+    <span class="p">}</span>
+    
+    <span class="k">return</span> <span class="n">ans</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div><h3 id="縮寫">縮寫</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">string</span> <span class="nf">addBinary</span><span class="p">(</span><span class="n">string</span> <span class="n">a</span><span class="p">,</span> <span class="n">string</span> <span class="n">b</span><span class="p">)</span> <span class="p">{</span>
+    
+    <span class="n">string</span> <span class="n">ans</span> <span class="o">=</span> <span class="s">&#34;&#34;</span><span class="p">;</span>
+    
+    <span class="c1">// 由最右邊/最小的位置開始計算
+</span><span class="c1"></span>    <span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="n">a</span><span class="p">.</span><span class="n">size</span><span class="p">()</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">j</span><span class="o">=</span><span class="n">b</span><span class="p">.</span><span class="n">size</span><span class="p">()</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">holder</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+    
+    <span class="k">while</span><span class="p">(</span><span class="n">i</span><span class="o">&gt;=</span><span class="mi">0</span> <span class="o">||</span> <span class="n">j</span><span class="o">&gt;=</span><span class="mi">0</span> <span class="o">||</span> <span class="n">holder</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">holder</span> <span class="o">+=</span> <span class="n">i</span><span class="o">&gt;=</span><span class="mi">0</span> <span class="o">?</span> <span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="o">--</span><span class="p">]</span><span class="o">-</span><span class="sc">&#39;0&#39;</span><span class="p">)</span> <span class="o">:</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="n">holder</span> <span class="o">+=</span> <span class="n">j</span><span class="o">&gt;=</span><span class="mi">0</span> <span class="o">?</span> <span class="p">(</span><span class="n">b</span><span class="p">[</span><span class="n">j</span><span class="o">--</span><span class="p">]</span><span class="o">-</span><span class="sc">&#39;0&#39;</span><span class="p">)</span> <span class="o">:</span> <span class="mi">0</span><span class="p">;</span>
+        
+        <span class="c1">// 檢查是否有進位後剩下的數值
+</span><span class="c1"></span>        <span class="n">ans</span> <span class="o">=</span> <span class="n">to_string</span><span class="p">(</span><span class="n">holder</span><span class="o">&amp;</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">ans</span><span class="p">;</span>
+        
+        <span class="c1">// 已經進位
+</span><span class="c1"></span>        <span class="n">holder</span> <span class="o">&gt;&gt;=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="p">}</span>
+    
+    <span class="k">return</span> <span class="n">ans</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div><ul>
+<li>Time complexity:  $\mathcal{O}(n)$.</li>
+<li>Space complexity:  $\mathcal{O}(n)$.</li>
+</ul>
+<p>下面這種縮寫寫法並不會快到多少，面試時用一下炫技可以，平時寫專案我不大敢用，以我的看 code 速度，<code>n /= 2</code> 絕對比 <code>n &gt;&gt;= 1</code> 容易懂。</p>
+<p>個人其實還蠻喜歡這題考的型別轉換加上 edge case 思考。</p>
+<h2 id="reference">Reference</h2>
+<ol>
+<li><a href="https://stackoverflow.com/questions/11310898/how-do-i-get-the-type-of-a-variable" target="_blank" rel="noopener noreffer">https://stackoverflow.com/questions/11310898/how-do-i-get-the-type-of-a-variable</a></li>
+</ol>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2022-01-03</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://eyzim.github.io/posts/leetcode/leetcode_67_add_binary/" data-title="LeetCode 67. Add Binary 解題紀錄" data-hashtags="math,string,bit manipulation,simulation,easy,c&#43;&#43;"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://eyzim.github.io/posts/leetcode/leetcode_67_add_binary/" data-hashtag="math"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://eyzim.github.io/posts/leetcode/leetcode_67_add_binary/" data-title="LeetCode 67. Add Binary 解題紀錄"><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="javascript:void(0);" title="Share on Blogger" data-sharer="blogger" data-url="https://eyzim.github.io/posts/leetcode/leetcode_67_add_binary/" data-title="LeetCode 67. Add Binary 解題紀錄" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="Share on Evernote" data-sharer="evernote" data-url="https://eyzim.github.io/posts/leetcode/leetcode_67_add_binary/" data-title="LeetCode 67. Add Binary 解題紀錄"><i class="fab fa-evernote fa-fw"></i></a><a href="javascript:void(0);" title="Share on Trello" data-sharer="trello" data-url="https://eyzim.github.io/posts/leetcode/leetcode_67_add_binary/" data-title="LeetCode 67. Add Binary 解題紀錄" data-description=""><i class="fab fa-trello fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/math/">math</a>,&nbsp;<a href="/tags/string/">string</a>,&nbsp;<a href="/tags/bit-manipulation/">bit manipulation</a>,&nbsp;<a href="/tags/simulation/">simulation</a>,&nbsp;<a href="/tags/easy/">easy</a>,&nbsp;<a href="/tags/c&#43;&#43;/">c&#43;&#43;</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/leetcode/leetcode_121_best_time_to_buy_and_sell_stock/" class="prev" rel="prev" title="LeetCode 121. Best Time to Buy and Sell Stock 解題紀錄"><i class="fas fa-angle-left fa-fw"></i>LeetCode 121. Best Time to Buy and Sell Stock 解題紀錄</a>
+            <a href="/posts/leetcode/leetcode_88_merge_sorted_array/" class="next" rel="next" title="LeetCode 88. Merge Sorted Array 解題紀錄">LeetCode 88. Merge Sorted Array 解題紀錄<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"><div id="disqus_thread" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://disqus.com/?ref_noscript">Disqus</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.92.1">Hugo</a> | Theme - <a href="" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2014 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">elvire</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><script type="text/javascript" src="https://eyzim.disqus.com/embed.js" defer></script><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/twemoji/twemoji.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":50,"type":"lunr"},"twemoji":true};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>LeetCode 326. Power of Three 解題紀錄 - EVIEEE</title><meta name="Description" content="Empassion, Endearing, Enthusiastic"><meta property="og:title" content="LeetCode 326. Power of Three 解題紀錄" />
+<meta property="og:description" content="檢查 $n$ 是否為 3 的次方。Check $n$ whether it is a power of three or not." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://eyzim.github.io/posts/leetcode/leetcode_326_power_of_three/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-01-31T17:18:44+08:00" />
+<meta property="article:modified_time" content="2022-01-31T17:18:44+08:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="LeetCode 326. Power of Three 解題紀錄"/>
+<meta name="twitter:description" content="檢查 $n$ 是否為 3 的次方。Check $n$ whether it is a power of three or not."/>
+<meta name="application-name" content="Evieees">
+<meta name="apple-mobile-web-app-title" content="Evieees"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://eyzim.github.io/posts/leetcode/leetcode_326_power_of_three/" /><link rel="prev" href="https://eyzim.github.io/posts/leetcode/leetcode_350_intersection_of_two_arrays_ii/" /><link rel="next" href="https://eyzim.github.io/posts/leetcode/leetcode_53_maximum_subarray/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "LeetCode 326. Power of Three 解題紀錄",
+        "inLanguage": "zh-TW",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/eyzim.github.io\/posts\/leetcode\/leetcode_326_power_of_three\/"
+        },"genre": "posts","keywords": "math, recursion, easy, c\u002b\u002b","wordcount":  448 ,
+        "url": "https:\/\/eyzim.github.io\/posts\/leetcode\/leetcode_326_power_of_three\/","datePublished": "2022-01-31T17:18:44+08:00","dateModified": "2022-01-31T17:18:44+08:00","publisher": {
+            "@type": "Organization",
+            "name": "Evie"},"author": {
+                "@type": "Person",
+                "name": "Evie"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="" header-mobile=""><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : '' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="EVIEEE">EVIEEE</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 標籤 </a><a class="menu-item" href="/categories/"> 分類 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="EVIEEE">EVIEEE</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">標籤</a><a class="menu-item" href="/categories/" title="">分類</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">LeetCode 326. Power of Three 解題紀錄</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Evie</a></span>&nbsp;<span class="post-category">included in <a href="/categories/leetcode/"><i class="far fa-folder fa-fw"></i>leetcode</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-01-31">2022-01-31</time>&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;One minute&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#題目httpsleetcodecomproblemspower-of-three"><a href="https://leetcode.com/problems/power-of-three/">題目</a></a></li>
+    <li><a href="#想法">想法</a></li>
+    <li><a href="#解法">解法</a>
+      <ul>
+        <li><a href="#解法一">解法一</a></li>
+        <li><a href="#解法二">解法二</a></li>
+      </ul>
+    </li>
+    <li><a href="#reference">Reference</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h2 id="題目httpsleetcodecomproblemspower-of-three"><a href="https://leetcode.com/problems/power-of-three/" target="_blank" rel="noopener noreffer">題目</a></h2>
+<div class="details admonition quote open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-quote-right fa-fw"></i>Problem<i class="details-icon fas fa-angle-right fa-fw"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content"><p>Given an integer <code>n</code>, return <code>true</code> if it is a power of three. Otherwise, return <code>false</code>.</p>
+<p>An integer <code>n</code> is a power of three, if there exists an integer <code>x</code> such that <code>n == 3x</code>.</p>
+<p><strong>Example 1:</strong></p>
+<pre tabindex="0"><code>Input: n = 27
+Output: true
+</code></pre><p><strong>Example 2:</strong></p>
+<pre tabindex="0"><code>Input: n = 0
+Output: false
+</code></pre><p><strong>Example 3:</strong></p>
+<pre tabindex="0"><code>Input: n = 9
+Output: true
+</code></pre><p><strong>Constraints:</strong></p>
+<p>$-2^{31} \leq n \leq 2^{31} - 1$</p>
+<p>Follow up: Could you solve it without loops/recursion?</p>
+</div>
+        </div>
+    </div>
+<h2 id="想法">想法</h2>
+<p>最簡單的方法就是一直除以 3，若餘數也是 3 的倍數，且該數字 $n$ 已經除到 1 $(=3^0)$ 時，表示它是 3 的次方，反之則否。</p>
+<h2 id="解法">解法</h2>
+<h3 id="解法一">解法一</h3>
+<p>就是一直除以 3。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">bool</span> <span class="nf">isPowerOfThree</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+    
+    <span class="k">if</span><span class="p">(</span><span class="n">n</span><span class="o">&lt;</span><span class="mi">1</span><span class="p">)</span> <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+    
+    <span class="k">while</span><span class="p">(</span><span class="n">n</span><span class="o">%</span><span class="mi">3</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">n</span><span class="o">/=</span><span class="mi">3</span><span class="p">;</span>
+    <span class="p">}</span>
+    
+    <span class="k">return</span> <span class="n">n</span><span class="o">==</span><span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div><ul>
+<li>Time complexity:  $\mathcal{O}(log_3(n))$.</li>
+<li>Space complexity:  $\mathcal{O}(1)$.</li>
+</ul>
+<h3 id="解法二">解法二</h3>
+<p>題目要求不能做任何的 loop，這題最好想個 15 分鐘。</p>
+<p>提示：要用到 $log$</p>
+<p>不 😢</p>
+<p>要 😢</p>
+<p>偷 😢</p>
+<p>看 😢</p>
+<p>啦 😢</p>
+<p>沒關係，我也忘光光了，附上小抄：</p>
+<div class="details admonition note open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-pencil-alt fa-fw"></i>Laws of Logarithms<i class="details-icon fas fa-angle-right fa-fw"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content"><ol>
+<li>
+<p>$log_{a} x + log_{a} y = log_{a}(x \times y)$</p>
+</li>
+<li>
+<p>$log_{b} x - log_{b} y = \frac{log_{b} x}{log_{b} y} = log_{y} x$</p>
+</li>
+<li>
+<p>$log_{a^m} x^n = \frac{n}{m} log_{a} x$</p>
+</li>
+<li>
+<p>$log_{a}(1) =  0$</p>
+</li>
+<li>
+<p>$log_{a}(a) = 1$</p>
+</li>
+<li>
+<p>$log_{a}(a^n) = n$</p>
+</li>
+</ol>
+</div>
+        </div>
+    </div>
+<p>假設 $n = 81 = 3^4$，$n$ 已知是 $3$ 的次方，</p>
+<p>根據小抄第六點，$log_3 81 = log_3 {3^4} = 4$，只要以 3 為底取 $log$，檢查是否為整數就好。</p>
+<p>事情沒那麼簡單，C++ 沒有以 3 為底的 $log$，我們必須用小抄第三點進行換底：</p>
+<p>$log_3 81 = \frac{log_{10} 81}{log_{10} 3}$</p>
+<p>再根據小抄第二點：</p>
+<p>$\frac{log_{10} 81}{log_{10} 3} = log_{10} 81 - log_{10} 3$</p>
+<p>最後，我們推得</p>
+<p>只要 $log_{10} n - log_{10} 3$ 結果是整數，表示 $n$ 是 3 的次方。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">bool</span> <span class="nf">isPowerOfThree</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+    
+    <span class="k">if</span><span class="p">(</span><span class="n">n</span><span class="o">&lt;</span><span class="mi">1</span><span class="p">)</span> <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+    
+    <span class="k">auto</span> <span class="n">ans</span> <span class="o">=</span> <span class="n">log10</span><span class="p">(</span><span class="n">n</span><span class="p">)</span><span class="o">/</span><span class="n">log10</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+    
+    <span class="k">return</span> <span class="kt">int</span><span class="p">(</span><span class="n">ans</span><span class="p">)</span> <span class="o">==</span> <span class="n">ans</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div><ul>
+<li>Time complexity:  $\mathcal{O}(1)$.</li>
+<li>Space complexity:  $\mathcal{O}(1)$.</li>
+</ul>
+<h2 id="reference">Reference</h2>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2022-01-31</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://eyzim.github.io/posts/leetcode/leetcode_326_power_of_three/" data-title="LeetCode 326. Power of Three 解題紀錄" data-hashtags="math,recursion,easy,c&#43;&#43;"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://eyzim.github.io/posts/leetcode/leetcode_326_power_of_three/" data-hashtag="math"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://eyzim.github.io/posts/leetcode/leetcode_326_power_of_three/" data-title="LeetCode 326. Power of Three 解題紀錄"><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="javascript:void(0);" title="Share on Blogger" data-sharer="blogger" data-url="https://eyzim.github.io/posts/leetcode/leetcode_326_power_of_three/" data-title="LeetCode 326. Power of Three 解題紀錄" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="Share on Evernote" data-sharer="evernote" data-url="https://eyzim.github.io/posts/leetcode/leetcode_326_power_of_three/" data-title="LeetCode 326. Power of Three 解題紀錄"><i class="fab fa-evernote fa-fw"></i></a><a href="javascript:void(0);" title="Share on Trello" data-sharer="trello" data-url="https://eyzim.github.io/posts/leetcode/leetcode_326_power_of_three/" data-title="LeetCode 326. Power of Three 解題紀錄" data-description=""><i class="fab fa-trello fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/math/">math</a>,&nbsp;<a href="/tags/recursion/">recursion</a>,&nbsp;<a href="/tags/easy/">easy</a>,&nbsp;<a href="/tags/c&#43;&#43;/">c&#43;&#43;</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/leetcode/leetcode_350_intersection_of_two_arrays_ii/" class="prev" rel="prev" title="LeetCode 350. Intersection of Two Arrays II 解題紀錄"><i class="fas fa-angle-left fa-fw"></i>LeetCode 350. Intersection of Two Arrays II 解題紀錄</a>
+            <a href="/posts/leetcode/leetcode_53_maximum_subarray/" class="next" rel="next" title="LeetCode 53. Maximum Subarray 解題紀錄">LeetCode 53. Maximum Subarray 解題紀錄<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"><div id="disqus_thread" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://disqus.com/?ref_noscript">Disqus</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.92.1">Hugo</a> | Theme - <a href="" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2014 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">elvire</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><script type="text/javascript" src="https://eyzim.disqus.com/embed.js" defer></script><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/twemoji/twemoji.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":50,"type":"lunr"},"twemoji":true};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

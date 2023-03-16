@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>Ubunut 20.04 安裝 GCC 採坑紀錄 - EVIEEE</title><meta name="Description" content="Empassion, Endearing, Enthusiastic"><meta property="og:title" content="Ubunut 20.04 安裝 GCC 採坑紀錄" />
+<meta property="og:description" content="Build your GCC environment on ubuntu with error." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://eyzim.github.io/posts/build_your_gcc_environment_on_ubuntu_with_error/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-01-23T16:27:23+08:00" />
+<meta property="article:modified_time" content="2023-01-23T16:27:23+08:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Ubunut 20.04 安裝 GCC 採坑紀錄"/>
+<meta name="twitter:description" content="Build your GCC environment on ubuntu with error."/>
+<meta name="application-name" content="Evieees">
+<meta name="apple-mobile-web-app-title" content="Evieees"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://eyzim.github.io/posts/build_your_gcc_environment_on_ubuntu_with_error/" /><link rel="prev" href="https://eyzim.github.io/posts/nodejs/learn_nodejs_import_export/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Ubunut 20.04 安裝 GCC 採坑紀錄",
+        "inLanguage": "zh-TW",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/eyzim.github.io\/posts\/build_your_gcc_environment_on_ubuntu_with_error\/"
+        },"genre": "posts","keywords": "C","wordcount":  890 ,
+        "url": "https:\/\/eyzim.github.io\/posts\/build_your_gcc_environment_on_ubuntu_with_error\/","datePublished": "2023-01-23T16:27:23+08:00","dateModified": "2023-01-23T16:27:23+08:00","publisher": {
+            "@type": "Organization",
+            "name": "Evie"},"author": {
+                "@type": "Person",
+                "name": "Evie"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="" header-mobile=""><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : '' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="EVIEEE">EVIEEE</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 標籤 </a><a class="menu-item" href="/categories/"> 分類 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="EVIEEE">EVIEEE</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">標籤</a><a class="menu-item" href="/categories/" title="">分類</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">Ubunut 20.04 安裝 GCC 採坑紀錄</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Evie</a></span>&nbsp;<span class="post-category">included in <a href="/categories/computer-system/"><i class="far fa-folder fa-fw"></i>Computer System</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2023-01-23">2023-01-23</time>&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;2 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#安裝-gcc">安裝 GCC</a></li>
+    <li><a href="#編譯第一次-fatal-error-stdioh-no-such-file-or-directory">編譯第一次: <code>fatal error: stdio.h: No such file or directory</code></a></li>
+    <li><a href="#回來安裝-g-總行了吧反正一樣都能-compile-c--c">回來安裝 g++ 總行了吧，反正一樣都能 compile C / C++</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>根據這篇<a href="https://blog.gtwang.org/programming/GCC-comipler-basic-tutorial-examples/" target="_blank" rel="noopener noreffer">給新手的 GCC 安裝教學</a>，想到我從來沒有自己裝過 <a href="https://gcc.gnu.org/" target="_blank" rel="noopener noreffer">GCC</a>，以前 linux 都是直接用 server 上人家裝好的環境，Windows 直接用 <a href="https://www.jetbrains.com/clion/download/#section=windows" target="_blank" rel="noopener noreffer">CLion</a> 或 <a href="https://visualstudio.microsoft.com/zh-hant/downloads/" target="_blank" rel="noopener noreffer">Visual Studio</a>，第一次想在自己的 ubuntu 上安裝 GCC，想不到竟然折騰好久 QQ</p>
+<h2 id="安裝-gcc">安裝 GCC</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">sudo apt get update
+</code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">sudo apt install GCC
+</code></pre></div><p>很簡單就完成了</p>
+<h2 id="編譯第一次-fatal-error-stdioh-no-such-file-or-directory">編譯第一次: <code>fatal error: stdio.h: No such file or directory</code></h2>
+<pre tabindex="0"><code>eyzim@MC13:~/code/first-c$ GCC hello.c
+hello.c:2:10: fatal error: stdio.h: No such file or directory
+    2 | #include &lt;stdio.h&gt;
+      |          ^~~~~~~~~
+compilation terminated.
+</code></pre><p>lib 沒有引入耶</p>
+<p>看看這篇 <a href="https://stackoverflow.com/questions/19580758/GCC-fatal-error-stdio-h-no-such-file-or-directory/29284967#29284967" target="_blank" rel="noopener noreffer">GCC fatal error: stdio.h: No such file or directory</a>，少了標準庫，應該是之前 GCC 裡面沒包含到</p>
+<h2 id="回來安裝-g-總行了吧反正一樣都能-compile-c--c">回來安裝 g++ 總行了吧，反正一樣都能 compile C / C++</h2>
+<p>安裝 g++</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">sudo apt install libc6-dev g++
+</code></pre></div><p>得到</p>
+<pre tabindex="0"><code>eyzim@MC13:~/code/first-c$ sudo apt install libc6-dev g++
+Reading package lists... Done
+Building dependency tree
+Reading state information... Done
+Some packages could not be installed. This may mean that you have
+requested an impossible situation or if you are using the unstable
+distribution that some required packages have not yet been created
+or been moved out of Incoming.
+The following information may help to resolve the situation:
+The following packages have unmet dependencies:
+libc6-dev : Depends: libc6 (= 2.31-0ubuntu9.7) but 2.31-0ubuntu9.9 is to be installed
+E: Unable to correct problems, you have held broken packages.
+</code></pre><p>不信邪，直接安裝 build-essential 總行了吧</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">sudo apt get install build-essential
+</code></pre></div><p>又失敗</p>
+<pre tabindex="0"><code>eyzim@MC13:~/code/first-c$ sudo apt get install build-essential
+Reading package lists... Done
+Building dependency tree
+Reading state information... Done
+Some packages could not be installed. This may mean that you have
+requested an impossible situation or if you are using the unstable
+distribution that some required packages have not yet been created
+or been moved out of Incoming.
+The following information may help to resolve the situation:
+
+The following packages have unmet dependencies:
+build-essential : Depends: libc6-dev but it is not going to be installed or libc-dev
+Depends: g++ (&gt;= 4:9.2) but it is not going to be installed
+E: Unable to correct problems, you have held broken packages.
+</code></pre><p>看了一下，應該是 apt 的來源出現問題，但現在在牆內，不想亂動他的話，該怎麼修正呢?</p>
+<p>→ 用 <code>aptitude</code></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">sudo apt install aptitude
+</code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">sudo aptitude install g++
+</code></pre></div><p>aptitude 魔法就會自己運作啦</p>
+<pre tabindex="0"><code>eyzim@MC13:~/code/first-c$ sudo aptitude install g++
+The following NEW packages will be installed:
+  g++ g++-9{a} libc-dev-bin{a} libc6-dev{ab} libcrypt-dev{a} libstdc++-9-dev{a}
+  linux-libc-dev{a} manpages-dev{a}
+0 packages upgraded, 8 newly installed, 0 to remove and 0 not upgraded.
+Need to get 16.2 MB of archives. After unpacking 77.3 MB will be used.
+The following packages have unmet dependencies:
+libc6-dev : Depends: libc6 (= 2.31-0ubuntu9.7) but 2.31-0ubuntu9.9 is installed
+
+The following actions will resolve these dependencies:
+     Keep the following packages at their current version:
+1)     g++ [Not Installed]
+2)     g++-9 [Not Installed]
+3)     libc6-dev [Not Installed]
+4)     libstdc++-9-dev [Not Installed]
+
+Accept this solution? [Y/n/q/?] **n**
+</code></pre><ul>
+<li>這邊記得選 <strong>n</strong></li>
+</ul>
+<pre tabindex="0"><code>Breaks: hurd (&lt; 1:0.9.git20170910-1), iraf-fitsutil (&lt; 2018.07.06-4), libtirpc1 (&lt; 0.2.3), locales (&lt; 2.31), locales:i386 (&lt; 2.31), locales-all (&lt; 2.31), locales-all:i386 (&lt; 2.31), nocache (&lt; 1.1-1~), nscd (&lt; 2.31), nscd:i386 (&lt; 2.31), r-cran-later (&lt; 0.7.5+dfsg-2), wcc (&lt; 0.0.2+dfsg-3), libc6:i386 (!= 2.31-0ubuntu9.7)
+Replaces: libc6-amd64, libc6-amd64:i386, libc6-amd64:x32, libc6-amd64:x32-i386-cross, libc6-amd64:i386-x32-cross, libc6:i386 (&lt; 2.31-0ubuntu9.7)
+Description: GNU C Library: Shared libraries
+Contains the standard libraries that are used by nearly all programs on the system. This package includes shared versions of the standard C library and the standard math library, as well as many others.
+Homepage: https://www.gnu.org/software/libc/libc.html
+This action was selected because libc6-dev depends upon libc6 (= 2.31-0ubuntu9.7).
+
+Enter &quot;r 1&quot; to prevent this action from appearing in new solutions.
+Enter &quot;a 1&quot; to require that new solutions include this action if possible.
+
+Accept this solution? [Y/n/q/?] a 1
+</code></pre><p>選擇 <strong>a 1</strong></p>
+<p>剩下就是問你是否願意安裝檔案，直接 <strong>yes</strong> 過關</p>
+<p>完成，用自己安裝的編譯器編譯自己寫的 C code 囉~</p>
+<p>Source code:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C" data-lang="C">    <span class="c1">// hello.c
+</span><span class="c1"></span>    <span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span><span class="cp"></span>
+    <span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    	<span class="n">printf</span><span class="p">(</span><span class="s">&#34;Hello, my first c code on my ubuntu :)</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+    	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="p">}</span>
+</code></pre></div><p>編譯</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">GCC hello.c -o mycode
+</code></pre></div><p>檢查一下有沒有產生檔案</p>
+<pre tabindex="0"><code>eyzim@MC13:~/code/first-c$ ll
+total 32
+drwxrwxr-x 2 eyzim eyzim  4096 Jan 23 02:31 ./
+drwxrwxr-x 3 eyzim eyzim  4096 Jan 23 02:27 ../
+-rw-rw-r-- 1 eyzim eyzim   109 Jan 23 02:27 hello.c
+-rwxrwxr-x 1 eyzim eyzim 16696 Jan 23 02:31 mycode*
+</code></pre><p>執行它</p>
+<pre tabindex="0"><code>eyzim@MC13:~/code/first-c$ ./mycode
+Hello, my first c code on my ubuntu :)
+</code></pre><p>自己裝的 [[GCC]] 用起來真香(誤</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2023-01-23</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://eyzim.github.io/posts/build_your_gcc_environment_on_ubuntu_with_error/" data-title="Ubunut 20.04 安裝 GCC 採坑紀錄" data-hashtags="C"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://eyzim.github.io/posts/build_your_gcc_environment_on_ubuntu_with_error/" data-hashtag="C"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://eyzim.github.io/posts/build_your_gcc_environment_on_ubuntu_with_error/" data-title="Ubunut 20.04 安裝 GCC 採坑紀錄"><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="javascript:void(0);" title="Share on Blogger" data-sharer="blogger" data-url="https://eyzim.github.io/posts/build_your_gcc_environment_on_ubuntu_with_error/" data-title="Ubunut 20.04 安裝 GCC 採坑紀錄" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="Share on Evernote" data-sharer="evernote" data-url="https://eyzim.github.io/posts/build_your_gcc_environment_on_ubuntu_with_error/" data-title="Ubunut 20.04 安裝 GCC 採坑紀錄"><i class="fab fa-evernote fa-fw"></i></a><a href="javascript:void(0);" title="Share on Trello" data-sharer="trello" data-url="https://eyzim.github.io/posts/build_your_gcc_environment_on_ubuntu_with_error/" data-title="Ubunut 20.04 安裝 GCC 採坑紀錄" data-description=""><i class="fab fa-trello fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/c/">C</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/nodejs/learn_nodejs_import_export/" class="prev" rel="prev" title="[NodeJS] Import 和 export 程式碼"><i class="fas fa-angle-left fa-fw"></i>[NodeJS] Import 和 export 程式碼</a></div>
+</div>
+<div id="comments"><div id="disqus_thread" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://disqus.com/?ref_noscript">Disqus</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.92.1">Hugo</a> | Theme - <a href="" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2014 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">elvire</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><script type="text/javascript" src="https://eyzim.disqus.com/embed.js" defer></script><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/twemoji/twemoji.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":50,"type":"lunr"},"twemoji":true};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

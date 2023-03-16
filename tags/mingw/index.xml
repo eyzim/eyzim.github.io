@@ -1,0 +1,28 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>MinGW - Tag - EVIEEE</title>
+        <link>https://eyzim.github.io/tags/mingw/</link>
+        <description>MinGW - Tag - EVIEEE</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-TW</language><lastBuildDate>Mon, 18 Feb 2019 17:29:53 &#43;0800</lastBuildDate><atom:link href="https://eyzim.github.io/tags/mingw/" rel="self" type="application/rss+xml" /><item>
+    <title>不靠 IDE 自己編譯 C&#43;&#43; (3) - 翻譯課</title>
+    <link>https://eyzim.github.io/posts/cpp/compile_my_cpp_with_g&#43;&#43;_3/</link>
+    <pubDate>Mon, 18 Feb 2019 17:29:53 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>https://eyzim.github.io/posts/cpp/compile_my_cpp_with_g&#43;&#43;_3/</guid>
+    <description><![CDATA[使用 g++，了解編譯器在做什麼。]]></description>
+</item><item>
+    <title>不靠 IDE 自己編譯 C&#43;&#43; (2) - 編譯初心者</title>
+    <link>https://eyzim.github.io/posts/cpp/compile_my_cpp_with_g&#43;&#43;_2/</link>
+    <pubDate>Mon, 11 Feb 2019 01:52:07 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>https://eyzim.github.io/posts/cpp/compile_my_cpp_with_g&#43;&#43;_2/</guid>
+    <description><![CDATA[使用 g++，挑戰靠自己編譯 C++ 單檔案及多檔案。]]></description>
+</item><item>
+    <title>不靠 IDE 自己編譯 C&#43;&#43; (1) - 安裝 MinGW 指南</title>
+    <link>https://eyzim.github.io/posts/cpp/compile_my_cpp_with_g&#43;&#43;/</link>
+    <pubDate>Mon, 04 Feb 2019 01:52:07 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>https://eyzim.github.io/posts/cpp/compile_my_cpp_with_g&#43;&#43;/</guid>
+    <description><![CDATA[透過 MinGW 安裝 GCC 和困難排除，挑戰靠自己的手編譯 C++ 原始檔案。]]></description>
+</item></channel>
+</rss>

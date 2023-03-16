@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>Amazon Online Assessment (OA) - Roll Dice 解題紀錄 - EVIEEE</title><meta name="Description" content="Empassion, Endearing, Enthusiastic"><meta property="og:title" content="Amazon Online Assessment (OA) - Roll Dice 解題紀錄" />
+<meta property="og:description" content="Amazon Online Assessment (OA) - Roll Dice" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://eyzim.github.io/posts/amazon_online_assessment-roll_dice/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-05-03T23:22:10+08:00" />
+<meta property="article:modified_time" content="2021-05-03T23:22:10+08:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Amazon Online Assessment (OA) - Roll Dice 解題紀錄"/>
+<meta name="twitter:description" content="Amazon Online Assessment (OA) - Roll Dice"/>
+<meta name="application-name" content="Evieees">
+<meta name="apple-mobile-web-app-title" content="Evieees"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://eyzim.github.io/posts/amazon_online_assessment-roll_dice/" /><link rel="prev" href="https://eyzim.github.io/posts/leetcode/leetcode_21_merge_two_sorted_lists/" /><link rel="next" href="https://eyzim.github.io/posts/leetcode/leetcode_1790_check_if_one_string_swap_can_make_strings_equal/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Amazon Online Assessment (OA) - Roll Dice 解題紀錄",
+        "inLanguage": "zh-TW",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/eyzim.github.io\/posts\/amazon_online_assessment-roll_dice\/"
+        },"genre": "posts","keywords": "medium, c\u002b\u002b","wordcount":  890 ,
+        "url": "https:\/\/eyzim.github.io\/posts\/amazon_online_assessment-roll_dice\/","datePublished": "2021-05-03T23:22:10+08:00","dateModified": "2021-05-03T23:22:10+08:00","publisher": {
+            "@type": "Organization",
+            "name": "Evie"},"author": {
+                "@type": "Person",
+                "name": "Evie"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="" header-mobile=""><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : '' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="EVIEEE">EVIEEE</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 標籤 </a><a class="menu-item" href="/categories/"> 分類 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="EVIEEE">EVIEEE</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">標籤</a><a class="menu-item" href="/categories/" title="">分類</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">Amazon Online Assessment (OA) - Roll Dice 解題紀錄</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Evie</a></span>&nbsp;<span class="post-category">included in <a href="/categories/leetcode/"><i class="far fa-folder fa-fw"></i>leetcode</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-05-03">2021-05-03</time>&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;2 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#amazon-online-assessment-oa---roll-dice-1"><strong>Amazon Online Assessment (OA) - Roll Dice</strong></a>
+      <ul>
+        <li><a href="#思路">思路：</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h1 id="amazon-online-assessment-oa---roll-dice">Amazon Online Assessment (OA) - Roll Dice</h1>
+<p>Complexity: medium
+Date: October 7, 2021
+No: 0
+Status: Completed
+Tags: array, hash table
+url: <a href="https://algo.monster/problems/roll_dice" target="_blank" rel="noopener noreffer">https://algo.monster/problems/roll_dice</a></p>
+<h2 id="amazon-online-assessment-oa---roll-dice-1"><strong>Amazon Online Assessment (OA) - Roll Dice</strong></h2>
+<ul>
+<li><a href="https://stackoverflow.com/questions/56712677/does-anyone-know-a-better-solution-to-the-below-dice-problem" target="_blank" rel="noopener noreffer">stackoverflow</a> 也有人問過</li>
+</ul>
+<blockquote>
+<p>Given <code>N</code> dices each face ranging from <code>1</code> to <code>6</code>, return the minimum number of rotations necessary for each dice show the same face.
+Notice in one rotation you can rotate the dice to the adjacent face.
+For example, you can rotate the dice shows <code>1</code> to show <code>2</code>, <code>3</code>, <code>4</code>, or <code>5</code>. But to make it show 6, you need two rotations.</p>
+</blockquote>
+<p>Input
+The input consists of three arguments:
+<code>N</code>: a list of integer represent dices each face ranging from 1 to 6
+Output
+return the minimum number of rotations necessary for each dice show the same face</p>
+<p>Example 1:</p>
+<blockquote>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="nl">Input</span><span class="p">:</span> <span class="n">N</span> <span class="o">=</span> <span class="p">[</span><span class="mi">6</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+<span class="nl">Output</span><span class="p">:</span> <span class="mi">2</span>
+</code></pre></div><p>Example 2:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="nl">Input</span><span class="p">:</span> <span class="n">N</span> <span class="o">=</span> <span class="p">[</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+<span class="nl">Output</span><span class="p">:</span> <span class="mi">2</span>
+</code></pre></div><p>Example 3:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="nl">Input</span><span class="p">:</span> <span class="n">N</span> <span class="o">=</span> <span class="p">[</span><span class="mi">6</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+<span class="nl">Output</span><span class="p">:</span> <span class="mi">3</span>
+</code></pre></div></blockquote>
+<h3 id="思路">思路：</h3>
+<ol>
+<li>先統計一下 1~6 點各擲出幾次</li>
+<li>假設每個點都需要花一次翻面次數就能翻到大家都一樣的 <code>理想目標</code>，總花費應該等於擲骰子的次數</li>
+<li>事與願違，我們需要找出真正能被骰子擲出的 <code>目標</code>，這個目標值的範圍是 1~6 之間。我們要在所有目標值造成的花費中尋找出最便宜的方法。</li>
+</ol>
+<p>假設 input = [1, 2, 3, 4, 5, 6]</p>
+<p>如果要計算總花費，</p>
+<ul>
+<li>當目標值為 1，
+1 面翻到 1 的次數 + 2 面翻到 1 的次數 + 3 面翻到 1 的次數 +
+4 面翻到 1 的次數 + 5 面翻到 1 的次數 + 6 的翻到 1 的次數
+= 0 + 1 + 1 + 1 + 1 + 2</li>
+<li>當目標值為 2，
+1 面翻到 2 的次數 + 2 面翻到 2 的次數 + 3 面翻到 2 的次數 +
+4 面翻到 2 的次數 + 5 面翻到 2 的次數 + 6 面翻到 2 的次數
+= 1 + 0 + 1 + 1 + 2 + 1</li>
+<li>當目標值為 3，
+1 面翻到 3 的次數 + 2 面翻到 3 的次數 + 3 面翻到 3 的次數 +
+4 面翻到 3 的次數 + 5 面翻到 3 的次數 + 6 面翻到 3 的次數
+= 1 + 1 + 0 + 2 + 1 + 1</li>
+</ul>
+<p>發現到</p>
+<ol>
+<li>當 <code>目標值</code> 移動到該數字時，它自己就是目標，所以它的總花費會比自己原本要移動到 <code>理想目標</code> 少一步。
+而現在 <code>目標值</code> 的背面，也就是在骰子上我們看到 1 面背面是 6、2 面背面是 5、3 面背面是 4，這些背面的值要再比原本到 <code>理想目標</code> 多一步。</li>
+<li>既不是 <code>目標值</code> 也不是 <code>目標值</code> 背面的數字，真正的符合了原先 <code>理想目標</code> 的假設 ⇒ 只需要一步就可以翻到目標的數字。如果大家都只需要一步，那是不是可以先省下這部分的計算，最後再加上就好了呢？</li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+    <span class="kt">int</span> <span class="n">minCostofRotation</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&amp;</span> <span class="n">dices</span><span class="p">)</span> <span class="p">{</span>
+        
+        <span class="n">unordered_map</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="o">&gt;</span> <span class="n">mp</span><span class="p">;</span>
+        <span class="kt">int</span> <span class="n">cost</span> <span class="o">=</span> <span class="n">INT_MAX</span><span class="p">;</span>
+        
+				<span class="c1">// step 1
+</span><span class="c1"></span>        <span class="k">for</span><span class="p">(</span><span class="k">auto</span> <span class="o">&amp;</span><span class="nl">i</span><span class="p">:</span><span class="n">dices</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">mp</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">++</span><span class="p">;</span>
+        <span class="p">}</span>
+        
+				<span class="c1">// step 3
+</span><span class="c1"></span>        <span class="k">for</span><span class="p">(</span><span class="k">auto</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;=</span><span class="mi">6</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">cost</span> <span class="o">=</span> <span class="n">min</span><span class="p">(</span><span class="n">cost</span><span class="p">,</span> <span class="n">mp</span><span class="p">[</span><span class="mi">7</span><span class="o">-</span><span class="n">i</span><span class="p">]</span><span class="o">-</span><span class="n">mp</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+        <span class="p">}</span>
+        
+				<span class="c1">// step 2
+</span><span class="c1"></span>        <span class="k">return</span> <span class="n">cost</span> <span class="o">+</span> <span class="n">dices</span><span class="p">.</span><span class="n">size</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+</code></pre></div><p>Time complexity:  $\mathcal{O}(n)$.</p>
+<p>Space complexity:  $\mathcal{O}(n)$.</p>
+<ul>
+<li>
+<p>很完整能直接跑出結果的解法 (但我只想看方法 oao)</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="cp">#include</span> <span class="cpf">&lt;algorithm&gt; // copy</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt; // cin, cout</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;iterator&gt; // back_inserter, istream_iterator</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;sstream&gt; // istringstream</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;string&gt; // getline, string</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;vector&gt; // vector</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;limits.h&gt; //INT_MAX</span><span class="cp">
+</span><span class="cp"></span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="nf">number_of_rotations</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">dices</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// WRITE YOUR BRILLIANT CODE HERE
+</span><span class="c1"></span>
+    <span class="n">unordered_map</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="o">&gt;</span> <span class="n">mp</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">cost</span> <span class="o">=</span> <span class="n">INT_MAX</span><span class="p">;</span>
+
+    <span class="k">for</span><span class="p">(</span><span class="k">auto</span> <span class="o">&amp;</span><span class="nl">i</span><span class="p">:</span><span class="n">dices</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">mp</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">++</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">for</span><span class="p">(</span><span class="k">auto</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;=</span><span class="mi">6</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">cost</span> <span class="o">=</span> <span class="n">min</span><span class="p">(</span><span class="n">cost</span><span class="p">,</span> <span class="n">mp</span><span class="p">[</span><span class="mi">7</span><span class="o">-</span><span class="n">i</span><span class="p">]</span><span class="o">-</span><span class="n">mp</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+    <span class="p">}</span>
+
+    <span class="k">return</span> <span class="n">cost</span> <span class="o">+</span> <span class="n">dices</span><span class="p">.</span><span class="n">size</span><span class="p">();</span>
+
+<span class="p">}</span>
+
+<span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+<span class="n">vector</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">get_words</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">string</span> <span class="n">line</span><span class="p">;</span>
+    <span class="n">getline</span><span class="p">(</span><span class="n">cin</span><span class="p">,</span> <span class="n">line</span><span class="p">);</span>
+    <span class="n">istringstream</span> <span class="n">ss</span><span class="p">{</span><span class="n">line</span><span class="p">};</span>
+    <span class="n">vector</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">v</span><span class="p">;</span>
+    <span class="n">copy</span><span class="p">(</span><span class="n">istream_iterator</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">{</span><span class="n">ss</span><span class="p">},</span> <span class="n">istream_iterator</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">{},</span> <span class="n">back_inserter</span><span class="p">(</span><span class="n">v</span><span class="p">));</span>
+    <span class="k">return</span> <span class="n">v</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">dice</span> <span class="o">=</span> <span class="n">get_words</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">();</span>
+    <span class="kt">int</span> <span class="n">res</span> <span class="o">=</span> <span class="n">number_of_rotations</span><span class="p">(</span><span class="n">dice</span><span class="p">);</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">res</span> <span class="o">&lt;&lt;</span> <span class="sc">&#39;\n&#39;</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></li>
+</ul>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2021-05-03</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://eyzim.github.io/posts/amazon_online_assessment-roll_dice/" data-title="Amazon Online Assessment (OA) - Roll Dice 解題紀錄" data-hashtags="medium,c&#43;&#43;"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://eyzim.github.io/posts/amazon_online_assessment-roll_dice/" data-hashtag="medium"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://eyzim.github.io/posts/amazon_online_assessment-roll_dice/" data-title="Amazon Online Assessment (OA) - Roll Dice 解題紀錄"><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="javascript:void(0);" title="Share on Blogger" data-sharer="blogger" data-url="https://eyzim.github.io/posts/amazon_online_assessment-roll_dice/" data-title="Amazon Online Assessment (OA) - Roll Dice 解題紀錄" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="Share on Evernote" data-sharer="evernote" data-url="https://eyzim.github.io/posts/amazon_online_assessment-roll_dice/" data-title="Amazon Online Assessment (OA) - Roll Dice 解題紀錄"><i class="fab fa-evernote fa-fw"></i></a><a href="javascript:void(0);" title="Share on Trello" data-sharer="trello" data-url="https://eyzim.github.io/posts/amazon_online_assessment-roll_dice/" data-title="Amazon Online Assessment (OA) - Roll Dice 解題紀錄" data-description=""><i class="fab fa-trello fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/medium/">medium</a>,&nbsp;<a href="/tags/c&#43;&#43;/">c&#43;&#43;</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/leetcode/leetcode_21_merge_two_sorted_lists/" class="prev" rel="prev" title="LeetCode 21. Merge Two Sorted Lists 解題紀錄"><i class="fas fa-angle-left fa-fw"></i>LeetCode 21. Merge Two Sorted Lists 解題紀錄</a>
+            <a href="/posts/leetcode/leetcode_1790_check_if_one_string_swap_can_make_strings_equal/" class="next" rel="next" title="LeetCode 1790. Check if One String Swap Can Make Strings Equal 解題紀錄">LeetCode 1790. Check if One String Swap Can Make Strings Equal 解題紀錄<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"><div id="disqus_thread" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://disqus.com/?ref_noscript">Disqus</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.92.1">Hugo</a> | Theme - <a href="" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2014 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">elvire</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><script type="text/javascript" src="https://eyzim.disqus.com/embed.js" defer></script><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/twemoji/twemoji.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":50,"type":"lunr"},"twemoji":true};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>
