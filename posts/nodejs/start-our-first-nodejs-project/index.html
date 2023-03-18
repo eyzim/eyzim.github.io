@@ -1,409 +1,67 @@
-<!DOCTYPE html>
-<html lang="zh-TW">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="robots" content="noodp" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
-        <title>[NodeJS] 程式麻瓜的第一個 nodeJS 專案 - EVIEEE</title><meta name="Description" content="Empassion, Endearing, Enthusiastic"><meta property="og:title" content="[NodeJS] 程式麻瓜的第一個 nodeJS 專案" />
-<meta property="og:description" content="Start Our First Nodejs Project." />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://eyzim.github.io/posts/nodejs/start-our-first-nodejs-project/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2022-10-18T18:15:45+08:00" />
-<meta property="article:modified_time" content="2022-10-18T18:15:45+08:00" />
-
-<meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="[NodeJS] 程式麻瓜的第一個 nodeJS 專案"/>
-<meta name="twitter:description" content="Start Our First Nodejs Project."/>
-<meta name="application-name" content="Evieees">
-<meta name="apple-mobile-web-app-title" content="Evieees"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
-        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://eyzim.github.io/posts/nodejs/start-our-first-nodejs-project/" /><link rel="prev" href="https://eyzim.github.io/posts/leetcode/leetcode_342_power_of_four/" /><link rel="next" href="https://eyzim.github.io/posts/push_my_project_to_github/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
-    {
-        "@context": "http://schema.org",
-        "@type": "BlogPosting",
-        "headline": "[NodeJS] 程式麻瓜的第一個 nodeJS 專案",
-        "inLanguage": "zh-TW",
-        "mainEntityOfPage": {
-            "@type": "WebPage",
-            "@id": "https:\/\/eyzim.github.io\/posts\/nodejs\/start-our-first-nodejs-project\/"
-        },"genre": "posts","keywords": "nodejs","wordcount":  1035 ,
-        "url": "https:\/\/eyzim.github.io\/posts\/nodejs\/start-our-first-nodejs-project\/","datePublished": "2022-10-18T18:15:45+08:00","dateModified": "2022-10-18T18:15:45+08:00","publisher": {
-            "@type": "Organization",
-            "name": "EYZ"},"author": {
-                "@type": "Person",
-                "name": "EYZ"
-            },"description": ""
-    }
-    </script></head>
-    <body header-desktop="" header-mobile=""><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : '' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
-
-        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
-    <div class="header-wrapper">
-        <div class="header-title">
-            <a href="/" title="EVIEEE">EVIEEE</a>
-        </div>
-        <div class="menu">
-            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 標籤 </a><a class="menu-item" href="/categories/"> 分類 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
-                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
-                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
-                            <i class="fas fa-search fa-fw"></i>
-                        </a>
-                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
-                            <i class="fas fa-times-circle fa-fw"></i>
-                        </a>
-                        <span class="search-button search-loading" id="search-loading-desktop">
-                            <i class="fas fa-spinner fa-fw fa-spin"></i>
-                        </span>
-                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
-                    <i class="fas fa-adjust fa-fw"></i>
-                </a>
-            </div>
-        </div>
-    </div>
-</header><header class="mobile" id="header-mobile">
-    <div class="header-container">
-        <div class="header-wrapper">
-            <div class="header-title">
-                <a href="/" title="EVIEEE">EVIEEE</a>
-            </div>
-            <div class="menu-toggle" id="menu-toggle-mobile">
-                <span></span><span></span><span></span>
-            </div>
-        </div>
-        <div class="menu" id="menu-mobile"><div class="search-wrapper">
-                    <div class="search mobile" id="search-mobile">
-                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
-                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
-                            <i class="fas fa-search fa-fw"></i>
-                        </a>
-                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
-                            <i class="fas fa-times-circle fa-fw"></i>
-                        </a>
-                        <span class="search-button search-loading" id="search-loading-mobile">
-                            <i class="fas fa-spinner fa-fw fa-spin"></i>
-                        </span>
-                    </div>
-                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
-                        Cancel
-                    </a>
-                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">標籤</a><a class="menu-item" href="/categories/" title="">分類</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
-                <i class="fas fa-adjust fa-fw"></i>
-            </a></div>
-    </div>
-</header>
-<div class="search-dropdown desktop">
-    <div id="search-dropdown-desktop"></div>
-</div>
-<div class="search-dropdown mobile">
-    <div id="search-dropdown-mobile"></div>
-</div>
-<main class="main">
-                <div class="container"><div class="toc" id="toc-auto">
-            <h2 class="toc-title">Contents</h2>
-            <div class="toc-content" id="toc-content-auto"></div>
-        </div><article class="page single"><h1 class="single-title animated flipInX">[NodeJS] 程式麻瓜的第一個 nodeJS 專案</h1><div class="post-meta">
-            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>EYZ</a></span>&nbsp;<span class="post-category">included in <a href="/categories/nodejs/"><i class="far fa-folder fa-fw"></i>nodejs</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-10-18">2022-10-18</time>&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;3 minutes&nbsp;</div>
-        </div><div class="details toc" id="toc-static"  kept="">
-                <div class="details-summary toc-title">
-                    <span>Contents</span>
-                    <span><i class="details-icon fas fa-angle-right"></i></span>
-                </div>
-                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
-  <ul>
-    <li><a href="#開始之前">開始之前</a>
-      <ul>
-        <li><a href="#安裝">安裝</a></li>
-      </ul>
-    </li>
-    <li><a href="#建立乾淨的專案">建立乾淨的專案</a></li>
-    <li><a href="#開始-nodejs-的大門">開始 NodeJS 的大門</a>
-      <ul>
-        <li><a href="#powershell-處理權限問題">PowerShell 處理權限問題</a></li>
-      </ul>
-    </li>
-    <li><a href="#編輯-indexjs">編輯 index.js</a></li>
-  </ul>
-</nav></div>
-            </div><div class="content" id="content"><h2 id="開始之前">開始之前</h2>
-<p>這篇文章在環境設定的部分是以 Windows 做為示範，若使用 MacOS，請直接跳至 <a href="#%E5%BB%BA%E7%AB%8B%E4%B9%BE%E6%B7%A8%E7%9A%84%E5%B0%88%E6%A1%88" rel="">建立乾淨的專案</a></p>
-<p>確定電腦環境中有安裝這些:</p>
-<div class="details admonition info open">
-        <div class="details-summary admonition-title">
-            <i class="icon fas fa-info-circle fa-fw"></i>安裝軟體<i class="details-icon fas fa-angle-right fa-fw"></i>
-        </div>
-        <div class="details-content">
-            <div class="admonition-content"><ol>
-<li><a href="https://code.visualstudio.com/" target="_blank" rel="noopener noreffer">Visual Studio Code</a></li>
-<li>Windows Powershell</li>
-<li><a href="https://nodejs.org/zh-tw/download/" target="_blank" rel="noopener noreffer">NodeJS</a></li>
-</ol>
-</div>
-        </div>
-    </div>
-<p>其中 VSCode 可以是任何其他你已經相當習慣的文字編輯軟體 <del>Word</del>。</p>
-<h3 id="安裝">安裝</h3>
-<ol>
-<li>
-<p>Visual Studio Code
-直接安裝 stable version，一直點確定確定確定就安裝好了。</p>
-<figure><a class="lightgallery" href="start_first_nodejs/download_vscode.png" title="download_vscode" data-thumbnail="start_first_nodejs/download_vscode.png" data-sub-html="<h2>Visual Studio Code</h2>">
-        <img
-            class="lazyload"
-            src="/svg/loading.min.svg"
-            data-src="/images/start_first_nodejs/download_vscode.png"
-            data-srcset="start_first_nodejs/download_vscode.png, /images/start_first_nodejs/download_vscode.png 1.5x, start_first_nodejs/download_vscode.png 2x"
-            data-sizes="auto"
-            alt="download_vscode" height="200" />
-    </a><figcaption class="image-caption">Visual Studio Code</figcaption>
-    </figure>
-</li>
-<li>
-<p>Windows Powershell 則可以在 Windows 左下角搜尋欄中輸入 &ldquo;PowerShell&rdquo; 找到。</p>
-<figure><a class="lightgallery" href="start_first_nodejs/look_for_powershell.png" title="look_for_powershell" data-thumbnail="start_first_nodejs/look_for_powershell.png" data-sub-html="<h2>PowerShell</h2>">
-        <img
-            class="lazyload"
-            src="/svg/loading.min.svg"
-            data-src="/images/start_first_nodejs/look_for_powershell.png"
-            data-srcset="start_first_nodejs/look_for_powershell.png, /images/start_first_nodejs/look_for_powershell.png 1.5x, start_first_nodejs/look_for_powershell.png 2x"
-            data-sizes="auto"
-            alt="look_for_powershell" height="200" />
-    </a><figcaption class="image-caption">PowerShell</figcaption>
-    </figure>
-</li>
-<li>
-<p>下載 node.js LTS 版本
-<figure><a class="lightgallery" href="start_first_nodejs/downlaod_nodejs.png" title="downlaod_nodejs" data-thumbnail="start_first_nodejs/downlaod_nodejs.png" data-sub-html="<h2>NodeJS</h2>">
-        <img
-            class="lazyload"
-            src="/svg/loading.min.svg"
-            data-src="/images/start_first_nodejs/downlaod_nodejs.png"
-            data-srcset="start_first_nodejs/downlaod_nodejs.png, /images/start_first_nodejs/downlaod_nodejs.png 1.5x, start_first_nodejs/downlaod_nodejs.png 2x"
-            data-sizes="auto"
-            alt="downlaod_nodejs" height="200" />
-    </a><figcaption class="image-caption">NodeJS</figcaption>
-    </figure></p>
-</li>
-</ol>
-<h2 id="建立乾淨的專案">建立乾淨的專案</h2>
-<ol>
-<li>
-<p>開啟 VSCode，開啟一個乾淨的資料夾。</p>
-</li>
-<li>
-<p>接下來我們會在這個資料夾中新增很多小專案，所以再新增第一個麻瓜資料夾，萬一被麻瓜法術搞砸，刪掉這個資料夾就一切和平了</p>
-<ul>
-<li>
-<p>開啟 VSCode 的 terminal</p>
-<ol>
-<li>
-<p>在 VSCode 乾淨的畫面上按 <code>ctrl</code> + <code>p</code></p>
-</li>
-<li>
-<p>輸入 <code>&gt;terminal</code></p>
-</li>
-<li>
-<p>選擇 <code>JavaScript Debug Terminal</code></p>
-<figure><a class="lightgallery" href="start_first_nodejs/open_vscode_terminal.png" title="open_vscode_terminal" data-thumbnail="start_first_nodejs/open_vscode_terminal.png" data-sub-html="<h2>Open the terminal of VSCode</h2>">
-        <img
-            class="lazyload"
-            src="/svg/loading.min.svg"
-            data-src="/images/start_first_nodejs/open_vscode_terminal.png"
-            data-srcset="start_first_nodejs/open_vscode_terminal.png, /images/start_first_nodejs/open_vscode_terminal.png 1.5x, start_first_nodejs/open_vscode_terminal.png 2x"
-            data-sizes="auto"
-            alt="open_vscode_terminal" height="200" />
-    </a><figcaption class="image-caption">Open the terminal of VSCode</figcaption>
-    </figure>
-</li>
-<li>
-<p>此時 VSCode 視窗下半部就會彈出小視窗了視窗了</p>
-<figure><a class="lightgallery" href="start_first_nodejs/vscode_terminal.png" title="vscode_terminal" data-thumbnail="start_first_nodejs/vscode_terminal.png" data-sub-html="<h2>This is the terminal of VSCode</h2>">
-        <img
-            class="lazyload"
-            src="/svg/loading.min.svg"
-            data-src="/images/start_first_nodejs/vscode_terminal.png"
-            data-srcset="start_first_nodejs/vscode_terminal.png, /images/start_first_nodejs/vscode_terminal.png 1.5x, start_first_nodejs/vscode_terminal.png 2x"
-            data-sizes="auto"
-            alt="vscode_terminal" height="200" />
-    </a><figcaption class="image-caption">This is the terminal of VSCode</figcaption>
-    </figure>
-</li>
-</ol>
-</li>
-</ul>
-<ul>
-<li>
-<p>新增子資料夾 <code>first-nodejs-app</code></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 新增資料夾</span>
-mkdir first-nodejs-app
-
-<span class="c1"># 移動到資料夾中</span>
-<span class="nb">cd</span> first-nodejs-app
-</code></pre></div></li>
-</ul>
-</li>
-</ol>
-<h2 id="開始-nodejs-的大門">開始 NodeJS 的大門</h2>
-<ol>
-<li>
-<p>第一個檔案 <code>index.js</code></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">touch index.js
-</code></pre></div></li>
-<li>
-<p>建構整個網頁的配置檔 npm 管理工具
-nodejs 中，所有需要的延伸工具包，都是由 npm 這個指令所管理</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">npm init
-</code></pre></div><p>接著會有許多問你是不是對不對的問題，如果覺得麻煩，也可以這樣</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">npm init -y
-</code></pre></div><p>所有問題都直接代替你回答 yes 了</p>
-</li>
-<li>
-<p>安裝我們的第一個工具包
-這個工具包讓我們執行 nodejs 時，不用每次修改後都要重啟 nodejs，永遠會為你更新到現在修改完的成果</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">npm i express
-npm i path
-npm i ejs
-</code></pre></div><p>這裡的 <code>-g</code> 代表著安裝到本機端，如果不要加上 <code>-g</code>，每次我們新增專案時都要再一次安裝這個工具</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">npm i -g nodemon
-</code></pre></div><ul>
-<li>
-<p>嘗試使用 nodemon</p>
-<pre tabindex="0"><code>nodemon index.js
-</code></pre><p>這時出現了</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt">first-nodejs-app&gt; nodemon .\index.js
-nodemon : 因為這個系統上已停用指令碼執行，所以無法載入 C:\Users\eyzim\AppData\Roaming\npm\nodemon.ps1 檔案。如需詳細資 
-訊，請參閱 about_Execution_Policies，網址為 https:/go.microsoft.com/fwlink/?LinkID=135170。
-位於 線路:1 字元:1
-+ nodemon .\index.js
-+ ~~~~~~~
-    + CategoryInfo          : SecurityError: (:) [], PSSecurityException
-    + FullyQualifiedErrorId : UnauthorizedAccess
-</code></pre></div></li>
-</ul>
-</li>
-</ol>
-<h3 id="powershell-處理權限問題">PowerShell 處理權限問題</h3>
-<p>最後一行寫著 <code>UnauthorizedAccess</code>，看起來是權限不足</p>
-<ol>
-<li>
-<p>一樣在 Windows 畫面左下角搜尋 <code>PowerShell</code></p>
-</li>
-<li>
-<p>以系統管理員身分打開 Windows PowerShell</p>
-<figure><a class="lightgallery" href="start_first_nodejs/open_powershell.png" title="open_powershell" data-thumbnail="start_first_nodejs/open_powershell.png" data-sub-html="<h2>Run PowerShell as administrator</h2>">
-        <img
-            class="lazyload"
-            src="/svg/loading.min.svg"
-            data-src="/images/start_first_nodejs/open_powershell.png"
-            data-srcset="start_first_nodejs/open_powershell.png, /images/start_first_nodejs/open_powershell.png 1.5x, start_first_nodejs/open_powershell.png 2x"
-            data-sizes="auto"
-            alt="open_powershell" height="200" />
-    </a><figcaption class="image-caption">Run PowerShell as administrator</figcaption>
-    </figure>
-</li>
-<li>
-<p>設置權限，選擇可以不需要簽署直接執行本機端的腳本檔案</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">Set-ExecutionPolicy RemoteSigned
-</code></pre></div><p>看到 Log 跑出</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt">PS C:\Windows\system32&gt; Set-ExecutionPolicy RemoteSigned
-
-執行原則變更
-執行原則有助於防範您不信任的指令碼。如果變更執行原則，可能會使您接觸到 about_Execution_Policies 說明主題 (網址為
-https:/go.microsoft.com/fwlink/?LinkID=135170) 中所述的安全性風險。您要變更執行原則嗎?
-[Y] 是(Y)  [A] 全部皆是(A)  [N] 否(N)  [L] 全部皆否(L)  [S] 暫停(S)  [?] 說明 (預設值為 &#34;N&#34;): 
-</code></pre></div><p>選擇 <code>y</code> 同意</p>
-<ol start="4">
-<li>
-<p>確認權限設置是否成功</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">Get-ExecutionPolicy
-</code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt">PS C:\Windows\system32&gt; Get-ExecutionPolicy
-RemoteSigned
-</code></pre></div></li>
-</ol>
-</li>
-</ol>
-<ul>
-<li>
-<p>回到 VSCode，再次輸入</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">nodemon index.js
-</code></pre></div></li>
-</ul>
-<h2 id="編輯-indexjs">編輯 index.js</h2>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="c1">// use express
-</span><span class="c1"></span><span class="kr">const</span> <span class="nx">express</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;express&#39;</span><span class="p">)</span>
-<span class="kr">const</span> <span class="nx">app</span> <span class="o">=</span> <span class="nx">express</span><span class="p">()</span>
-
-<span class="c1">// use ejs
-</span><span class="c1"></span><span class="kr">const</span> <span class="nx">path</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;path&#39;</span><span class="p">);</span>
-<span class="nx">ejs</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;ejs&#39;</span><span class="p">);</span>
-<span class="nx">app</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;view engine&#39;</span><span class="p">,</span> <span class="s1">&#39;ejs&#39;</span><span class="p">);</span>
-<span class="nx">app</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;views&#39;</span><span class="p">,</span> <span class="nx">path</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="nx">__dirname</span><span class="p">,</span> <span class="s1">&#39;/views&#39;</span><span class="p">))</span>
-
-<span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
-    <span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="s2">&#34;HOME PAGE&#34;</span><span class="p">)</span>
-<span class="p">})</span>
-
-<span class="nx">app</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="s1">&#39;3000&#39;</span><span class="p">,</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&#34;listening port 3000&#34;</span><span class="p">)</span>
-<span class="p">})</span>
-
-</code></pre></div><ul>
-<li>
-<p>讓檔案開始運作</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">nodemon index.js
-</code></pre></div></li>
-</ul>
-<p>會在 terminal 看到 listening port 3000</p>
-<figure><a class="lightgallery" href="run_indexjs/run_indexjs.png" title="run_indexjs" data-thumbnail="start_first_nodejs/run_indexjs.png" data-sub-html="<h2>Run index.js</h2>">
-        <img
-            class="lazyload"
-            src="/svg/loading.min.svg"
-            data-src="/images/start_first_nodejs/run_indexjs.png"
-            data-srcset="start_first_nodejs/run_indexjs.png, /images/start_first_nodejs/run_indexjs.png 1.5x, run_indexjs/run_indexjs.png 2x"
-            data-sizes="auto"
-            alt="run_indexjs" height="200" />
-    </a><figcaption class="image-caption">Run index.js</figcaption>
-    </figure>
-</div><div class="post-footer" id="post-footer">
-    <div class="post-info">
-        <div class="post-info-line">
-            <div class="post-info-mod">
-                <span>Updated on 2022-10-18</span>
-            </div>
-            <div class="post-info-license"></div>
-        </div>
-        <div class="post-info-line">
-            <div class="post-info-md"></div>
-            <div class="post-info-share">
-                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://eyzim.github.io/posts/nodejs/start-our-first-nodejs-project/" data-title="[NodeJS] 程式麻瓜的第一個 nodeJS 專案" data-hashtags="nodejs"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://eyzim.github.io/posts/nodejs/start-our-first-nodejs-project/" data-hashtag="nodejs"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://eyzim.github.io/posts/nodejs/start-our-first-nodejs-project/" data-title="[NodeJS] 程式麻瓜的第一個 nodeJS 專案"><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="javascript:void(0);" title="Share on Blogger" data-sharer="blogger" data-url="https://eyzim.github.io/posts/nodejs/start-our-first-nodejs-project/" data-title="[NodeJS] 程式麻瓜的第一個 nodeJS 專案" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="Share on Evernote" data-sharer="evernote" data-url="https://eyzim.github.io/posts/nodejs/start-our-first-nodejs-project/" data-title="[NodeJS] 程式麻瓜的第一個 nodeJS 專案"><i class="fab fa-evernote fa-fw"></i></a><a href="javascript:void(0);" title="Share on Trello" data-sharer="trello" data-url="https://eyzim.github.io/posts/nodejs/start-our-first-nodejs-project/" data-title="[NodeJS] 程式麻瓜的第一個 nodeJS 專案" data-description=""><i class="fab fa-trello fa-fw"></i></a></span>
-            </div>
-        </div>
-    </div>
-
-    <div class="post-info-more">
-        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/nodejs/">nodejs</a></section>
-        <section>
-            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
-        </section>
-    </div>
-
-    <div class="post-nav"><a href="/posts/leetcode/leetcode_342_power_of_four/" class="prev" rel="prev" title="LeetCode 342. Power of Four 解題紀錄"><i class="fas fa-angle-left fa-fw"></i>LeetCode 342. Power of Four 解題紀錄</a>
-            <a href="/posts/push_my_project_to_github/" class="next" rel="next" title="[Git] 新增專案到 GitHub">[Git] 新增專案到 GitHub<i class="fas fa-angle-right fa-fw"></i></a></div>
-</div>
-<div id="comments"><div id="disqus_thread" class="comment"></div><noscript>
-                Please enable JavaScript to view the comments powered by <a href="https://disqus.com/?ref_noscript">Disqus</a>.
-            </noscript></div></article></div>
-            </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.92.1">Hugo</a> | Theme - <a href="" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"> LoveIt</a>
-                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2014 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">elvire</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
-        </div>
-    </footer></div>
-
-        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
-                <i class="fas fa-arrow-up fa-fw"></i>
-            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
-                <i class="fas fa-comment fa-fw"></i>
-            </a>
-        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><script type="text/javascript" src="https://eyzim.disqus.com/embed.js" defer></script><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/twemoji/twemoji.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":50,"type":"lunr"},"twemoji":true};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
-</html>
+<!doctype html><html lang=zh-tw><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=robots content="noodp"><meta http-equiv=x-ua-compatible content="IE=edge, chrome=1"><title>[NodeJS] 程式麻瓜的第一個 nodeJS 專案 - EVIEEE</title><meta name=Description content="Empassion, Endearing, Enthusiastic"><meta property="og:title" content="[NodeJS] 程式麻瓜的第一個 nodeJS 專案"><meta property="og:description" content="Start Our First Nodejs Project."><meta property="og:type" content="article"><meta property="og:url" content="https://eyzim.github.io/posts/nodejs/start-our-first-nodejs-project/"><meta property="article:section" content="posts"><meta property="article:published_time" content="2022-10-18T18:15:45+08:00"><meta property="article:modified_time" content="2022-10-18T18:15:45+08:00"><meta name=twitter:card content="summary"><meta name=twitter:title content="[NodeJS] 程式麻瓜的第一個 nodeJS 專案"><meta name=twitter:description content="Start Our First Nodejs Project."><meta name=application-name content="Evieees"><meta name=apple-mobile-web-app-title content="Evieees"><meta name=theme-color content="#ffffff"><meta name=msapplication-TileColor content="#da532c"><link rel="shortcut icon" type=image/x-icon href=/favicon.ico><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://eyzim.github.io/posts/nodejs/start-our-first-nodejs-project/><link rel=prev href=https://eyzim.github.io/posts/leetcode/leetcode_342_power_of_four/><link rel=next href=https://eyzim.github.io/posts/push_my_project_to_github/><link rel=stylesheet href=/lib/normalize/normalize.min.css><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=/lib/fontawesome-free/all.min.css><link rel=stylesheet href=/lib/animate/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"[NodeJS] 程式麻瓜的第一個 nodeJS 專案","inLanguage":"zh-TW","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/eyzim.github.io\/posts\/nodejs\/start-our-first-nodejs-project\/"},"genre":"posts","keywords":"nodejs","wordcount":1013,"url":"https:\/\/eyzim.github.io\/posts\/nodejs\/start-our-first-nodejs-project\/","datePublished":"2022-10-18T18:15:45+08:00","dateModified":"2022-10-18T18:15:45+08:00","publisher":{"@type":"Organization","name":"EYZ"},"author":{"@type":"Person","name":"EYZ"},"description":""}</script></head><body header-desktop header-mobile><script type=text/javascript>(window.localStorage&&localStorage.getItem("theme")?localStorage.getItem("theme")==="dark":""==="auto"?window.matchMedia("(prefers-color-scheme: dark)").matches:""==="dark")&&document.body.setAttribute("theme","dark")</script><div id=mask></div><div class=wrapper><header class=desktop id=header-desktop><div class=header-wrapper><div class=header-title><a href=/ title=EVIEEE>EVIEEE</a></div><div class=menu><div class=menu-inner><a class=menu-item href=/posts/>文章 </a><a class=menu-item href=/tags/>標籤 </a><a class=menu-item href=/categories/>分類 </a><span class="menu-item delimiter"></span><span class="menu-item search" id=search-desktop>
+<input type=text placeholder="Search titles or contents..." id=search-input-desktop>
+<a href=javascript:void(0); class="search-button search-toggle" id=search-toggle-desktop title=Search><i class="fas fa-search fa-fw"></i></a>
+<a href=javascript:void(0); class="search-button search-clear" id=search-clear-desktop title=Clear><i class="fas fa-times-circle fa-fw"></i></a>
+<span class="search-button search-loading" id=search-loading-desktop><i class="fas fa-spinner fa-fw fa-spin"></i></span>
+</span><a href=javascript:void(0); class="menu-item theme-switch" title="Switch Theme"><i class="fas fa-adjust fa-fw"></i></a></div></div></div></header><header class=mobile id=header-mobile><div class=header-container><div class=header-wrapper><div class=header-title><a href=/ title=EVIEEE>EVIEEE</a></div><div class=menu-toggle id=menu-toggle-mobile><span></span><span></span><span></span></div></div><div class=menu id=menu-mobile><div class=search-wrapper><div class="search mobile" id=search-mobile><input type=text placeholder="Search titles or contents..." id=search-input-mobile>
+<a href=javascript:void(0); class="search-button search-toggle" id=search-toggle-mobile title=Search><i class="fas fa-search fa-fw"></i></a>
+<a href=javascript:void(0); class="search-button search-clear" id=search-clear-mobile title=Clear><i class="fas fa-times-circle fa-fw"></i></a>
+<span class="search-button search-loading" id=search-loading-mobile><i class="fas fa-spinner fa-fw fa-spin"></i></span></div><a href=javascript:void(0); class=search-cancel id=search-cancel-mobile>Cancel</a></div><a class=menu-item href=/posts/ title>文章</a><a class=menu-item href=/tags/ title>標籤</a><a class=menu-item href=/categories/ title>分類</a><a href=javascript:void(0); class="menu-item theme-switch" title="Switch Theme">
+<i class="fas fa-adjust fa-fw"></i></a></div></div></header><div class="search-dropdown desktop"><div id=search-dropdown-desktop></div></div><div class="search-dropdown mobile"><div id=search-dropdown-mobile></div></div><main class=main><div class=container><div class=toc id=toc-auto><h2 class=toc-title>Contents</h2><div class=toc-content id=toc-content-auto></div></div><article class="page single"><h1 class="single-title animated flipInX">[NodeJS] 程式麻瓜的第一個 nodeJS 專案</h1><div class=post-meta><div class=post-meta-line><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>EYZ</a></span>&nbsp;<span class=post-category>included in <a href=/categories/nodejs/><i class="far fa-folder fa-fw"></i>nodejs</a></span></div><div class=post-meta-line><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2022-10-18>2022-10-18</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;1013 words&nbsp;
+<i class="far fa-clock fa-fw"></i>&nbsp;3 minutes&nbsp;</div></div><div class="details toc" id=toc-static kept><div class="details-summary toc-title"><span>Contents</span>
+<span><i class="details-icon fas fa-angle-right"></i></span></div><div class="details-content toc-content" id=toc-content-static><nav id=TableOfContents><ul><li><a href=#開始之前>開始之前</a><ul><li><a href=#安裝>安裝</a></li></ul></li><li><a href=#建立乾淨的專案>建立乾淨的專案</a></li><li><a href=#開始-nodejs-的大門>開始 NodeJS 的大門</a><ul><li><a href=#powershell-處理權限問題>PowerShell 處理權限問題</a></li></ul></li><li><a href=#編輯-indexjs>編輯 index.js</a></li></ul></nav></div></div><div class=content id=content><h2 id=開始之前>開始之前</h2><p>這篇文章在環境設定的部分是以 Windows 做為示範，若使用 MacOS，請直接跳至 <a href=#%E5%BB%BA%E7%AB%8B%E4%B9%BE%E6%B7%A8%E7%9A%84%E5%B0%88%E6%A1%88 rel>建立乾淨的專案</a></p><p>確定電腦環境中有安裝這些:</p><div class="details admonition info open"><div class="details-summary admonition-title"><i class="icon fas fa-info-circle fa-fw"></i>安裝軟體<i class="details-icon fas fa-angle-right fa-fw"></i></div><div class=details-content><div class=admonition-content><ol><li><a href=https://code.visualstudio.com/ target=_blank rel="noopener noreffer">Visual Studio Code</a></li><li>Windows Powershell</li><li><a href=https://nodejs.org/zh-tw/download/ target=_blank rel="noopener noreffer">NodeJS</a></li></ol></div></div></div><p>其中 VSCode 可以是任何其他你已經相當習慣的文字編輯軟體 <del>Word</del>。</p><h3 id=安裝>安裝</h3><ol><li><p>Visual Studio Code
+直接安裝 stable version，一直點確定確定確定就安裝好了。</p><figure><a class=lightgallery href=start_first_nodejs/download_vscode.png title=download_vscode data-thumbnail=start_first_nodejs/download_vscode.png data-sub-html="<h2>Visual Studio Code</h2>"><img class=lazyload src=/svg/loading.min.svg data-src=/images/start_first_nodejs/download_vscode.png data-srcset="start_first_nodejs/download_vscode.png, /images/start_first_nodejs/download_vscode.png 1.5x, start_first_nodejs/download_vscode.png 2x" data-sizes=auto alt=download_vscode height=200></a><figcaption class=image-caption>Visual Studio Code</figcaption></figure></li><li><p>Windows Powershell 則可以在 Windows 左下角搜尋欄中輸入 &ldquo;PowerShell&rdquo; 找到。</p><figure><a class=lightgallery href=start_first_nodejs/look_for_powershell.png title=look_for_powershell data-thumbnail=start_first_nodejs/look_for_powershell.png data-sub-html="<h2>PowerShell</h2>"><img class=lazyload src=/svg/loading.min.svg data-src=/images/start_first_nodejs/look_for_powershell.png data-srcset="start_first_nodejs/look_for_powershell.png, /images/start_first_nodejs/look_for_powershell.png 1.5x, start_first_nodejs/look_for_powershell.png 2x" data-sizes=auto alt=look_for_powershell height=200></a><figcaption class=image-caption>PowerShell</figcaption></figure></li><li><p>下載 node.js LTS 版本<figure><a class=lightgallery href=start_first_nodejs/downlaod_nodejs.png title=downlaod_nodejs data-thumbnail=start_first_nodejs/downlaod_nodejs.png data-sub-html="<h2>NodeJS</h2>"><img class=lazyload src=/svg/loading.min.svg data-src=/images/start_first_nodejs/downlaod_nodejs.png data-srcset="start_first_nodejs/downlaod_nodejs.png, /images/start_first_nodejs/downlaod_nodejs.png 1.5x, start_first_nodejs/downlaod_nodejs.png 2x" data-sizes=auto alt=downlaod_nodejs height=200></a><figcaption class=image-caption>NodeJS</figcaption></figure></p></li></ol><h2 id=建立乾淨的專案>建立乾淨的專案</h2><ol><li><p>開啟 VSCode，開啟一個乾淨的資料夾。</p></li><li><p>接下來我們會在這個資料夾中新增很多小專案，所以再新增第一個麻瓜資料夾，萬一被麻瓜法術搞砸，刪掉這個資料夾就一切和平了</p><ul><li><p>開啟 VSCode 的 terminal</p><ol><li><p>在 VSCode 乾淨的畫面上按 <code>ctrl</code> + <code>p</code></p></li><li><p>輸入 <code>>terminal</code></p></li><li><p>選擇 <code>JavaScript Debug Terminal</code></p><figure><a class=lightgallery href=start_first_nodejs/open_vscode_terminal.png title=open_vscode_terminal data-thumbnail=start_first_nodejs/open_vscode_terminal.png data-sub-html="<h2>Open the terminal of VSCode</h2>"><img class=lazyload src=/svg/loading.min.svg data-src=/images/start_first_nodejs/open_vscode_terminal.png data-srcset="start_first_nodejs/open_vscode_terminal.png, /images/start_first_nodejs/open_vscode_terminal.png 1.5x, start_first_nodejs/open_vscode_terminal.png 2x" data-sizes=auto alt=open_vscode_terminal height=200></a><figcaption class=image-caption>Open the terminal of VSCode</figcaption></figure></li><li><p>此時 VSCode 視窗下半部就會彈出小視窗了視窗了</p><figure><a class=lightgallery href=start_first_nodejs/vscode_terminal.png title=vscode_terminal data-thumbnail=start_first_nodejs/vscode_terminal.png data-sub-html="<h2>This is the terminal of VSCode</h2>"><img class=lazyload src=/svg/loading.min.svg data-src=/images/start_first_nodejs/vscode_terminal.png data-srcset="start_first_nodejs/vscode_terminal.png, /images/start_first_nodejs/vscode_terminal.png 1.5x, start_first_nodejs/vscode_terminal.png 2x" data-sizes=auto alt=vscode_terminal height=200></a><figcaption class=image-caption>This is the terminal of VSCode</figcaption></figure></li></ol></li></ul><ul><li><p>新增子資料夾 <code>first-nodejs-app</code></p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># 新增資料夾</span>
+</span></span><span class=line><span class=cl>mkdir first-nodejs-app
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 移動到資料夾中</span>
+</span></span><span class=line><span class=cl><span class=nb>cd</span> first-nodejs-app
+</span></span></code></pre></div></li></ul></li></ol><h2 id=開始-nodejs-的大門>開始 NodeJS 的大門</h2><ol><li><p>第一個檔案 <code>index.js</code></p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>touch index.js
+</span></span></code></pre></div></li><li><p>建構整個網頁的配置檔 npm 管理工具
+nodejs 中，所有需要的延伸工具包，都是由 npm 這個指令所管理</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>npm init
+</span></span></code></pre></div><p>接著會有許多問你是不是對不對的問題，如果覺得麻煩，也可以這樣</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>npm init -y
+</span></span></code></pre></div><p>所有問題都直接代替你回答 yes 了</p></li><li><p>安裝我們的第一個工具包
+這個工具包讓我們執行 nodejs 時，不用每次修改後都要重啟 nodejs，永遠會為你更新到現在修改完的成果</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>npm i express
+</span></span><span class=line><span class=cl>npm i path
+</span></span><span class=line><span class=cl>npm i ejs
+</span></span></code></pre></div><p>這裡的 <code>-g</code> 代表著安裝到本機端，如果不要加上 <code>-g</code>，每次我們新增專案時都要再一次安裝這個工具</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>npm i -g nodemon
+</span></span></code></pre></div><ul><li><p>嘗試使用 nodemon</p><pre tabindex=0><code>nodemon index.js
+</code></pre><p>這時出現了</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-txt data-lang=txt><span class=line><span class=cl>first-nodejs-app&gt; nodemon .\index.js
+</span></span><span class=line><span class=cl>nodemon : 因為這個系統上已停用指令碼執行，所以無法載入 C:\Users\eyzim\AppData\Roaming\npm\nodemon.ps1 檔案。如需詳細資 
+</span></span><span class=line><span class=cl>訊，請參閱 about_Execution_Policies，網址為 https:/go.microsoft.com/fwlink/?LinkID=135170。
+</span></span><span class=line><span class=cl>位於 線路:1 字元:1
+</span></span><span class=line><span class=cl>+ nodemon .\index.js
+</span></span><span class=line><span class=cl>+ ~~~~~~~
+</span></span><span class=line><span class=cl>    + CategoryInfo          : SecurityError: (:) [], PSSecurityException
+</span></span><span class=line><span class=cl>    + FullyQualifiedErrorId : UnauthorizedAccess
+</span></span></code></pre></div></li></ul></li></ol><h3 id=powershell-處理權限問題>PowerShell 處理權限問題</h3><p>最後一行寫著 <code>UnauthorizedAccess</code>，看起來是權限不足</p><ol><li><p>一樣在 Windows 畫面左下角搜尋 <code>PowerShell</code></p></li><li><p>以系統管理員身分打開 Windows PowerShell</p><figure><a class=lightgallery href=start_first_nodejs/open_powershell.png title=open_powershell data-thumbnail=start_first_nodejs/open_powershell.png data-sub-html="<h2>Run PowerShell as administrator</h2>"><img class=lazyload src=/svg/loading.min.svg data-src=/images/start_first_nodejs/open_powershell.png data-srcset="start_first_nodejs/open_powershell.png, /images/start_first_nodejs/open_powershell.png 1.5x, start_first_nodejs/open_powershell.png 2x" data-sizes=auto alt=open_powershell height=200></a><figcaption class=image-caption>Run PowerShell as administrator</figcaption></figure></li><li><p>設置權限，選擇可以不需要簽署直接執行本機端的腳本檔案</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>Set-ExecutionPolicy RemoteSigned
+</span></span></code></pre></div><p>看到 Log 跑出</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-txt data-lang=txt><span class=line><span class=cl>PS C:\Windows\system32&gt; Set-ExecutionPolicy RemoteSigned
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>執行原則變更
+</span></span><span class=line><span class=cl>執行原則有助於防範您不信任的指令碼。如果變更執行原則，可能會使您接觸到 about_Execution_Policies 說明主題 (網址為
+</span></span><span class=line><span class=cl>https:/go.microsoft.com/fwlink/?LinkID=135170) 中所述的安全性風險。您要變更執行原則嗎?
+</span></span><span class=line><span class=cl>[Y] 是(Y)  [A] 全部皆是(A)  [N] 否(N)  [L] 全部皆否(L)  [S] 暫停(S)  [?] 說明 (預設值為 &#34;N&#34;): 
+</span></span></code></pre></div><p>選擇 <code>y</code> 同意</p><ol start=4><li><p>確認權限設置是否成功</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>Get-ExecutionPolicy
+</span></span></code></pre></div><div class=highlight><pre tabindex=0 class=chroma><code class=language-txt data-lang=txt><span class=line><span class=cl>PS C:\Windows\system32&gt; Get-ExecutionPolicy
+</span></span><span class=line><span class=cl>RemoteSigned
+</span></span></code></pre></div></li></ol></li></ol><ul><li><p>回到 VSCode，再次輸入</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>nodemon index.js
+</span></span></code></pre></div></li></ul><h2 id=編輯-indexjs>編輯 index.js</h2><div class=highlight><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=c1>// use express
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=kr>const</span> <span class=nx>express</span> <span class=o>=</span> <span class=nx>require</span><span class=p>(</span><span class=s1>&#39;express&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=kr>const</span> <span class=nx>app</span> <span class=o>=</span> <span class=nx>express</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>// use ejs
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=kr>const</span> <span class=nx>path</span> <span class=o>=</span> <span class=nx>require</span><span class=p>(</span><span class=s1>&#39;path&#39;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=nx>ejs</span> <span class=o>=</span> <span class=nx>require</span><span class=p>(</span><span class=s1>&#39;ejs&#39;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=nx>app</span><span class=p>.</span><span class=nx>set</span><span class=p>(</span><span class=s1>&#39;view engine&#39;</span><span class=p>,</span> <span class=s1>&#39;ejs&#39;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=nx>app</span><span class=p>.</span><span class=nx>set</span><span class=p>(</span><span class=s1>&#39;views&#39;</span><span class=p>,</span> <span class=nx>path</span><span class=p>.</span><span class=nx>join</span><span class=p>(</span><span class=nx>__dirname</span><span class=p>,</span> <span class=s1>&#39;/views&#39;</span><span class=p>))</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nx>app</span><span class=p>.</span><span class=nx>get</span><span class=p>(</span><span class=s1>&#39;/&#39;</span><span class=p>,</span> <span class=p>(</span><span class=nx>req</span><span class=p>,</span> <span class=nx>res</span><span class=p>)</span> <span class=p>=&gt;</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nx>res</span><span class=p>.</span><span class=nx>send</span><span class=p>(</span><span class=s2>&#34;HOME PAGE&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=p>})</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nx>app</span><span class=p>.</span><span class=nx>listen</span><span class=p>(</span><span class=s1>&#39;3000&#39;</span><span class=p>,</span> <span class=p>()</span> <span class=p>=&gt;</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=s2>&#34;listening port 3000&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=p>})</span>
+</span></span></code></pre></div><ul><li><p>讓檔案開始運作</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>nodemon index.js
+</span></span></code></pre></div></li></ul><p>會在 terminal 看到 listening port 3000</p><figure><a class=lightgallery href=run_indexjs/run_indexjs.png title=run_indexjs data-thumbnail=start_first_nodejs/run_indexjs.png data-sub-html="<h2>Run index.js</h2>"><img class=lazyload src=/svg/loading.min.svg data-src=/images/start_first_nodejs/run_indexjs.png data-srcset="start_first_nodejs/run_indexjs.png, /images/start_first_nodejs/run_indexjs.png 1.5x, run_indexjs/run_indexjs.png 2x" data-sizes=auto alt=run_indexjs height=200></a><figcaption class=image-caption>Run index.js</figcaption></figure></div><div class=post-footer id=post-footer><div class=post-info><div class=post-info-line><div class=post-info-mod><span>Updated on 2022-10-18</span></div><div class=post-info-license></div></div><div class=post-info-line><div class=post-info-md></div><div class=post-info-share><span><a href=javascript:void(0); title="Share on Twitter" data-sharer=twitter data-url=https://eyzim.github.io/posts/nodejs/start-our-first-nodejs-project/ data-title="[NodeJS] 程式麻瓜的第一個 nodeJS 專案" data-hashtags=nodejs><i class="fab fa-twitter fa-fw"></i></a><a href=javascript:void(0); title="Share on Facebook" data-sharer=facebook data-url=https://eyzim.github.io/posts/nodejs/start-our-first-nodejs-project/ data-hashtag=nodejs><i class="fab fa-facebook-square fa-fw"></i></a><a href=javascript:void(0); title="Share on Line" data-sharer=line data-url=https://eyzim.github.io/posts/nodejs/start-our-first-nodejs-project/ data-title="[NodeJS] 程式麻瓜的第一個 nodeJS 專案"><i data-svg-src=/lib/simple-icons/icons/line.min.svg></i></a><a href=javascript:void(0); title="Share on Blogger" data-sharer=blogger data-url=https://eyzim.github.io/posts/nodejs/start-our-first-nodejs-project/ data-title="[NodeJS] 程式麻瓜的第一個 nodeJS 專案" data-description><i class="fab fa-blogger fa-fw"></i></a><a href=javascript:void(0); title="Share on Evernote" data-sharer=evernote data-url=https://eyzim.github.io/posts/nodejs/start-our-first-nodejs-project/ data-title="[NodeJS] 程式麻瓜的第一個 nodeJS 專案"><i class="fab fa-evernote fa-fw"></i></a><a href=javascript:void(0); title="Share on Trello" data-sharer=trello data-url=https://eyzim.github.io/posts/nodejs/start-our-first-nodejs-project/ data-title="[NodeJS] 程式麻瓜的第一個 nodeJS 專案" data-description><i class="fab fa-trello fa-fw"></i></a></span></div></div></div><div class=post-info-more><section class=post-tags><i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/nodejs/>nodejs</a></section><section><span><a href=javascript:void(0); onclick=window.history.back()>Back</a></span>&nbsp;|&nbsp;<span><a href=/>Home</a></span></section></div><div class=post-nav><a href=/posts/leetcode/leetcode_342_power_of_four/ class=prev rel=prev title="LeetCode 342. Power of Four 解題紀錄"><i class="fas fa-angle-left fa-fw"></i>LeetCode 342. Power of Four 解題紀錄</a>
+<a href=/posts/push_my_project_to_github/ class=next rel=next title="[Git] 新增專案到 GitHub">[Git] 新增專案到 GitHub<i class="fas fa-angle-right fa-fw"></i></a></div></div><div id=comments><div id=disqus_thread class=comment></div><noscript>Please enable JavaScript to view the comments powered by <a href=https://disqus.com/?ref_noscript>Disqus</a>.</noscript></div></article></div></main><footer class=footer><div class=footer-container><div class=footer-line>Powered by <a href=https://gohugo.io/ target=_blank rel="noopener noreffer" title="Hugo 0.110.0">Hugo</a> | Theme - <a href=https://github.com/dillonzq/LoveIt target=_blank rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a></div><div class=footer-line><i class="far fa-copyright fa-fw"></i><span itemprop=copyrightYear>2014 - 2023</span><span class=author itemprop=copyrightHolder>&nbsp;<a href=/ target=_blank>elvire</a></span>&nbsp;|&nbsp;<span class=license><a rel="license external nofollow noopener noreffer" href=https://creativecommons.org/licenses/by-nc/4.0/ target=_blank>CC BY-NC 4.0</a></span></div></div></footer></div><div id=fixed-buttons><a href=# id=back-to-top class=fixed-button title="Back to Top"><i class="fas fa-arrow-up fa-fw"></i>
+</a><a href=# id=view-comments class=fixed-button title="View Comments"><i class="fas fa-comment fa-fw"></i></a></div><link rel=stylesheet href=/lib/katex/katex.min.css><link rel=stylesheet href=/lib/katex/copy-tex.min.css><script type=text/javascript src=https://eyzim.disqus.com/embed.js defer></script><script type=text/javascript src=/lib/smooth-scroll/smooth-scroll.min.js></script><script type=text/javascript src=/lib/autocomplete/autocomplete.min.js></script><script type=text/javascript src=/lib/lunr/lunr.min.js></script><script type=text/javascript src=/lib/lazysizes/lazysizes.min.js></script><script type=text/javascript src=/lib/twemoji/twemoji.min.js></script><script type=text/javascript src=/lib/clipboard/clipboard.min.js></script><script type=text/javascript src=/lib/sharer/sharer.min.js></script><script type=text/javascript src=/lib/katex/katex.min.js></script><script type=text/javascript src=/lib/katex/auto-render.min.js></script><script type=text/javascript src=/lib/katex/copy-tex.min.js></script><script type=text/javascript src=/lib/katex/mhchem.min.js></script><script type=text/javascript>window.config={code:{copyTitle:"Copy to clipboard",maxShownLines:50},comment:{},math:{delimiters:[{display:!0,left:"$$",right:"$$"},{display:!0,left:"\\[",right:"\\]"},{display:!1,left:"$",right:"$"},{display:!1,left:"\\(",right:"\\)"}],strict:!1},search:{highlightTag:"em",lunrIndexURL:"/index.json",maxResultLength:10,noResultsFound:"No results found",snippetLength:50,type:"lunr"},twemoji:!0}</script><script type=text/javascript src=/js/theme.min.js></script></body></html>

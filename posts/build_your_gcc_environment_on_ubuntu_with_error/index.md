@@ -1,4 +1,4 @@
-# Ubunut 20.04 安裝 GCC 採坑紀錄
+# Ubuntu 20.04 安裝 GCC 採坑紀錄
 
 
 根據這篇[給新手的 GCC 安裝教學](https://blog.gtwang.org/programming/GCC-comipler-basic-tutorial-examples/)，想到我從來沒有自己裝過 [GCC](https://gcc.gnu.org/)，以前 linux 都是直接用 server 上人家裝好的環境，Windows 直接用 [CLion](https://www.jetbrains.com/clion/download/#section=windows) 或 [Visual Studio](https://visualstudio.microsoft.com/zh-hant/downloads/)，第一次想在自己的 ubuntu 上安裝 GCC，想不到竟然折騰好久 QQ

@@ -1,203 +1,68 @@
-<!DOCTYPE html>
-<html lang="zh-TW">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="robots" content="noodp" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
-        <title>[NodeJS] Import 和 export 程式碼 - EVIEEE</title><meta name="Description" content="Empassion, Endearing, Enthusiastic"><meta property="og:title" content="[NodeJS] Import 和 export 程式碼" />
-<meta property="og:description" content="Export modules and import modules in NodeJS." />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://eyzim.github.io/posts/nodejs/learn_nodejs_import_export/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2022-12-19T23:04:27+08:00" />
-<meta property="article:modified_time" content="2022-12-19T23:04:27+08:00" />
-
-<meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="[NodeJS] Import 和 export 程式碼"/>
-<meta name="twitter:description" content="Export modules and import modules in NodeJS."/>
-<meta name="application-name" content="Evieees">
-<meta name="apple-mobile-web-app-title" content="Evieees"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
-        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://eyzim.github.io/posts/nodejs/learn_nodejs_import_export/" /><link rel="prev" href="https://eyzim.github.io/posts/push_my_project_to_github/" /><link rel="next" href="https://eyzim.github.io/posts/build_your_gcc_environment_on_ubuntu_with_error/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
-    {
-        "@context": "http://schema.org",
-        "@type": "BlogPosting",
-        "headline": "[NodeJS] Import 和 export 程式碼",
-        "inLanguage": "zh-TW",
-        "mainEntityOfPage": {
-            "@type": "WebPage",
-            "@id": "https:\/\/eyzim.github.io\/posts\/nodejs\/learn_nodejs_import_export\/"
-        },"genre": "posts","keywords": "nodejs, javascript","wordcount":  725 ,
-        "url": "https:\/\/eyzim.github.io\/posts\/nodejs\/learn_nodejs_import_export\/","datePublished": "2022-12-19T23:04:27+08:00","dateModified": "2022-12-19T23:04:27+08:00","publisher": {
-            "@type": "Organization",
-            "name": "EYZ"},"author": {
-                "@type": "Person",
-                "name": "EYZ"
-            },"description": ""
-    }
-    </script></head>
-    <body header-desktop="" header-mobile=""><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : '' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
-
-        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
-    <div class="header-wrapper">
-        <div class="header-title">
-            <a href="/" title="EVIEEE">EVIEEE</a>
-        </div>
-        <div class="menu">
-            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 標籤 </a><a class="menu-item" href="/categories/"> 分類 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
-                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
-                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
-                            <i class="fas fa-search fa-fw"></i>
-                        </a>
-                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
-                            <i class="fas fa-times-circle fa-fw"></i>
-                        </a>
-                        <span class="search-button search-loading" id="search-loading-desktop">
-                            <i class="fas fa-spinner fa-fw fa-spin"></i>
-                        </span>
-                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
-                    <i class="fas fa-adjust fa-fw"></i>
-                </a>
-            </div>
-        </div>
-    </div>
-</header><header class="mobile" id="header-mobile">
-    <div class="header-container">
-        <div class="header-wrapper">
-            <div class="header-title">
-                <a href="/" title="EVIEEE">EVIEEE</a>
-            </div>
-            <div class="menu-toggle" id="menu-toggle-mobile">
-                <span></span><span></span><span></span>
-            </div>
-        </div>
-        <div class="menu" id="menu-mobile"><div class="search-wrapper">
-                    <div class="search mobile" id="search-mobile">
-                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
-                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
-                            <i class="fas fa-search fa-fw"></i>
-                        </a>
-                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
-                            <i class="fas fa-times-circle fa-fw"></i>
-                        </a>
-                        <span class="search-button search-loading" id="search-loading-mobile">
-                            <i class="fas fa-spinner fa-fw fa-spin"></i>
-                        </span>
-                    </div>
-                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
-                        Cancel
-                    </a>
-                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">標籤</a><a class="menu-item" href="/categories/" title="">分類</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
-                <i class="fas fa-adjust fa-fw"></i>
-            </a></div>
-    </div>
-</header>
-<div class="search-dropdown desktop">
-    <div id="search-dropdown-desktop"></div>
-</div>
-<div class="search-dropdown mobile">
-    <div id="search-dropdown-mobile"></div>
-</div>
-<main class="main">
-                <div class="container"><div class="toc" id="toc-auto">
-            <h2 class="toc-title">Contents</h2>
-            <div class="toc-content" id="toc-content-auto"></div>
-        </div><article class="page single"><h1 class="single-title animated flipInX">[NodeJS] Import 和 export 程式碼</h1><div class="post-meta">
-            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>EYZ</a></span>&nbsp;<span class="post-category">included in <a href="/categories/nodejs/"><i class="far fa-folder fa-fw"></i>nodejs</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-12-19">2022-12-19</time>&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;2 minutes&nbsp;</div>
-        </div><div class="details toc" id="toc-static"  kept="">
-                <div class="details-summary toc-title">
-                    <span>Contents</span>
-                    <span><i class="details-icon fas fa-angle-right"></i></span>
-                </div>
-                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
-  <ul>
-    <li><a href="#分割">分割</a></li>
-    <li><a href="#export">export</a></li>
-    <li><a href="#import">import</a></li>
-    <li><a href="#import-改成-require">import 改成 require</a></li>
-    <li><a href="#reference">Reference</a></li>
-  </ul>
-</nav></div>
-            </div><div class="content" id="content"><p>當程式內容越來越多，我們通常會把原本寫在同一個檔案的 code，分割成許多個文件，不用一直上下滾動滑鼠，方便查看內容。</p>
-<p>因此，就遇到了這樣的問題：export 和 import</p>
-<p>首先，我們會有一個很長很長的 <code>index.js</code></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="cm">/* index.js */</span>
-<span class="kd">let</span> <span class="nx">saySomething</span> <span class="o">=</span> <span class="p">(</span><span class="nx">input</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
-	<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`\nI would like to say </span><span class="si">${</span><span class="nx">input</span><span class="si">}</span><span class="sb"> :)\n`</span><span class="p">);</span>
-<span class="p">};</span>
-
-<span class="kd">let</span> <span class="nx">main</span> <span class="o">=</span> <span class="p">(</span><span class="nx">talk</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
-	<span class="nx">saySomething</span><span class="p">(</span><span class="nx">talk</span><span class="p">);</span>
-<span class="p">};</span>
-
-<span class="nx">main</span><span class="p">(</span><span class="nx">process</span><span class="p">.</span><span class="nx">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">]);</span>
-</code></pre></div><pre tabindex="0"><code>&gt; node .\index.js exportSomething
+<!doctype html><html lang=zh-tw><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=robots content="noodp"><meta http-equiv=x-ua-compatible content="IE=edge, chrome=1"><title>[NodeJS] Import 和 export 程式碼 - EVIEEE</title><meta name=Description content="Empassion, Endearing, Enthusiastic"><meta property="og:title" content="[NodeJS] Import 和 export 程式碼"><meta property="og:description" content="Export modules and import modules in NodeJS."><meta property="og:type" content="article"><meta property="og:url" content="https://eyzim.github.io/posts/nodejs/learn_nodejs_import_export/"><meta property="article:section" content="posts"><meta property="article:published_time" content="2022-12-19T23:04:27+08:00"><meta property="article:modified_time" content="2022-12-19T23:04:27+08:00"><meta name=twitter:card content="summary"><meta name=twitter:title content="[NodeJS] Import 和 export 程式碼"><meta name=twitter:description content="Export modules and import modules in NodeJS."><meta name=application-name content="Evieees"><meta name=apple-mobile-web-app-title content="Evieees"><meta name=theme-color content="#ffffff"><meta name=msapplication-TileColor content="#da532c"><link rel="shortcut icon" type=image/x-icon href=/favicon.ico><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://eyzim.github.io/posts/nodejs/learn_nodejs_import_export/><link rel=prev href=https://eyzim.github.io/posts/push_my_project_to_github/><link rel=next href=https://eyzim.github.io/posts/build_your_gcc_environment_on_ubuntu_with_error/><link rel=stylesheet href=/lib/normalize/normalize.min.css><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=/lib/fontawesome-free/all.min.css><link rel=stylesheet href=/lib/animate/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"[NodeJS] Import 和 export 程式碼","inLanguage":"zh-TW","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/eyzim.github.io\/posts\/nodejs\/learn_nodejs_import_export\/"},"genre":"posts","keywords":"nodejs, javascript","wordcount":730,"url":"https:\/\/eyzim.github.io\/posts\/nodejs\/learn_nodejs_import_export\/","datePublished":"2022-12-19T23:04:27+08:00","dateModified":"2022-12-19T23:04:27+08:00","publisher":{"@type":"Organization","name":"EYZ"},"author":{"@type":"Person","name":"EYZ"},"description":""}</script></head><body header-desktop header-mobile><script type=text/javascript>(window.localStorage&&localStorage.getItem("theme")?localStorage.getItem("theme")==="dark":""==="auto"?window.matchMedia("(prefers-color-scheme: dark)").matches:""==="dark")&&document.body.setAttribute("theme","dark")</script><div id=mask></div><div class=wrapper><header class=desktop id=header-desktop><div class=header-wrapper><div class=header-title><a href=/ title=EVIEEE>EVIEEE</a></div><div class=menu><div class=menu-inner><a class=menu-item href=/posts/>文章 </a><a class=menu-item href=/tags/>標籤 </a><a class=menu-item href=/categories/>分類 </a><span class="menu-item delimiter"></span><span class="menu-item search" id=search-desktop>
+<input type=text placeholder="Search titles or contents..." id=search-input-desktop>
+<a href=javascript:void(0); class="search-button search-toggle" id=search-toggle-desktop title=Search><i class="fas fa-search fa-fw"></i></a>
+<a href=javascript:void(0); class="search-button search-clear" id=search-clear-desktop title=Clear><i class="fas fa-times-circle fa-fw"></i></a>
+<span class="search-button search-loading" id=search-loading-desktop><i class="fas fa-spinner fa-fw fa-spin"></i></span>
+</span><a href=javascript:void(0); class="menu-item theme-switch" title="Switch Theme"><i class="fas fa-adjust fa-fw"></i></a></div></div></div></header><header class=mobile id=header-mobile><div class=header-container><div class=header-wrapper><div class=header-title><a href=/ title=EVIEEE>EVIEEE</a></div><div class=menu-toggle id=menu-toggle-mobile><span></span><span></span><span></span></div></div><div class=menu id=menu-mobile><div class=search-wrapper><div class="search mobile" id=search-mobile><input type=text placeholder="Search titles or contents..." id=search-input-mobile>
+<a href=javascript:void(0); class="search-button search-toggle" id=search-toggle-mobile title=Search><i class="fas fa-search fa-fw"></i></a>
+<a href=javascript:void(0); class="search-button search-clear" id=search-clear-mobile title=Clear><i class="fas fa-times-circle fa-fw"></i></a>
+<span class="search-button search-loading" id=search-loading-mobile><i class="fas fa-spinner fa-fw fa-spin"></i></span></div><a href=javascript:void(0); class=search-cancel id=search-cancel-mobile>Cancel</a></div><a class=menu-item href=/posts/ title>文章</a><a class=menu-item href=/tags/ title>標籤</a><a class=menu-item href=/categories/ title>分類</a><a href=javascript:void(0); class="menu-item theme-switch" title="Switch Theme">
+<i class="fas fa-adjust fa-fw"></i></a></div></div></header><div class="search-dropdown desktop"><div id=search-dropdown-desktop></div></div><div class="search-dropdown mobile"><div id=search-dropdown-mobile></div></div><main class=main><div class=container><div class=toc id=toc-auto><h2 class=toc-title>Contents</h2><div class=toc-content id=toc-content-auto></div></div><article class="page single"><h1 class="single-title animated flipInX">[NodeJS] Import 和 export 程式碼</h1><div class=post-meta><div class=post-meta-line><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>EYZ</a></span>&nbsp;<span class=post-category>included in <a href=/categories/nodejs/><i class="far fa-folder fa-fw"></i>nodejs</a></span></div><div class=post-meta-line><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2022-12-19>2022-12-19</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;730 words&nbsp;
+<i class="far fa-clock fa-fw"></i>&nbsp;2 minutes&nbsp;</div></div><div class="details toc" id=toc-static kept><div class="details-summary toc-title"><span>Contents</span>
+<span><i class="details-icon fas fa-angle-right"></i></span></div><div class="details-content toc-content" id=toc-content-static><nav id=TableOfContents><ul><li><a href=#分割>分割</a></li><li><a href=#export>export</a></li><li><a href=#import>import</a></li><li><a href=#import-改成-require>import 改成 require</a></li><li><a href=#reference>Reference</a></li></ul></nav></div></div><div class=content id=content><p>當程式內容越來越多，我們通常會把原本寫在同一個檔案的 code，分割成許多個文件，不用一直上下滾動滑鼠，方便查看內容。</p><p>因此，就遇到了這樣的問題：export 和 import</p><p>首先，我們會有一個很長很長的 <code>index.js</code></p><div class=highlight><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=cm>/* index.js */</span>
+</span></span><span class=line><span class=cl><span class=kd>let</span> <span class=nx>saySomething</span> <span class=o>=</span> <span class=p>(</span><span class=nx>input</span><span class=p>)</span> <span class=p>=&gt;</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>	<span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=sb>`\nI would like to say </span><span class=si>${</span><span class=nx>input</span><span class=si>}</span><span class=sb> :)\n`</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=p>};</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kd>let</span> <span class=nx>main</span> <span class=o>=</span> <span class=p>(</span><span class=nx>talk</span><span class=p>)</span> <span class=p>=&gt;</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>	<span class=nx>saySomething</span><span class=p>(</span><span class=nx>talk</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=p>};</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nx>main</span><span class=p>(</span><span class=nx>process</span><span class=p>.</span><span class=nx>argv</span><span class=p>[</span><span class=mi>2</span><span class=p>]);</span>
+</span></span></code></pre></div><pre tabindex=0><code>&gt; node .\index.js exportSomething
 Debugger attached.
 
 I would like to say exportSomething :)
 
 Waiting for the debugger to disconnect...
-</code></pre><p>目前這樣看起來沒甚麼問題，但如果同一支 <code>index.js</code> 裡面塞了 1000 個 function，每次光是尋找相同的變數就要花很多時間查看，這時候就要把 <code>index.js</code> 依照各個 function 功能拆分許多檔案了。</p>
-<p>我們的目標是將 <code>saySomething</code> 這個 function 移到別的檔案。</p>
-<h2 id="分割">分割</h2>
-<p>首先，先來拆解檔案</p>
-<p><code>index.js</code> 變成</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="cm">/* index.js */</span>
-<span class="kd">let</span> <span class="nx">main</span> <span class="o">=</span> <span class="p">(</span><span class="nx">talk</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
-	<span class="nx">saySomething</span><span class="p">(</span><span class="nx">talk</span><span class="p">);</span>
-<span class="p">};</span>
-
-<span class="nx">main</span><span class="p">(</span><span class="nx">process</span><span class="p">.</span><span class="nx">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">]);</span>
-</code></pre></div><p>新增另一個檔案 <code>say.js</code></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="cm">/* say.js */</span>
-<span class="kd">let</span> <span class="nx">saySomething</span> <span class="o">=</span> <span class="p">(</span><span class="nx">input</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
-	<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`\nI would like to say </span><span class="si">${</span><span class="nx">input</span><span class="si">}</span><span class="sb"> :)\n`</span><span class="p">);</span>
-<span class="p">};</span>
-</code></pre></div><h2 id="export">export</h2>
-<p>再來是把 <code>say.js</code> 中的 <code>saySomething</code> 這個 function export</p>
-<div class="details admonition info open">
-        <div class="details-summary admonition-title">
-            <i class="icon fas fa-info-circle fa-fw"></i>export<i class="details-icon fas fa-angle-right fa-fw"></i>
-        </div>
-        <div class="details-content">
-            <div class="admonition-content">module.exports = { functionA, functionB };</div>
-        </div>
-    </div>
-<p><code>say.js</code> 加入 export</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="cm">/* say.js */</span>
-<span class="kd">let</span> <span class="nx">saySomething</span> <span class="o">=</span> <span class="p">(</span><span class="nx">input</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
-	<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`\nI would like to say </span><span class="si">${</span><span class="nx">input</span><span class="si">}</span><span class="sb"> :)\n`</span><span class="p">);</span>
-<span class="p">};</span>
-
-<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span> <span class="nx">saySomething</span> <span class="p">};</span>
-</code></pre></div><h2 id="import">import</h2>
-<p>再來就要 import 啦，根據 <a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Statements/import" target="_blank" rel="noopener noreffer">mdn 的教學</a> 這時的 code 長這樣</p>
-<p><code>index.js</code></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="cm">/* index.js */</span>
-<span class="kr">import</span> <span class="p">{</span> <span class="nx">saySomething</span> <span class="p">}</span> <span class="nx">from</span> <span class="s2">&#34;./say&#34;</span><span class="p">;</span>
-
-<span class="kd">let</span> <span class="nx">main</span> <span class="o">=</span> <span class="p">(</span><span class="nx">talk</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
-	<span class="nx">saySomething</span><span class="p">(</span><span class="nx">talk</span><span class="p">);</span>
-<span class="p">};</span>
-
-<span class="nx">main</span><span class="p">(</span><span class="nx">process</span><span class="p">.</span><span class="nx">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">]);</span>
-</code></pre></div><p><code>say.js</code></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="cm">/* say.js */</span>
-<span class="kd">let</span> <span class="nx">saySomething</span> <span class="o">=</span> <span class="p">(</span><span class="nx">input</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
-	<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`\nI would like to say </span><span class="si">${</span><span class="nx">input</span><span class="si">}</span><span class="sb"> :)\n`</span><span class="p">);</span>
-<span class="p">};</span>
-
-<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span> <span class="nx">saySomething</span> <span class="p">};</span>
-</code></pre></div><p>然後就跳出了</p>
-<pre tabindex="0"><code>&gt; node .\index.js exportSomething
+</code></pre><p>目前這樣看起來沒甚麼問題，但如果同一支 <code>index.js</code> 裡面塞了 1000 個 function，每次光是尋找相同的變數就要花很多時間查看，這時候就要把 <code>index.js</code> 依照各個 function 功能拆分許多檔案了。</p><p>我們的目標是將 <code>saySomething</code> 這個 function 移到別的檔案。</p><h2 id=分割>分割</h2><p>首先，先來拆解檔案</p><p><code>index.js</code> 變成</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=cm>/* index.js */</span>
+</span></span><span class=line><span class=cl><span class=kd>let</span> <span class=nx>main</span> <span class=o>=</span> <span class=p>(</span><span class=nx>talk</span><span class=p>)</span> <span class=p>=&gt;</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>	<span class=nx>saySomething</span><span class=p>(</span><span class=nx>talk</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=p>};</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nx>main</span><span class=p>(</span><span class=nx>process</span><span class=p>.</span><span class=nx>argv</span><span class=p>[</span><span class=mi>2</span><span class=p>]);</span>
+</span></span></code></pre></div><p>新增另一個檔案 <code>say.js</code></p><div class=highlight><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=cm>/* say.js */</span>
+</span></span><span class=line><span class=cl><span class=kd>let</span> <span class=nx>saySomething</span> <span class=o>=</span> <span class=p>(</span><span class=nx>input</span><span class=p>)</span> <span class=p>=&gt;</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>	<span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=sb>`\nI would like to say </span><span class=si>${</span><span class=nx>input</span><span class=si>}</span><span class=sb> :)\n`</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=p>};</span>
+</span></span></code></pre></div><h2 id=export>export</h2><p>再來是把 <code>say.js</code> 中的 <code>saySomething</code> 這個 function export</p><div class="details admonition info open"><div class="details-summary admonition-title"><i class="icon fas fa-info-circle fa-fw"></i>export<i class="details-icon fas fa-angle-right fa-fw"></i></div><div class=details-content><div class=admonition-content>module.exports = { functionA, functionB };</div></div></div><p><code>say.js</code> 加入 export</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=cm>/* say.js */</span>
+</span></span><span class=line><span class=cl><span class=kd>let</span> <span class=nx>saySomething</span> <span class=o>=</span> <span class=p>(</span><span class=nx>input</span><span class=p>)</span> <span class=p>=&gt;</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>	<span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=sb>`\nI would like to say </span><span class=si>${</span><span class=nx>input</span><span class=si>}</span><span class=sb> :)\n`</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=p>};</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nx>module</span><span class=p>.</span><span class=nx>exports</span> <span class=o>=</span> <span class=p>{</span> <span class=nx>saySomething</span> <span class=p>};</span>
+</span></span></code></pre></div><h2 id=import>import</h2><p>再來就要 import 啦，根據 <a href=https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Statements/import target=_blank rel="noopener noreffer">mdn 的教學</a> 這時的 code 長這樣</p><p><code>index.js</code></p><div class=highlight><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=cm>/* index.js */</span>
+</span></span><span class=line><span class=cl><span class=kr>import</span> <span class=p>{</span> <span class=nx>saySomething</span> <span class=p>}</span> <span class=nx>from</span> <span class=s2>&#34;./say&#34;</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kd>let</span> <span class=nx>main</span> <span class=o>=</span> <span class=p>(</span><span class=nx>talk</span><span class=p>)</span> <span class=p>=&gt;</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>	<span class=nx>saySomething</span><span class=p>(</span><span class=nx>talk</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=p>};</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nx>main</span><span class=p>(</span><span class=nx>process</span><span class=p>.</span><span class=nx>argv</span><span class=p>[</span><span class=mi>2</span><span class=p>]);</span>
+</span></span></code></pre></div><p><code>say.js</code></p><div class=highlight><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=cm>/* say.js */</span>
+</span></span><span class=line><span class=cl><span class=kd>let</span> <span class=nx>saySomething</span> <span class=o>=</span> <span class=p>(</span><span class=nx>input</span><span class=p>)</span> <span class=p>=&gt;</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>	<span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=sb>`\nI would like to say </span><span class=si>${</span><span class=nx>input</span><span class=si>}</span><span class=sb> :)\n`</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=p>};</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nx>module</span><span class=p>.</span><span class=nx>exports</span> <span class=o>=</span> <span class=p>{</span> <span class=nx>saySomething</span> <span class=p>};</span>
+</span></span></code></pre></div><p>然後就跳出了</p><pre tabindex=0><code>&gt; node .\index.js exportSomething
 
 Debugger attached.
-(node:26088) Warning: To load an ES module, set &quot;type&quot;: &quot;module&quot; in the package.json or use the .mjs extension.
+(node:26088) Warning: To load an ES module, set &#34;type&#34;: &#34;module&#34; in the package.json or use the .mjs extension.
 (Use `node --trace-warnings ...` to show where the warning was created)
 Waiting for the debugger to disconnect...
 D:\eyzim\index.js:1
-import { saySomething } from &quot;./say&quot;;
+import { saySomething } from &#34;./say&#34;;
 ^^^^^^
 
 SyntaxError: Cannot use import statement outside a module
@@ -209,86 +74,21 @@ at Module.load (node:internal/modules/cjs/loader:1037:32)
 at Module.\_load (node:internal/modules/cjs/loader:878:12)
 at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:81:12)
 at node:internal/main/run_main_module:23:47
-
-</code></pre><p>outside a module 是甚麼???</p>
-<p>靠關鍵字大法：在 <code>package.json</code> 中加入</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="s2">&#34;type&#34;</span><span class="err">:</span> <span class="s2">&#34;module&#34;</span><span class="err">,</span>
-</code></pre></div><p>沒用。</p>
-<p>還是一樣 outside a module。</p>
-<p>每個檔案是一個單獨的 module，如果我想要在 <code>index.js</code> 中使用 <code>say.js</code>，必須將他們 bundle / 捆包起來，目前看起來只是單獨執行一個檔案而已。</p>
-<h2 id="import-改成-require">import 改成 require</h2>
-<p>那麼，我們換個做法！</p>
-<p>(記得把剛剛在 <code>package.json</code> 中的修改移除)</p>
-<div class="details admonition info open">
-        <div class="details-summary admonition-title">
-            <i class="icon fas fa-info-circle fa-fw"></i>export<i class="details-icon fas fa-angle-right fa-fw"></i>
-        </div>
-        <div class="details-content">
-            <div class="admonition-content">const { functionA, functionB } = require(&quot;./subFile&quot;);</div>
-        </div>
-    </div>
-<p><code>index.js</code></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="cm">/* index.js */</span>
-<span class="kr">const</span> <span class="p">{</span> <span class="nx">saySomething</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&#34;./say&#34;</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">main</span> <span class="o">=</span> <span class="p">(</span><span class="nx">talk</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
-	<span class="nx">saySomething</span><span class="p">(</span><span class="nx">talk</span><span class="p">);</span>
-<span class="p">};</span>
-
-<span class="nx">main</span><span class="p">(</span><span class="nx">process</span><span class="p">.</span><span class="nx">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">]);</span>
-</code></pre></div><p><code>say.js</code></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="cm">/* say.js */</span>
-<span class="kd">let</span> <span class="nx">saySomething</span> <span class="o">=</span> <span class="p">(</span><span class="nx">input</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
-	<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`\nI would like to say </span><span class="si">${</span><span class="nx">input</span><span class="si">}</span><span class="sb"> :)\n`</span><span class="p">);</span>
-<span class="p">};</span>
-
-<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span> <span class="nx">saySomething</span> <span class="p">};</span>
-</code></pre></div><p>終於成功了，卡在這種問題上很困擾呀。</p>
-<p>結論就是 <code>modules.export = { A }</code> 配上 <code> const { A } = require(&quot;./檔案A&quot;)</code></p>
-<h2 id="reference">Reference</h2>
-<ul>
-<li><a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Statements/export" target="_blank" rel="noopener noreffer">MDN export</a></li>
-<li><a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Statements/import" target="_blank" rel="noopener noreffer">MDN import</a></li>
-</ul>
-</div><div class="post-footer" id="post-footer">
-    <div class="post-info">
-        <div class="post-info-line">
-            <div class="post-info-mod">
-                <span>Updated on 2022-12-19</span>
-            </div>
-            <div class="post-info-license"></div>
-        </div>
-        <div class="post-info-line">
-            <div class="post-info-md"></div>
-            <div class="post-info-share">
-                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://eyzim.github.io/posts/nodejs/learn_nodejs_import_export/" data-title="[NodeJS] Import 和 export 程式碼" data-hashtags="nodejs,javascript"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://eyzim.github.io/posts/nodejs/learn_nodejs_import_export/" data-hashtag="nodejs"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://eyzim.github.io/posts/nodejs/learn_nodejs_import_export/" data-title="[NodeJS] Import 和 export 程式碼"><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="javascript:void(0);" title="Share on Blogger" data-sharer="blogger" data-url="https://eyzim.github.io/posts/nodejs/learn_nodejs_import_export/" data-title="[NodeJS] Import 和 export 程式碼" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="Share on Evernote" data-sharer="evernote" data-url="https://eyzim.github.io/posts/nodejs/learn_nodejs_import_export/" data-title="[NodeJS] Import 和 export 程式碼"><i class="fab fa-evernote fa-fw"></i></a><a href="javascript:void(0);" title="Share on Trello" data-sharer="trello" data-url="https://eyzim.github.io/posts/nodejs/learn_nodejs_import_export/" data-title="[NodeJS] Import 和 export 程式碼" data-description=""><i class="fab fa-trello fa-fw"></i></a></span>
-            </div>
-        </div>
-    </div>
-
-    <div class="post-info-more">
-        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/nodejs/">nodejs</a>,&nbsp;<a href="/tags/javascript/">javascript</a></section>
-        <section>
-            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
-        </section>
-    </div>
-
-    <div class="post-nav"><a href="/posts/push_my_project_to_github/" class="prev" rel="prev" title="[Git] 新增專案到 GitHub"><i class="fas fa-angle-left fa-fw"></i>[Git] 新增專案到 GitHub</a>
-            <a href="/posts/build_your_gcc_environment_on_ubuntu_with_error/" class="next" rel="next" title="Ubunut 20.04 安裝 GCC 採坑紀錄">Ubunut 20.04 安裝 GCC 採坑紀錄<i class="fas fa-angle-right fa-fw"></i></a></div>
-</div>
-<div id="comments"><div id="disqus_thread" class="comment"></div><noscript>
-                Please enable JavaScript to view the comments powered by <a href="https://disqus.com/?ref_noscript">Disqus</a>.
-            </noscript></div></article></div>
-            </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.92.1">Hugo</a> | Theme - <a href="" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"> LoveIt</a>
-                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2014 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">elvire</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
-        </div>
-    </footer></div>
-
-        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
-                <i class="fas fa-arrow-up fa-fw"></i>
-            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
-                <i class="fas fa-comment fa-fw"></i>
-            </a>
-        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><script type="text/javascript" src="https://eyzim.disqus.com/embed.js" defer></script><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/twemoji/twemoji.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":50,"type":"lunr"},"twemoji":true};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
-</html>
+</code></pre><p>outside a module 是甚麼???</p><p>靠關鍵字大法：在 <code>package.json</code> 中加入</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-json data-lang=json><span class=line><span class=cl><span class=s2>&#34;type&#34;</span><span class=err>:</span> <span class=s2>&#34;module&#34;</span><span class=err>,</span>
+</span></span></code></pre></div><p>沒用。</p><p>還是一樣 outside a module。</p><p>每個檔案是一個單獨的 module，如果我想要在 <code>index.js</code> 中使用 <code>say.js</code>，必須將他們 bundle / 捆包起來，目前看起來只是單獨執行一個檔案而已。</p><h2 id=import-改成-require>import 改成 require</h2><p>那麼，我們換個做法！</p><p>(記得把剛剛在 <code>package.json</code> 中的修改移除)</p><div class="details admonition info open"><div class="details-summary admonition-title"><i class="icon fas fa-info-circle fa-fw"></i>export<i class="details-icon fas fa-angle-right fa-fw"></i></div><div class=details-content><div class=admonition-content>const { functionA, functionB } = require("./subFile");</div></div></div><p><code>index.js</code></p><div class=highlight><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=cm>/* index.js */</span>
+</span></span><span class=line><span class=cl><span class=kr>const</span> <span class=p>{</span> <span class=nx>saySomething</span> <span class=p>}</span> <span class=o>=</span> <span class=nx>require</span><span class=p>(</span><span class=s2>&#34;./say&#34;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kd>let</span> <span class=nx>main</span> <span class=o>=</span> <span class=p>(</span><span class=nx>talk</span><span class=p>)</span> <span class=p>=&gt;</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>	<span class=nx>saySomething</span><span class=p>(</span><span class=nx>talk</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=p>};</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nx>main</span><span class=p>(</span><span class=nx>process</span><span class=p>.</span><span class=nx>argv</span><span class=p>[</span><span class=mi>2</span><span class=p>]);</span>
+</span></span></code></pre></div><p><code>say.js</code></p><div class=highlight><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=cm>/* say.js */</span>
+</span></span><span class=line><span class=cl><span class=kd>let</span> <span class=nx>saySomething</span> <span class=o>=</span> <span class=p>(</span><span class=nx>input</span><span class=p>)</span> <span class=p>=&gt;</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>	<span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=sb>`\nI would like to say </span><span class=si>${</span><span class=nx>input</span><span class=si>}</span><span class=sb> :)\n`</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=p>};</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nx>module</span><span class=p>.</span><span class=nx>exports</span> <span class=o>=</span> <span class=p>{</span> <span class=nx>saySomething</span> <span class=p>};</span>
+</span></span></code></pre></div><p>終於成功了，卡在這種問題上很困擾呀。</p><p>結論就是 <code>modules.export = { A }</code> 配上 <code>const { A } = require("./檔案A")</code></p><h2 id=reference>Reference</h2><ul><li><a href=https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Statements/export target=_blank rel="noopener noreffer">MDN export</a></li><li><a href=https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Statements/import target=_blank rel="noopener noreffer">MDN import</a></li></ul></div><div class=post-footer id=post-footer><div class=post-info><div class=post-info-line><div class=post-info-mod><span>Updated on 2022-12-19</span></div><div class=post-info-license></div></div><div class=post-info-line><div class=post-info-md></div><div class=post-info-share><span><a href=javascript:void(0); title="Share on Twitter" data-sharer=twitter data-url=https://eyzim.github.io/posts/nodejs/learn_nodejs_import_export/ data-title="[NodeJS] Import 和 export 程式碼" data-hashtags=nodejs,javascript><i class="fab fa-twitter fa-fw"></i></a><a href=javascript:void(0); title="Share on Facebook" data-sharer=facebook data-url=https://eyzim.github.io/posts/nodejs/learn_nodejs_import_export/ data-hashtag=nodejs><i class="fab fa-facebook-square fa-fw"></i></a><a href=javascript:void(0); title="Share on Line" data-sharer=line data-url=https://eyzim.github.io/posts/nodejs/learn_nodejs_import_export/ data-title="[NodeJS] Import 和 export 程式碼"><i data-svg-src=/lib/simple-icons/icons/line.min.svg></i></a><a href=javascript:void(0); title="Share on Blogger" data-sharer=blogger data-url=https://eyzim.github.io/posts/nodejs/learn_nodejs_import_export/ data-title="[NodeJS] Import 和 export 程式碼" data-description><i class="fab fa-blogger fa-fw"></i></a><a href=javascript:void(0); title="Share on Evernote" data-sharer=evernote data-url=https://eyzim.github.io/posts/nodejs/learn_nodejs_import_export/ data-title="[NodeJS] Import 和 export 程式碼"><i class="fab fa-evernote fa-fw"></i></a><a href=javascript:void(0); title="Share on Trello" data-sharer=trello data-url=https://eyzim.github.io/posts/nodejs/learn_nodejs_import_export/ data-title="[NodeJS] Import 和 export 程式碼" data-description><i class="fab fa-trello fa-fw"></i></a></span></div></div></div><div class=post-info-more><section class=post-tags><i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/nodejs/>nodejs</a>,&nbsp;<a href=/tags/javascript/>javascript</a></section><section><span><a href=javascript:void(0); onclick=window.history.back()>Back</a></span>&nbsp;|&nbsp;<span><a href=/>Home</a></span></section></div><div class=post-nav><a href=/posts/push_my_project_to_github/ class=prev rel=prev title="[Git] 新增專案到 GitHub"><i class="fas fa-angle-left fa-fw"></i>[Git] 新增專案到 GitHub</a>
+<a href=/posts/build_your_gcc_environment_on_ubuntu_with_error/ class=next rel=next title="Ubuntu 20.04 安裝 GCC 採坑紀錄">Ubuntu 20.04 安裝 GCC 採坑紀錄<i class="fas fa-angle-right fa-fw"></i></a></div></div><div id=comments><div id=disqus_thread class=comment></div><noscript>Please enable JavaScript to view the comments powered by <a href=https://disqus.com/?ref_noscript>Disqus</a>.</noscript></div></article></div></main><footer class=footer><div class=footer-container><div class=footer-line>Powered by <a href=https://gohugo.io/ target=_blank rel="noopener noreffer" title="Hugo 0.110.0">Hugo</a> | Theme - <a href=https://github.com/dillonzq/LoveIt target=_blank rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a></div><div class=footer-line><i class="far fa-copyright fa-fw"></i><span itemprop=copyrightYear>2014 - 2023</span><span class=author itemprop=copyrightHolder>&nbsp;<a href=/ target=_blank>elvire</a></span>&nbsp;|&nbsp;<span class=license><a rel="license external nofollow noopener noreffer" href=https://creativecommons.org/licenses/by-nc/4.0/ target=_blank>CC BY-NC 4.0</a></span></div></div></footer></div><div id=fixed-buttons><a href=# id=back-to-top class=fixed-button title="Back to Top"><i class="fas fa-arrow-up fa-fw"></i>
+</a><a href=# id=view-comments class=fixed-button title="View Comments"><i class="fas fa-comment fa-fw"></i></a></div><link rel=stylesheet href=/lib/katex/katex.min.css><link rel=stylesheet href=/lib/katex/copy-tex.min.css><script type=text/javascript src=https://eyzim.disqus.com/embed.js defer></script><script type=text/javascript src=/lib/smooth-scroll/smooth-scroll.min.js></script><script type=text/javascript src=/lib/autocomplete/autocomplete.min.js></script><script type=text/javascript src=/lib/lunr/lunr.min.js></script><script type=text/javascript src=/lib/lazysizes/lazysizes.min.js></script><script type=text/javascript src=/lib/twemoji/twemoji.min.js></script><script type=text/javascript src=/lib/clipboard/clipboard.min.js></script><script type=text/javascript src=/lib/sharer/sharer.min.js></script><script type=text/javascript src=/lib/katex/katex.min.js></script><script type=text/javascript src=/lib/katex/auto-render.min.js></script><script type=text/javascript src=/lib/katex/copy-tex.min.js></script><script type=text/javascript src=/lib/katex/mhchem.min.js></script><script type=text/javascript>window.config={code:{copyTitle:"Copy to clipboard",maxShownLines:50},comment:{},math:{delimiters:[{display:!0,left:"$$",right:"$$"},{display:!0,left:"\\[",right:"\\]"},{display:!1,left:"$",right:"$"},{display:!1,left:"\\(",right:"\\)"}],strict:!1},search:{highlightTag:"em",lunrIndexURL:"/index.json",maxResultLength:10,noResultsFound:"No results found",snippetLength:50,type:"lunr"},twemoji:!0}</script><script type=text/javascript src=/js/theme.min.js></script></body></html>

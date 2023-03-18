@@ -1,254 +1,50 @@
-<!DOCTYPE html>
-<html lang="zh-TW">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="robots" content="noodp" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
-        <title>LeetCode 342. Power of Four 解題紀錄 - EVIEEE</title><meta name="Description" content="Empassion, Endearing, Enthusiastic"><meta property="og:title" content="LeetCode 342. Power of Four 解題紀錄" />
-<meta property="og:description" content="檢查 $n$ 是否為 4 的次方。Check $n$ whether it is a power of four or not." />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://eyzim.github.io/posts/leetcode/leetcode_342_power_of_four/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2022-08-22T21:34:24+08:00" />
-<meta property="article:modified_time" content="2022-08-22T21:34:24+08:00" />
-
-<meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="LeetCode 342. Power of Four 解題紀錄"/>
-<meta name="twitter:description" content="檢查 $n$ 是否為 4 的次方。Check $n$ whether it is a power of four or not."/>
-<meta name="application-name" content="Evieees">
-<meta name="apple-mobile-web-app-title" content="Evieees"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
-        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://eyzim.github.io/posts/leetcode/leetcode_342_power_of_four/" /><link rel="prev" href="https://eyzim.github.io/posts/leetcode/leetcode_804_unique_morse_code_words/" /><link rel="next" href="https://eyzim.github.io/posts/nodejs/start-our-first-nodejs-project/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
-    {
-        "@context": "http://schema.org",
-        "@type": "BlogPosting",
-        "headline": "LeetCode 342. Power of Four 解題紀錄",
-        "inLanguage": "zh-TW",
-        "mainEntityOfPage": {
-            "@type": "WebPage",
-            "@id": "https:\/\/eyzim.github.io\/posts\/leetcode\/leetcode_342_power_of_four\/"
-        },"genre": "posts","keywords": "easy, c\u002b\u002b, recursion, bit manipulation, math","wordcount":  323 ,
-        "url": "https:\/\/eyzim.github.io\/posts\/leetcode\/leetcode_342_power_of_four\/","datePublished": "2022-08-22T21:34:24+08:00","dateModified": "2022-08-22T21:34:24+08:00","publisher": {
-            "@type": "Organization",
-            "name": "Evie"},"author": {
-                "@type": "Person",
-                "name": "Evie"
-            },"description": ""
-    }
-    </script></head>
-    <body header-desktop="" header-mobile=""><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : '' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
-
-        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
-    <div class="header-wrapper">
-        <div class="header-title">
-            <a href="/" title="EVIEEE">EVIEEE</a>
-        </div>
-        <div class="menu">
-            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 標籤 </a><a class="menu-item" href="/categories/"> 分類 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
-                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
-                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
-                            <i class="fas fa-search fa-fw"></i>
-                        </a>
-                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
-                            <i class="fas fa-times-circle fa-fw"></i>
-                        </a>
-                        <span class="search-button search-loading" id="search-loading-desktop">
-                            <i class="fas fa-spinner fa-fw fa-spin"></i>
-                        </span>
-                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
-                    <i class="fas fa-adjust fa-fw"></i>
-                </a>
-            </div>
-        </div>
-    </div>
-</header><header class="mobile" id="header-mobile">
-    <div class="header-container">
-        <div class="header-wrapper">
-            <div class="header-title">
-                <a href="/" title="EVIEEE">EVIEEE</a>
-            </div>
-            <div class="menu-toggle" id="menu-toggle-mobile">
-                <span></span><span></span><span></span>
-            </div>
-        </div>
-        <div class="menu" id="menu-mobile"><div class="search-wrapper">
-                    <div class="search mobile" id="search-mobile">
-                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
-                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
-                            <i class="fas fa-search fa-fw"></i>
-                        </a>
-                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
-                            <i class="fas fa-times-circle fa-fw"></i>
-                        </a>
-                        <span class="search-button search-loading" id="search-loading-mobile">
-                            <i class="fas fa-spinner fa-fw fa-spin"></i>
-                        </span>
-                    </div>
-                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
-                        Cancel
-                    </a>
-                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">標籤</a><a class="menu-item" href="/categories/" title="">分類</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
-                <i class="fas fa-adjust fa-fw"></i>
-            </a></div>
-    </div>
-</header>
-<div class="search-dropdown desktop">
-    <div id="search-dropdown-desktop"></div>
-</div>
-<div class="search-dropdown mobile">
-    <div id="search-dropdown-mobile"></div>
-</div>
-<main class="main">
-                <div class="container"><div class="toc" id="toc-auto">
-            <h2 class="toc-title">Contents</h2>
-            <div class="toc-content" id="toc-content-auto"></div>
-        </div><article class="page single"><h1 class="single-title animated flipInX">LeetCode 342. Power of Four 解題紀錄</h1><div class="post-meta">
-            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Evie</a></span>&nbsp;<span class="post-category">included in <a href="/categories/leetcode/"><i class="far fa-folder fa-fw"></i>leetcode</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-08-22">2022-08-22</time>&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;One minute&nbsp;</div>
-        </div><div class="details toc" id="toc-static"  kept="">
-                <div class="details-summary toc-title">
-                    <span>Contents</span>
-                    <span><i class="details-icon fas fa-angle-right"></i></span>
-                </div>
-                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
-  <ul>
-    <li><a href="#題目httpsleetcodecomproblemspower-of-four"><a href="https://leetcode.com/problems/power-of-four/">題目</a></a>
-      <ul>
-        <li><a href="#解法一">解法一：</a></li>
-        <li><a href="#解法二">解法二：</a></li>
-      </ul>
-    </li>
-    <li><a href="#reference">Reference</a></li>
-  </ul>
-</nav></div>
-            </div><div class="content" id="content"><p>在看這題題目之前，可以先試試看相似題 <a href="https://eyzim.github.io/posts/leetcode/leetcode_326_power_of_three/" target="_blank" rel="noopener noreffer">Power of three</a> 哦！</p>
-<h2 id="題目httpsleetcodecomproblemspower-of-four"><a href="https://leetcode.com/problems/power-of-four/" target="_blank" rel="noopener noreffer">題目</a></h2>
-<div class="details admonition quote open">
-        <div class="details-summary admonition-title">
-            <i class="icon fas fa-quote-right fa-fw"></i>Problem<i class="details-icon fas fa-angle-right fa-fw"></i>
-        </div>
-        <div class="details-content">
-            <div class="admonition-content"><p>Given an integer <code>n</code>, return <em><code>true</code> if it is a power of four. Otherwise, return <code>false</code></em>.</p>
-<p>An integer <code>n</code> is a power of four, if there exists an integer <code>x</code> such that <code>n == $4^x$</code>.</p>
-<p><strong>Example 1:</strong></p>
-<pre tabindex="0"><code>Input: n = 16
+<!doctype html><html lang=zh-tw><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=robots content="noodp"><meta http-equiv=x-ua-compatible content="IE=edge, chrome=1"><title>LeetCode 342. Power of Four 解題紀錄 - EVIEEE</title><meta name=Description content="Empassion, Endearing, Enthusiastic"><meta property="og:title" content="LeetCode 342. Power of Four 解題紀錄"><meta property="og:description" content="檢查 $n$ 是否為 4 的次方。Check $n$ whether it is a power of four or not."><meta property="og:type" content="article"><meta property="og:url" content="https://eyzim.github.io/posts/leetcode/leetcode_342_power_of_four/"><meta property="article:section" content="posts"><meta property="article:published_time" content="2022-08-22T21:34:24+08:00"><meta property="article:modified_time" content="2022-08-22T21:34:24+08:00"><meta name=twitter:card content="summary"><meta name=twitter:title content="LeetCode 342. Power of Four 解題紀錄"><meta name=twitter:description content="檢查 $n$ 是否為 4 的次方。Check $n$ whether it is a power of four or not."><meta name=application-name content="Evieees"><meta name=apple-mobile-web-app-title content="Evieees"><meta name=theme-color content="#ffffff"><meta name=msapplication-TileColor content="#da532c"><link rel="shortcut icon" type=image/x-icon href=/favicon.ico><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://eyzim.github.io/posts/leetcode/leetcode_342_power_of_four/><link rel=prev href=https://eyzim.github.io/posts/leetcode/leetcode_804_unique_morse_code_words/><link rel=next href=https://eyzim.github.io/posts/nodejs/start-our-first-nodejs-project/><link rel=stylesheet href=/lib/normalize/normalize.min.css><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=/lib/fontawesome-free/all.min.css><link rel=stylesheet href=/lib/animate/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"LeetCode 342. Power of Four 解題紀錄","inLanguage":"zh-TW","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/eyzim.github.io\/posts\/leetcode\/leetcode_342_power_of_four\/"},"genre":"posts","keywords":"easy, c\u002b\u002b, recursion, bit manipulation, math","wordcount":323,"url":"https:\/\/eyzim.github.io\/posts\/leetcode\/leetcode_342_power_of_four\/","datePublished":"2022-08-22T21:34:24+08:00","dateModified":"2022-08-22T21:34:24+08:00","publisher":{"@type":"Organization","name":"Evie"},"author":{"@type":"Person","name":"Evie"},"description":""}</script></head><body header-desktop header-mobile><script type=text/javascript>(window.localStorage&&localStorage.getItem("theme")?localStorage.getItem("theme")==="dark":""==="auto"?window.matchMedia("(prefers-color-scheme: dark)").matches:""==="dark")&&document.body.setAttribute("theme","dark")</script><div id=mask></div><div class=wrapper><header class=desktop id=header-desktop><div class=header-wrapper><div class=header-title><a href=/ title=EVIEEE>EVIEEE</a></div><div class=menu><div class=menu-inner><a class=menu-item href=/posts/>文章 </a><a class=menu-item href=/tags/>標籤 </a><a class=menu-item href=/categories/>分類 </a><span class="menu-item delimiter"></span><span class="menu-item search" id=search-desktop>
+<input type=text placeholder="Search titles or contents..." id=search-input-desktop>
+<a href=javascript:void(0); class="search-button search-toggle" id=search-toggle-desktop title=Search><i class="fas fa-search fa-fw"></i></a>
+<a href=javascript:void(0); class="search-button search-clear" id=search-clear-desktop title=Clear><i class="fas fa-times-circle fa-fw"></i></a>
+<span class="search-button search-loading" id=search-loading-desktop><i class="fas fa-spinner fa-fw fa-spin"></i></span>
+</span><a href=javascript:void(0); class="menu-item theme-switch" title="Switch Theme"><i class="fas fa-adjust fa-fw"></i></a></div></div></div></header><header class=mobile id=header-mobile><div class=header-container><div class=header-wrapper><div class=header-title><a href=/ title=EVIEEE>EVIEEE</a></div><div class=menu-toggle id=menu-toggle-mobile><span></span><span></span><span></span></div></div><div class=menu id=menu-mobile><div class=search-wrapper><div class="search mobile" id=search-mobile><input type=text placeholder="Search titles or contents..." id=search-input-mobile>
+<a href=javascript:void(0); class="search-button search-toggle" id=search-toggle-mobile title=Search><i class="fas fa-search fa-fw"></i></a>
+<a href=javascript:void(0); class="search-button search-clear" id=search-clear-mobile title=Clear><i class="fas fa-times-circle fa-fw"></i></a>
+<span class="search-button search-loading" id=search-loading-mobile><i class="fas fa-spinner fa-fw fa-spin"></i></span></div><a href=javascript:void(0); class=search-cancel id=search-cancel-mobile>Cancel</a></div><a class=menu-item href=/posts/ title>文章</a><a class=menu-item href=/tags/ title>標籤</a><a class=menu-item href=/categories/ title>分類</a><a href=javascript:void(0); class="menu-item theme-switch" title="Switch Theme">
+<i class="fas fa-adjust fa-fw"></i></a></div></div></header><div class="search-dropdown desktop"><div id=search-dropdown-desktop></div></div><div class="search-dropdown mobile"><div id=search-dropdown-mobile></div></div><main class=main><div class=container><div class=toc id=toc-auto><h2 class=toc-title>Contents</h2><div class=toc-content id=toc-content-auto></div></div><article class="page single"><h1 class="single-title animated flipInX">LeetCode 342. Power of Four 解題紀錄</h1><div class=post-meta><div class=post-meta-line><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>Evie</a></span>&nbsp;<span class=post-category>included in <a href=/categories/leetcode/><i class="far fa-folder fa-fw"></i>leetcode</a></span></div><div class=post-meta-line><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2022-08-22>2022-08-22</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;323 words&nbsp;
+<i class="far fa-clock fa-fw"></i>&nbsp;One minute&nbsp;</div></div><div class="details toc" id=toc-static kept><div class="details-summary toc-title"><span>Contents</span>
+<span><i class="details-icon fas fa-angle-right"></i></span></div><div class="details-content toc-content" id=toc-content-static><nav id=TableOfContents><ul><li><a href=#題目httpsleetcodecomproblemspower-of-four><a href=https://leetcode.com/problems/power-of-four/>題目</a></a><ul><li><a href=#解法一>解法一：</a></li><li><a href=#解法二>解法二：</a></li></ul></li><li><a href=#reference>Reference</a></li></ul></nav></div></div><div class=content id=content><p>在看這題題目之前，可以先試試看相似題 <a href=https://eyzim.github.io/posts/leetcode/leetcode_326_power_of_three/ target=_blank rel="noopener noreffer">Power of three</a> 哦！</p><h2 id=題目httpsleetcodecomproblemspower-of-four><a href=https://leetcode.com/problems/power-of-four/ target=_blank rel="noopener noreffer">題目</a></h2><div class="details admonition quote open"><div class="details-summary admonition-title"><i class="icon fas fa-quote-right fa-fw"></i>Problem<i class="details-icon fas fa-angle-right fa-fw"></i></div><div class=details-content><div class=admonition-content><p>Given an integer <code>n</code>, return <em><code>true</code> if it is a power of four. Otherwise, return <code>false</code></em>.</p><p>An integer <code>n</code> is a power of four, if there exists an integer <code>x</code> such that <code>n == $4^x$</code>.</p><p><strong>Example 1:</strong></p><pre tabindex=0><code>Input: n = 16
 Output: true
-</code></pre><p><strong>Example 2:</strong></p>
-<pre tabindex="0"><code>Input: n = 5
+</code></pre><p><strong>Example 2:</strong></p><pre tabindex=0><code>Input: n = 5
 Output: false
-</code></pre><p><strong>Example 3:</strong></p>
-<pre tabindex="0"><code>Input: n = 1
+</code></pre><p><strong>Example 3:</strong></p><pre tabindex=0><code>Input: n = 1
 Output: true
-</code></pre><p><strong>Constraints:</strong></p>
-<ul>
-<li>$-2^{31} \leq x \leq 2^{31}-1$</li>
-</ul>
-<p><strong>Follow up:</strong></p>
-<p>Could you solve it without loops/recursion?</p>
-</div>
-        </div>
-    </div>
-<h3 id="解法一">解法一：</h3>
-<ol>
-<li>
-<p>使用<a href="https://eyzim.github.io/posts/leetcode/leetcode_326_power_of_three/" target="_blank" rel="noopener noreffer">以前</a>學過的</p>
-<p>$log{_b}{a}$</p>
-<p>$ \ = log_{10}{a} \div log_{10}{b}$</p>
-<p>$ \ = \frac{log{a}}{log{b}}$，</p>
-<p>舉一反三，</p>
-<p>$log_{4}{n}$</p>
-<p>$ \ = log_{10}{n} \div log_{10}{4}$</p>
-<p>$ \ = log{n} \div log4 $</p>
-<p>$ \ = \frac{log{n}}{log{4}}$</p>
-</li>
-<li>
-<p>檢查做完 $log$ 之後是否為整數，若是整數，則 <code>n</code> 為 4 的次方；反之，則否。</p>
-</li>
-</ol>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
-<span class="k">public</span><span class="o">:</span>
-    <span class="kt">bool</span> <span class="n">isPowerOfFour</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
-        
-        <span class="k">if</span><span class="p">(</span><span class="n">n</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">)</span>   <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-        
-        <span class="kt">double</span> <span class="n">check</span> <span class="o">=</span> <span class="n">log</span><span class="p">(</span><span class="n">n</span><span class="p">)</span><span class="o">/</span><span class="n">log</span><span class="p">(</span><span class="mi">4</span><span class="p">);</span>
-        
-				<span class="c1">// 驗證是否為整數
-</span><span class="c1"></span>        <span class="k">if</span><span class="p">(</span><span class="n">check</span> <span class="o">-</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">check</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
-            <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
-        
-        <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-    <span class="p">}</span>
-<span class="p">};</span>
-</code></pre></div><p>Time complexity:  $\mathcal{O}(\log N)$.</p>
-<p>Space complexity:  $\mathcal{O}(1)$.</p>
-<h3 id="解法二">解法二：</h3>
-<p>遞迴檢查是否為 4 的次方及是否可被 4 整除</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">bool</span> <span class="nf">isPowerOfFour</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
-        
-        <span class="k">if</span><span class="p">(</span><span class="n">n</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">)</span>
-        <span class="p">{</span>
-            <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-        <span class="p">}</span>
-        
-        <span class="k">if</span><span class="p">(</span><span class="n">n</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span>
-        <span class="p">{</span>
-            <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
-        <span class="p">}</span>
-
-        <span class="c1">// 若可被 4 除盡 &amp;&amp; 是 4 的次方
-</span><span class="c1"></span>        <span class="k">return</span> <span class="o">!</span><span class="p">(</span><span class="n">n</span><span class="o">%</span><span class="mi">4</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="n">isPowerOfFour</span><span class="p">(</span><span class="n">n</span><span class="o">/</span><span class="mi">4</span><span class="p">);</span>
-    <span class="p">}</span>
-</code></pre></div><p>Time complexity:  $\mathcal{O}(\log N)$.</p>
-<p>Space complexity:  $\mathcal{O}(1)$.</p>
-<h2 id="reference">Reference</h2>
-<ol>
-<li>
-<p><a href="https://stackoverflow.com/questions/18874255/calculate-the-log-base-n-with-shift-left-or-shift-right" target="_blank" rel="noopener noreffer">stackoverflow - Calculate the log base n</a></p>
-</li>
-<li>
-<p><a href="https://stackoverflow.com/questions/5796983/checking-if-float-is-an-integer" target="_blank" rel="noopener noreffer">stackoverflow - Checking if float is an integer</a></p>
-</li>
-</ol>
-</div><div class="post-footer" id="post-footer">
-    <div class="post-info">
-        <div class="post-info-line">
-            <div class="post-info-mod">
-                <span>Updated on 2022-08-22</span>
-            </div>
-            <div class="post-info-license"></div>
-        </div>
-        <div class="post-info-line">
-            <div class="post-info-md"></div>
-            <div class="post-info-share">
-                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://eyzim.github.io/posts/leetcode/leetcode_342_power_of_four/" data-title="LeetCode 342. Power of Four 解題紀錄" data-hashtags="easy,c&#43;&#43;,recursion,bit manipulation,math"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://eyzim.github.io/posts/leetcode/leetcode_342_power_of_four/" data-hashtag="easy"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://eyzim.github.io/posts/leetcode/leetcode_342_power_of_four/" data-title="LeetCode 342. Power of Four 解題紀錄"><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="javascript:void(0);" title="Share on Blogger" data-sharer="blogger" data-url="https://eyzim.github.io/posts/leetcode/leetcode_342_power_of_four/" data-title="LeetCode 342. Power of Four 解題紀錄" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="Share on Evernote" data-sharer="evernote" data-url="https://eyzim.github.io/posts/leetcode/leetcode_342_power_of_four/" data-title="LeetCode 342. Power of Four 解題紀錄"><i class="fab fa-evernote fa-fw"></i></a><a href="javascript:void(0);" title="Share on Trello" data-sharer="trello" data-url="https://eyzim.github.io/posts/leetcode/leetcode_342_power_of_four/" data-title="LeetCode 342. Power of Four 解題紀錄" data-description=""><i class="fab fa-trello fa-fw"></i></a></span>
-            </div>
-        </div>
-    </div>
-
-    <div class="post-info-more">
-        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/easy/">easy</a>,&nbsp;<a href="/tags/c&#43;&#43;/">c&#43;&#43;</a>,&nbsp;<a href="/tags/recursion/">recursion</a>,&nbsp;<a href="/tags/bit-manipulation/">bit manipulation</a>,&nbsp;<a href="/tags/math/">math</a></section>
-        <section>
-            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
-        </section>
-    </div>
-
-    <div class="post-nav"><a href="/posts/leetcode/leetcode_804_unique_morse_code_words/" class="prev" rel="prev" title="LeetCode 804. Unique Morse Code Words 解題紀錄"><i class="fas fa-angle-left fa-fw"></i>LeetCode 804. Unique Morse Code Words 解題紀錄</a>
-            <a href="/posts/nodejs/start-our-first-nodejs-project/" class="next" rel="next" title="[NodeJS] 程式麻瓜的第一個 nodeJS 專案">[NodeJS] 程式麻瓜的第一個 nodeJS 專案<i class="fas fa-angle-right fa-fw"></i></a></div>
-</div>
-<div id="comments"><div id="disqus_thread" class="comment"></div><noscript>
-                Please enable JavaScript to view the comments powered by <a href="https://disqus.com/?ref_noscript">Disqus</a>.
-            </noscript></div></article></div>
-            </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.92.1">Hugo</a> | Theme - <a href="" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"> LoveIt</a>
-                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2014 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">elvire</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
-        </div>
-    </footer></div>
-
-        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
-                <i class="fas fa-arrow-up fa-fw"></i>
-            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
-                <i class="fas fa-comment fa-fw"></i>
-            </a>
-        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><script type="text/javascript" src="https://eyzim.disqus.com/embed.js" defer></script><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/twemoji/twemoji.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":50,"type":"lunr"},"twemoji":true};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
-</html>
+</code></pre><p><strong>Constraints:</strong></p><ul><li>$-2^{31} \leq x \leq 2^{31}-1$</li></ul><p><strong>Follow up:</strong></p><p>Could you solve it without loops/recursion?</p></div></div></div><h3 id=解法一>解法一：</h3><ol><li><p>使用<a href=https://eyzim.github.io/posts/leetcode/leetcode_326_power_of_three/ target=_blank rel="noopener noreffer">以前</a>學過的</p><p>$log{_b}{a}$</p><p>$ \ = log_{10}{a} \div log_{10}{b}$</p><p>$ \ = \frac{log{a}}{log{b}}$，</p><p>舉一反三，</p><p>$log_{4}{n}$</p><p>$ \ = log_{10}{n} \div log_{10}{4}$</p><p>$ \ = log{n} \div log4 $</p><p>$ \ = \frac{log{n}}{log{4}}$</p></li><li><p>檢查做完 $log$ 之後是否為整數，若是整數，則 <code>n</code> 為 4 的次方；反之，則否。</p></li></ol><div class=highlight><pre tabindex=0 class=chroma><code class=language-cpp data-lang=cpp><span class=line><span class=cl><span class=k>class</span> <span class=nc>Solution</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl><span class=k>public</span><span class=o>:</span>
+</span></span><span class=line><span class=cl>    <span class=kt>bool</span> <span class=n>isPowerOfFour</span><span class=p>(</span><span class=kt>int</span> <span class=n>n</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        
+</span></span><span class=line><span class=cl>        <span class=k>if</span><span class=p>(</span><span class=n>n</span> <span class=o>&lt;</span> <span class=mi>1</span><span class=p>)</span>   <span class=k>return</span> <span class=mi>0</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>        
+</span></span><span class=line><span class=cl>        <span class=kt>double</span> <span class=n>check</span> <span class=o>=</span> <span class=n>log</span><span class=p>(</span><span class=n>n</span><span class=p>)</span><span class=o>/</span><span class=n>log</span><span class=p>(</span><span class=mi>4</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>        
+</span></span><span class=line><span class=cl>				<span class=c1>// 驗證是否為整數
+</span></span></span><span class=line><span class=cl><span class=c1></span>        <span class=k>if</span><span class=p>(</span><span class=n>check</span> <span class=o>-</span> <span class=p>(</span><span class=kt>int</span><span class=p>)</span><span class=n>check</span> <span class=o>==</span> <span class=mi>0</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>            <span class=k>return</span> <span class=mi>1</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>        
+</span></span><span class=line><span class=cl>        <span class=k>return</span> <span class=mi>0</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>};</span>
+</span></span></code></pre></div><p>Time complexity: $\mathcal{O}(\log N)$.</p><p>Space complexity: $\mathcal{O}(1)$.</p><h3 id=解法二>解法二：</h3><p>遞迴檢查是否為 4 的次方及是否可被 4 整除</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-cpp data-lang=cpp><span class=line><span class=cl><span class=kt>bool</span> <span class=nf>isPowerOfFour</span><span class=p>(</span><span class=kt>int</span> <span class=n>n</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        
+</span></span><span class=line><span class=cl>        <span class=k>if</span><span class=p>(</span><span class=n>n</span> <span class=o>&lt;</span> <span class=mi>1</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=k>return</span> <span class=mi>0</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>        <span class=p>}</span>
+</span></span><span class=line><span class=cl>        
+</span></span><span class=line><span class=cl>        <span class=k>if</span><span class=p>(</span><span class=n>n</span> <span class=o>==</span> <span class=mi>1</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=k>return</span> <span class=mi>1</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>        <span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>        <span class=c1>// 若可被 4 除盡 &amp;&amp; 是 4 的次方
+</span></span></span><span class=line><span class=cl><span class=c1></span>        <span class=k>return</span> <span class=o>!</span><span class=p>(</span><span class=n>n</span><span class=o>%</span><span class=mi>4</span><span class=p>)</span> <span class=o>&amp;&amp;</span> <span class=n>isPowerOfFour</span><span class=p>(</span><span class=n>n</span><span class=o>/</span><span class=mi>4</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span></code></pre></div><p>Time complexity: $\mathcal{O}(\log N)$.</p><p>Space complexity: $\mathcal{O}(1)$.</p><h2 id=reference>Reference</h2><ol><li><p><a href=https://stackoverflow.com/questions/18874255/calculate-the-log-base-n-with-shift-left-or-shift-right target=_blank rel="noopener noreffer">stackoverflow - Calculate the log base n</a></p></li><li><p><a href=https://stackoverflow.com/questions/5796983/checking-if-float-is-an-integer target=_blank rel="noopener noreffer">stackoverflow - Checking if float is an integer</a></p></li></ol></div><div class=post-footer id=post-footer><div class=post-info><div class=post-info-line><div class=post-info-mod><span>Updated on 2022-08-22</span></div><div class=post-info-license></div></div><div class=post-info-line><div class=post-info-md></div><div class=post-info-share><span><a href=javascript:void(0); title="Share on Twitter" data-sharer=twitter data-url=https://eyzim.github.io/posts/leetcode/leetcode_342_power_of_four/ data-title="LeetCode 342. Power of Four 解題紀錄" data-hashtags="easy,c++,recursion,bit manipulation,math"><i class="fab fa-twitter fa-fw"></i></a><a href=javascript:void(0); title="Share on Facebook" data-sharer=facebook data-url=https://eyzim.github.io/posts/leetcode/leetcode_342_power_of_four/ data-hashtag=easy><i class="fab fa-facebook-square fa-fw"></i></a><a href=javascript:void(0); title="Share on Line" data-sharer=line data-url=https://eyzim.github.io/posts/leetcode/leetcode_342_power_of_four/ data-title="LeetCode 342. Power of Four 解題紀錄"><i data-svg-src=/lib/simple-icons/icons/line.min.svg></i></a><a href=javascript:void(0); title="Share on Blogger" data-sharer=blogger data-url=https://eyzim.github.io/posts/leetcode/leetcode_342_power_of_four/ data-title="LeetCode 342. Power of Four 解題紀錄" data-description><i class="fab fa-blogger fa-fw"></i></a><a href=javascript:void(0); title="Share on Evernote" data-sharer=evernote data-url=https://eyzim.github.io/posts/leetcode/leetcode_342_power_of_four/ data-title="LeetCode 342. Power of Four 解題紀錄"><i class="fab fa-evernote fa-fw"></i></a><a href=javascript:void(0); title="Share on Trello" data-sharer=trello data-url=https://eyzim.github.io/posts/leetcode/leetcode_342_power_of_four/ data-title="LeetCode 342. Power of Four 解題紀錄" data-description><i class="fab fa-trello fa-fw"></i></a></span></div></div></div><div class=post-info-more><section class=post-tags><i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/easy/>easy</a>,&nbsp;<a href=/tags/c++/>c++</a>,&nbsp;<a href=/tags/recursion/>recursion</a>,&nbsp;<a href=/tags/bit-manipulation/>bit manipulation</a>,&nbsp;<a href=/tags/math/>math</a></section><section><span><a href=javascript:void(0); onclick=window.history.back()>Back</a></span>&nbsp;|&nbsp;<span><a href=/>Home</a></span></section></div><div class=post-nav><a href=/posts/leetcode/leetcode_804_unique_morse_code_words/ class=prev rel=prev title="LeetCode 804. Unique Morse Code Words 解題紀錄"><i class="fas fa-angle-left fa-fw"></i>LeetCode 804. Unique Morse Code Words 解題紀錄</a>
+<a href=/posts/nodejs/start-our-first-nodejs-project/ class=next rel=next title="[NodeJS] 程式麻瓜的第一個 nodeJS 專案">[NodeJS] 程式麻瓜的第一個 nodeJS 專案<i class="fas fa-angle-right fa-fw"></i></a></div></div><div id=comments><div id=disqus_thread class=comment></div><noscript>Please enable JavaScript to view the comments powered by <a href=https://disqus.com/?ref_noscript>Disqus</a>.</noscript></div></article></div></main><footer class=footer><div class=footer-container><div class=footer-line>Powered by <a href=https://gohugo.io/ target=_blank rel="noopener noreffer" title="Hugo 0.110.0">Hugo</a> | Theme - <a href=https://github.com/dillonzq/LoveIt target=_blank rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a></div><div class=footer-line><i class="far fa-copyright fa-fw"></i><span itemprop=copyrightYear>2014 - 2023</span><span class=author itemprop=copyrightHolder>&nbsp;<a href=/ target=_blank>elvire</a></span>&nbsp;|&nbsp;<span class=license><a rel="license external nofollow noopener noreffer" href=https://creativecommons.org/licenses/by-nc/4.0/ target=_blank>CC BY-NC 4.0</a></span></div></div></footer></div><div id=fixed-buttons><a href=# id=back-to-top class=fixed-button title="Back to Top"><i class="fas fa-arrow-up fa-fw"></i>
+</a><a href=# id=view-comments class=fixed-button title="View Comments"><i class="fas fa-comment fa-fw"></i></a></div><link rel=stylesheet href=/lib/katex/katex.min.css><link rel=stylesheet href=/lib/katex/copy-tex.min.css><script type=text/javascript src=https://eyzim.disqus.com/embed.js defer></script><script type=text/javascript src=/lib/smooth-scroll/smooth-scroll.min.js></script><script type=text/javascript src=/lib/autocomplete/autocomplete.min.js></script><script type=text/javascript src=/lib/lunr/lunr.min.js></script><script type=text/javascript src=/lib/lazysizes/lazysizes.min.js></script><script type=text/javascript src=/lib/twemoji/twemoji.min.js></script><script type=text/javascript src=/lib/clipboard/clipboard.min.js></script><script type=text/javascript src=/lib/sharer/sharer.min.js></script><script type=text/javascript src=/lib/katex/katex.min.js></script><script type=text/javascript src=/lib/katex/auto-render.min.js></script><script type=text/javascript src=/lib/katex/copy-tex.min.js></script><script type=text/javascript src=/lib/katex/mhchem.min.js></script><script type=text/javascript>window.config={code:{copyTitle:"Copy to clipboard",maxShownLines:50},comment:{},math:{delimiters:[{display:!0,left:"$$",right:"$$"},{display:!0,left:"\\[",right:"\\]"},{display:!1,left:"$",right:"$"},{display:!1,left:"\\(",right:"\\)"}],strict:!1},search:{highlightTag:"em",lunrIndexURL:"/index.json",maxResultLength:10,noResultsFound:"No results found",snippetLength:50,type:"lunr"},twemoji:!0}</script><script type=text/javascript src=/js/theme.min.js></script></body></html>

@@ -1,246 +1,86 @@
-<!DOCTYPE html>
-<html lang="zh-TW">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="robots" content="noodp" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
-        <title>【C&#43;&#43;】int to string &amp; string to int - EVIEEE</title><meta name="Description" content="Empassion, Endearing, Enthusiastic"><meta property="og:title" content="【C&#43;&#43;】int to string &amp; string to int" />
-<meta property="og:description" content="C&#43;&#43; 中 int 和 string 的轉換。" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://eyzim.github.io/posts/cpp/cpp_int_to_string/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2021-10-04T01:16:48+08:00" />
-<meta property="article:modified_time" content="2021-10-04T01:16:48+08:00" />
-
-<meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="【C&#43;&#43;】int to string &amp; string to int"/>
-<meta name="twitter:description" content="C&#43;&#43; 中 int 和 string 的轉換。"/>
-<meta name="application-name" content="Evieees">
-<meta name="apple-mobile-web-app-title" content="Evieees"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
-        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://eyzim.github.io/posts/cpp/cpp_int_to_string/" /><link rel="prev" href="https://eyzim.github.io/posts/leetcode/leetcode_387_first_unique_character_in_a_string/" /><link rel="next" href="https://eyzim.github.io/posts/leetcode/leetcode_191_number_of_1_bits/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
-    {
-        "@context": "http://schema.org",
-        "@type": "BlogPosting",
-        "headline": "【C++】int to string \u0026 string to int",
-        "inLanguage": "zh-TW",
-        "mainEntityOfPage": {
-            "@type": "WebPage",
-            "@id": "https:\/\/eyzim.github.io\/posts\/cpp\/cpp_int_to_string\/"
-        },"genre": "posts","keywords": "c\u002b\u002b","wordcount":  466 ,
-        "url": "https:\/\/eyzim.github.io\/posts\/cpp\/cpp_int_to_string\/","datePublished": "2021-10-04T01:16:48+08:00","dateModified": "2021-10-04T01:16:48+08:00","publisher": {
-            "@type": "Organization",
-            "name": "Evie"},"author": {
-                "@type": "Person",
-                "name": "Evie"
-            },"description": ""
-    }
-    </script></head>
-    <body header-desktop="" header-mobile=""><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : '' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
-
-        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
-    <div class="header-wrapper">
-        <div class="header-title">
-            <a href="/" title="EVIEEE">EVIEEE</a>
-        </div>
-        <div class="menu">
-            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 標籤 </a><a class="menu-item" href="/categories/"> 分類 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
-                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
-                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
-                            <i class="fas fa-search fa-fw"></i>
-                        </a>
-                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
-                            <i class="fas fa-times-circle fa-fw"></i>
-                        </a>
-                        <span class="search-button search-loading" id="search-loading-desktop">
-                            <i class="fas fa-spinner fa-fw fa-spin"></i>
-                        </span>
-                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
-                    <i class="fas fa-adjust fa-fw"></i>
-                </a>
-            </div>
-        </div>
-    </div>
-</header><header class="mobile" id="header-mobile">
-    <div class="header-container">
-        <div class="header-wrapper">
-            <div class="header-title">
-                <a href="/" title="EVIEEE">EVIEEE</a>
-            </div>
-            <div class="menu-toggle" id="menu-toggle-mobile">
-                <span></span><span></span><span></span>
-            </div>
-        </div>
-        <div class="menu" id="menu-mobile"><div class="search-wrapper">
-                    <div class="search mobile" id="search-mobile">
-                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
-                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
-                            <i class="fas fa-search fa-fw"></i>
-                        </a>
-                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
-                            <i class="fas fa-times-circle fa-fw"></i>
-                        </a>
-                        <span class="search-button search-loading" id="search-loading-mobile">
-                            <i class="fas fa-spinner fa-fw fa-spin"></i>
-                        </span>
-                    </div>
-                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
-                        Cancel
-                    </a>
-                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">標籤</a><a class="menu-item" href="/categories/" title="">分類</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
-                <i class="fas fa-adjust fa-fw"></i>
-            </a></div>
-    </div>
-</header>
-<div class="search-dropdown desktop">
-    <div id="search-dropdown-desktop"></div>
-</div>
-<div class="search-dropdown mobile">
-    <div id="search-dropdown-mobile"></div>
-</div>
-<main class="main">
-                <div class="container"><div class="toc" id="toc-auto">
-            <h2 class="toc-title">Contents</h2>
-            <div class="toc-content" id="toc-content-auto"></div>
-        </div><article class="page single"><h1 class="single-title animated flipInX">【C&#43;&#43;】int to string &amp; string to int</h1><div class="post-meta">
-            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Evie</a></span>&nbsp;<span class="post-category">included in <a href="/categories/computer-system/"><i class="far fa-folder fa-fw"></i>Computer System</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-10-04">2021-10-04</time>&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;One minute&nbsp;</div>
-        </div><div class="details toc" id="toc-static"  kept="">
-                <div class="details-summary toc-title">
-                    <span>Contents</span>
-                    <span><i class="details-icon fas fa-angle-right"></i></span>
-                </div>
-                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
-  <ul>
-    <li><a href="#reference">Reference</a></li>
-  </ul>
-</nav></div>
-            </div><div class="content" id="content"><h1 id="string-to-int">string to int</h1>
-<p>現在我們要字串 a 的第 i 個字元：<code>a[i]</code>，希望能直接進行數字計算，只要將它改為 <code>a[i]-'0'</code>，它就是一個數字了！</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
-</span><span class="cp">#include</span> <span class="cpf">&lt;string&gt;</span><span class="cp">
-</span><span class="cp">#include</span> <span class="cpf">&lt;typeinfo&gt;</span><span class="cp">
-</span><span class="cp"></span>
-<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
-
-<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
-<span class="p">{</span>
-  <span class="n">string</span> <span class="n">num</span> <span class="o">=</span> <span class="s">&#34;1234&#34;</span><span class="p">;</span>
-  
-  <span class="n">cout</span> <span class="o">&lt;&lt;</span> 
-  <span class="s">&#34;Type of num is: &#34;</span> <span class="o">&lt;&lt;</span> <span class="k">typeid</span><span class="p">(</span><span class="n">num</span><span class="p">).</span><span class="n">name</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span> <span class="o">&lt;&lt;</span>
-  <span class="s">&#34;Type of num[0] is: &#34;</span> <span class="o">&lt;&lt;</span> <span class="k">typeid</span><span class="p">(</span><span class="n">num</span><span class="p">[</span><span class="mi">0</span><span class="p">]).</span><span class="n">name</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span> <span class="o">&lt;&lt;</span>
-  <span class="s">&#34;Type of num[0]-&#39;0&#39; is: &#34;</span> <span class="o">&lt;&lt;</span> <span class="k">typeid</span><span class="p">(</span><span class="n">num</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="sc">&#39;0&#39;</span><span class="p">).</span><span class="n">name</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span> <span class="o">&lt;&lt;</span>
-<span class="p">}</span>
-</code></pre></div><p>輸出為：</p>
-<pre tabindex="0"><code>Type of num is: Ss          -&gt; string
+<!doctype html><html lang=zh-tw><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=robots content="noodp"><meta http-equiv=x-ua-compatible content="IE=edge, chrome=1"><title>【C++】int to string & string to int - EVIEEE</title><meta name=Description content="Empassion, Endearing, Enthusiastic"><meta property="og:title" content="【C++】int to string & string to int"><meta property="og:description" content="C++ 中 int 和 string 的轉換。"><meta property="og:type" content="article"><meta property="og:url" content="https://eyzim.github.io/posts/cpp/cpp_int_to_string/"><meta property="article:section" content="posts"><meta property="article:published_time" content="2021-10-04T01:16:48+08:00"><meta property="article:modified_time" content="2021-10-04T01:16:48+08:00"><meta name=twitter:card content="summary"><meta name=twitter:title content="【C++】int to string & string to int"><meta name=twitter:description content="C++ 中 int 和 string 的轉換。"><meta name=application-name content="Evieees"><meta name=apple-mobile-web-app-title content="Evieees"><meta name=theme-color content="#ffffff"><meta name=msapplication-TileColor content="#da532c"><link rel="shortcut icon" type=image/x-icon href=/favicon.ico><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://eyzim.github.io/posts/cpp/cpp_int_to_string/><link rel=prev href=https://eyzim.github.io/posts/leetcode/leetcode_387_first_unique_character_in_a_string/><link rel=next href=https://eyzim.github.io/posts/leetcode/leetcode_191_number_of_1_bits/><link rel=stylesheet href=/lib/normalize/normalize.min.css><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=/lib/fontawesome-free/all.min.css><link rel=stylesheet href=/lib/animate/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"【C++】int to string \u0026 string to int","inLanguage":"zh-TW","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/eyzim.github.io\/posts\/cpp\/cpp_int_to_string\/"},"genre":"posts","keywords":"c\u002b\u002b","wordcount":472,"url":"https:\/\/eyzim.github.io\/posts\/cpp\/cpp_int_to_string\/","datePublished":"2021-10-04T01:16:48+08:00","dateModified":"2021-10-04T01:16:48+08:00","publisher":{"@type":"Organization","name":"Evie"},"author":{"@type":"Person","name":"Evie"},"description":""}</script></head><body header-desktop header-mobile><script type=text/javascript>(window.localStorage&&localStorage.getItem("theme")?localStorage.getItem("theme")==="dark":""==="auto"?window.matchMedia("(prefers-color-scheme: dark)").matches:""==="dark")&&document.body.setAttribute("theme","dark")</script><div id=mask></div><div class=wrapper><header class=desktop id=header-desktop><div class=header-wrapper><div class=header-title><a href=/ title=EVIEEE>EVIEEE</a></div><div class=menu><div class=menu-inner><a class=menu-item href=/posts/>文章 </a><a class=menu-item href=/tags/>標籤 </a><a class=menu-item href=/categories/>分類 </a><span class="menu-item delimiter"></span><span class="menu-item search" id=search-desktop>
+<input type=text placeholder="Search titles or contents..." id=search-input-desktop>
+<a href=javascript:void(0); class="search-button search-toggle" id=search-toggle-desktop title=Search><i class="fas fa-search fa-fw"></i></a>
+<a href=javascript:void(0); class="search-button search-clear" id=search-clear-desktop title=Clear><i class="fas fa-times-circle fa-fw"></i></a>
+<span class="search-button search-loading" id=search-loading-desktop><i class="fas fa-spinner fa-fw fa-spin"></i></span>
+</span><a href=javascript:void(0); class="menu-item theme-switch" title="Switch Theme"><i class="fas fa-adjust fa-fw"></i></a></div></div></div></header><header class=mobile id=header-mobile><div class=header-container><div class=header-wrapper><div class=header-title><a href=/ title=EVIEEE>EVIEEE</a></div><div class=menu-toggle id=menu-toggle-mobile><span></span><span></span><span></span></div></div><div class=menu id=menu-mobile><div class=search-wrapper><div class="search mobile" id=search-mobile><input type=text placeholder="Search titles or contents..." id=search-input-mobile>
+<a href=javascript:void(0); class="search-button search-toggle" id=search-toggle-mobile title=Search><i class="fas fa-search fa-fw"></i></a>
+<a href=javascript:void(0); class="search-button search-clear" id=search-clear-mobile title=Clear><i class="fas fa-times-circle fa-fw"></i></a>
+<span class="search-button search-loading" id=search-loading-mobile><i class="fas fa-spinner fa-fw fa-spin"></i></span></div><a href=javascript:void(0); class=search-cancel id=search-cancel-mobile>Cancel</a></div><a class=menu-item href=/posts/ title>文章</a><a class=menu-item href=/tags/ title>標籤</a><a class=menu-item href=/categories/ title>分類</a><a href=javascript:void(0); class="menu-item theme-switch" title="Switch Theme">
+<i class="fas fa-adjust fa-fw"></i></a></div></div></header><div class="search-dropdown desktop"><div id=search-dropdown-desktop></div></div><div class="search-dropdown mobile"><div id=search-dropdown-mobile></div></div><main class=main><div class=container><div class=toc id=toc-auto><h2 class=toc-title>Contents</h2><div class=toc-content id=toc-content-auto></div></div><article class="page single"><h1 class="single-title animated flipInX">【C++】int to string & string to int</h1><div class=post-meta><div class=post-meta-line><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>Evie</a></span>&nbsp;<span class=post-category>included in <a href=/categories/computer-system/><i class="far fa-folder fa-fw"></i>Computer System</a></span></div><div class=post-meta-line><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2021-10-04>2021-10-04</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;472 words&nbsp;
+<i class="far fa-clock fa-fw"></i>&nbsp;One minute&nbsp;</div></div><div class="details toc" id=toc-static kept><div class="details-summary toc-title"><span>Contents</span>
+<span><i class="details-icon fas fa-angle-right"></i></span></div><div class="details-content toc-content" id=toc-content-static><nav id=TableOfContents><ul><li><a href=#reference>Reference</a></li></ul></nav></div></div><div class=content id=content><h1 id=string-to-int>string to int</h1><p>現在我們要字串 a 的第 i 個字元：<code>a[i]</code>，希望能直接進行數字計算，只要將它改為 <code>a[i]-'0'</code>，它就是一個數字了！</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-cpp data-lang=cpp><span class=line><span class=cl><span class=cp>#include</span> <span class=cpf>&lt;iostream&gt;</span><span class=cp>
+</span></span></span><span class=line><span class=cl><span class=cp>#include</span> <span class=cpf>&lt;string&gt;</span><span class=cp>
+</span></span></span><span class=line><span class=cl><span class=cp>#include</span> <span class=cpf>&lt;typeinfo&gt;</span><span class=cp>
+</span></span></span><span class=line><span class=cl><span class=cp></span>
+</span></span><span class=line><span class=cl><span class=k>using</span> <span class=k>namespace</span> <span class=n>std</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kt>int</span> <span class=nf>main</span><span class=p>()</span>
+</span></span><span class=line><span class=cl><span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=n>string</span> <span class=n>num</span> <span class=o>=</span> <span class=s>&#34;1234&#34;</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>  
+</span></span><span class=line><span class=cl>  <span class=n>cout</span> <span class=o>&lt;&lt;</span> 
+</span></span><span class=line><span class=cl>  <span class=s>&#34;Type of num is: &#34;</span> <span class=o>&lt;&lt;</span> <span class=k>typeid</span><span class=p>(</span><span class=n>num</span><span class=p>).</span><span class=n>name</span><span class=p>()</span> <span class=o>&lt;&lt;</span> <span class=n>endl</span> <span class=o>&lt;&lt;</span>
+</span></span><span class=line><span class=cl>  <span class=s>&#34;Type of num[0] is: &#34;</span> <span class=o>&lt;&lt;</span> <span class=k>typeid</span><span class=p>(</span><span class=n>num</span><span class=p>[</span><span class=mi>0</span><span class=p>]).</span><span class=n>name</span><span class=p>()</span> <span class=o>&lt;&lt;</span> <span class=n>endl</span> <span class=o>&lt;&lt;</span>
+</span></span><span class=line><span class=cl>  <span class=s>&#34;Type of num[0]-&#39;0&#39; is: &#34;</span> <span class=o>&lt;&lt;</span> <span class=k>typeid</span><span class=p>(</span><span class=n>num</span><span class=p>[</span><span class=mi>0</span><span class=p>]</span><span class=o>-</span><span class=sc>&#39;0&#39;</span><span class=p>).</span><span class=n>name</span><span class=p>()</span> <span class=o>&lt;&lt;</span> <span class=n>endl</span> <span class=o>&lt;&lt;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></div><p>輸出為：</p><pre tabindex=0><code>Type of num is: Ss          -&gt; string
 Type of num[0] is: c        -&gt; char
-Type of num[0]-'0' is: i    -&gt; integer
-</code></pre><p>轉換的邏輯約莫是：</p>
-<p><code>string</code> ➡ <code>char</code> ➡ <code>int</code></p>
-<p><code>num</code>    ➡ <code>num[0]</code> ➡ <code>num[0]-'0'</code></p>
-<h1 id="int-to-string">int to string</h1>
-<p>從 <code>int</code> 轉回 <code>string</code> 就沒有簡單了，下列範例中，我們已經知道 intNum 是整數型別，試試看加上各種修飾會將 <code>intNum</code> 轉為什麼 type。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
-</span><span class="cp">#include</span> <span class="cpf">&lt;string&gt;</span><span class="cp">
-</span><span class="cp">#include</span> <span class="cpf">&lt;typeinfo&gt;</span><span class="cp">
-</span><span class="cp"></span>
-<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
-
-<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
-<span class="p">{</span>
-    <span class="n">string</span> <span class="n">num</span> <span class="o">=</span> <span class="s">&#34;1234&#34;</span><span class="p">;</span>
-  
-    <span class="kt">int</span> <span class="n">intNum</span> <span class="o">=</span> <span class="n">num</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="sc">&#39;0&#39;</span><span class="p">;</span>
-  
-    <span class="n">cout</span> <span class="o">&lt;&lt;</span> 
-    <span class="s">&#34;Type of intNum is: &#34;</span> <span class="o">&lt;&lt;</span> <span class="k">typeid</span><span class="p">(</span><span class="n">intNum</span><span class="p">).</span><span class="n">name</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span> <span class="o">&lt;&lt;</span>
-    <span class="s">&#34;Type of intNum+&#39;0&#39; is: &#34;</span> <span class="o">&lt;&lt;</span> <span class="k">typeid</span><span class="p">(</span><span class="n">intNum</span><span class="o">+</span><span class="sc">&#39;0&#39;</span><span class="p">).</span><span class="n">name</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span> <span class="o">&lt;&lt;</span>
-    <span class="s">&#34;Type of char(intNum) is: &#34;</span> <span class="o">&lt;&lt;</span> <span class="k">typeid</span><span class="p">(</span><span class="kt">char</span><span class="p">(</span><span class="n">intNum</span><span class="p">)).</span><span class="n">name</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span> <span class="o">&lt;&lt;</span>
-    <span class="s">&#34;Type of char(intNum)+&#39;0&#39; is: &#34;</span> <span class="o">&lt;&lt;</span> <span class="k">typeid</span><span class="p">(</span><span class="kt">char</span><span class="p">(</span><span class="n">intNum</span><span class="p">)</span><span class="o">+</span><span class="sc">&#39;0&#39;</span><span class="p">).</span><span class="n">name</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span> <span class="o">&lt;&lt;</span>
-    <span class="s">&#34;Type of to_string(intNum) is: &#34;</span> <span class="o">&lt;&lt;</span> <span class="k">typeid</span><span class="p">(</span><span class="n">to_string</span><span class="p">(</span><span class="n">intNum</span><span class="p">)).</span><span class="n">name</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></div><pre tabindex="0"><code>Type of intNum is: i
-Type of intNum+'0' is: i
+Type of num[0]-&#39;0&#39; is: i    -&gt; integer
+</code></pre><p>轉換的邏輯約莫是：</p><p><code>string</code> ➡ <code>char</code> ➡ <code>int</code></p><p><code>num</code> ➡ <code>num[0]</code> ➡ <code>num[0]-'0'</code></p><h1 id=int-to-string>int to string</h1><p>從 <code>int</code> 轉回 <code>string</code> 就沒有簡單了，下列範例中，我們已經知道 intNum 是整數型別，試試看加上各種修飾會將 <code>intNum</code> 轉為什麼 type。</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-cpp data-lang=cpp><span class=line><span class=cl><span class=cp>#include</span> <span class=cpf>&lt;iostream&gt;</span><span class=cp>
+</span></span></span><span class=line><span class=cl><span class=cp>#include</span> <span class=cpf>&lt;string&gt;</span><span class=cp>
+</span></span></span><span class=line><span class=cl><span class=cp>#include</span> <span class=cpf>&lt;typeinfo&gt;</span><span class=cp>
+</span></span></span><span class=line><span class=cl><span class=cp></span>
+</span></span><span class=line><span class=cl><span class=k>using</span> <span class=k>namespace</span> <span class=n>std</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kt>int</span> <span class=nf>main</span><span class=p>()</span>
+</span></span><span class=line><span class=cl><span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=n>string</span> <span class=n>num</span> <span class=o>=</span> <span class=s>&#34;1234&#34;</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>  
+</span></span><span class=line><span class=cl>    <span class=kt>int</span> <span class=n>intNum</span> <span class=o>=</span> <span class=n>num</span><span class=p>[</span><span class=mi>0</span><span class=p>]</span><span class=o>-</span><span class=sc>&#39;0&#39;</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>  
+</span></span><span class=line><span class=cl>    <span class=n>cout</span> <span class=o>&lt;&lt;</span> 
+</span></span><span class=line><span class=cl>    <span class=s>&#34;Type of intNum is: &#34;</span> <span class=o>&lt;&lt;</span> <span class=k>typeid</span><span class=p>(</span><span class=n>intNum</span><span class=p>).</span><span class=n>name</span><span class=p>()</span> <span class=o>&lt;&lt;</span> <span class=n>endl</span> <span class=o>&lt;&lt;</span>
+</span></span><span class=line><span class=cl>    <span class=s>&#34;Type of intNum+&#39;0&#39; is: &#34;</span> <span class=o>&lt;&lt;</span> <span class=k>typeid</span><span class=p>(</span><span class=n>intNum</span><span class=o>+</span><span class=sc>&#39;0&#39;</span><span class=p>).</span><span class=n>name</span><span class=p>()</span> <span class=o>&lt;&lt;</span> <span class=n>endl</span> <span class=o>&lt;&lt;</span>
+</span></span><span class=line><span class=cl>    <span class=s>&#34;Type of char(intNum) is: &#34;</span> <span class=o>&lt;&lt;</span> <span class=k>typeid</span><span class=p>(</span><span class=kt>char</span><span class=p>(</span><span class=n>intNum</span><span class=p>)).</span><span class=n>name</span><span class=p>()</span> <span class=o>&lt;&lt;</span> <span class=n>endl</span> <span class=o>&lt;&lt;</span>
+</span></span><span class=line><span class=cl>    <span class=s>&#34;Type of char(intNum)+&#39;0&#39; is: &#34;</span> <span class=o>&lt;&lt;</span> <span class=k>typeid</span><span class=p>(</span><span class=kt>char</span><span class=p>(</span><span class=n>intNum</span><span class=p>)</span><span class=o>+</span><span class=sc>&#39;0&#39;</span><span class=p>).</span><span class=n>name</span><span class=p>()</span> <span class=o>&lt;&lt;</span> <span class=n>endl</span> <span class=o>&lt;&lt;</span>
+</span></span><span class=line><span class=cl>    <span class=s>&#34;Type of to_string(intNum) is: &#34;</span> <span class=o>&lt;&lt;</span> <span class=k>typeid</span><span class=p>(</span><span class=n>to_string</span><span class=p>(</span><span class=n>intNum</span><span class=p>)).</span><span class=n>name</span><span class=p>()</span> <span class=o>&lt;&lt;</span> <span class=n>endl</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></div><pre tabindex=0><code>Type of intNum is: i
+Type of intNum+&#39;0&#39; is: i
 Type of char(intNum) is: c
-Type of char(intNum)+'0' is: i
+Type of char(intNum)+&#39;0&#39; is: i
 Type of to_string(intNum) is: Ss
-</code></pre><p>由上面輸出可知，只有直接用 <code>to_string</code> 轉型可以將 <code>int</code> 換回 <code>string</code> type。</p>
-<p>但是根據這題的題意，我們希望能一一串回 string 中，下面的實驗可以告訴我們：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
-</span><span class="cp">#include</span> <span class="cpf">&lt;string&gt;</span><span class="cp">
-</span><span class="cp">#include</span> <span class="cpf">&lt;typeinfo&gt;</span><span class="cp">
-</span><span class="cp"></span>
-<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
-
-<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
-<span class="p">{</span>
-    <span class="n">string</span> <span class="n">num</span> <span class="o">=</span> <span class="s">&#34;1234&#34;</span><span class="p">;</span>
-  
-    <span class="n">num</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">;</span>
-    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">num</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
-
-    <span class="n">num</span> <span class="o">+=</span> <span class="mi">2</span><span class="o">+</span><span class="sc">&#39;0&#39;</span><span class="p">;</span>
-    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">num</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
-    
-    <span class="n">num</span> <span class="o">+=</span> <span class="kt">char</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
-    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">num</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
-    
-    <span class="n">num</span> <span class="o">+=</span> <span class="kt">char</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span><span class="o">+</span><span class="sc">&#39;0&#39;</span><span class="p">;</span>
-    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">num</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
-    
-    <span class="n">num</span> <span class="o">+=</span> <span class="n">to_string</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span>
-    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">num</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></div><pre tabindex="0"><code>1234
+</code></pre><p>由上面輸出可知，只有直接用 <code>to_string</code> 轉型可以將 <code>int</code> 換回 <code>string</code> type。</p><p>但是根據這題的題意，我們希望能一一串回 string 中，下面的實驗可以告訴我們：</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-cpp data-lang=cpp><span class=line><span class=cl><span class=cp>#include</span> <span class=cpf>&lt;iostream&gt;</span><span class=cp>
+</span></span></span><span class=line><span class=cl><span class=cp>#include</span> <span class=cpf>&lt;string&gt;</span><span class=cp>
+</span></span></span><span class=line><span class=cl><span class=cp>#include</span> <span class=cpf>&lt;typeinfo&gt;</span><span class=cp>
+</span></span></span><span class=line><span class=cl><span class=cp></span>
+</span></span><span class=line><span class=cl><span class=k>using</span> <span class=k>namespace</span> <span class=n>std</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kt>int</span> <span class=nf>main</span><span class=p>()</span>
+</span></span><span class=line><span class=cl><span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=n>string</span> <span class=n>num</span> <span class=o>=</span> <span class=s>&#34;1234&#34;</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>  
+</span></span><span class=line><span class=cl>    <span class=n>num</span> <span class=o>+=</span> <span class=mi>1</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=n>cout</span> <span class=o>&lt;&lt;</span> <span class=n>num</span> <span class=o>&lt;&lt;</span> <span class=n>endl</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=n>num</span> <span class=o>+=</span> <span class=mi>2</span><span class=o>+</span><span class=sc>&#39;0&#39;</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=n>cout</span> <span class=o>&lt;&lt;</span> <span class=n>num</span> <span class=o>&lt;&lt;</span> <span class=n>endl</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    
+</span></span><span class=line><span class=cl>    <span class=n>num</span> <span class=o>+=</span> <span class=kt>char</span><span class=p>(</span><span class=mi>3</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=n>cout</span> <span class=o>&lt;&lt;</span> <span class=n>num</span> <span class=o>&lt;&lt;</span> <span class=n>endl</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    
+</span></span><span class=line><span class=cl>    <span class=n>num</span> <span class=o>+=</span> <span class=kt>char</span><span class=p>(</span><span class=mi>4</span><span class=p>)</span><span class=o>+</span><span class=sc>&#39;0&#39;</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=n>cout</span> <span class=o>&lt;&lt;</span> <span class=n>num</span> <span class=o>&lt;&lt;</span> <span class=n>endl</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    
+</span></span><span class=line><span class=cl>    <span class=n>num</span> <span class=o>+=</span> <span class=n>to_string</span><span class=p>(</span><span class=mi>5</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=n>cout</span> <span class=o>&lt;&lt;</span> <span class=n>num</span> <span class=o>&lt;&lt;</span> <span class=n>endl</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></div><pre tabindex=0><code>1234
 12342
 12342
 123424
 1234245
-</code></pre><p>在 <code>int</code> 或 <code>char</code> 後面加上 <code>+'0'</code> 即可串上 <code>string</code>，當然最保險且最簡單的作法當然是強轉型成 <code>to_string</code> 啦。</p>
-<h2 id="reference">Reference</h2>
-<ol>
-<li><a href="https://www.delftstack.com/zh-tw/howto/cpp/how-to-convert-int-to-string-in-cpp/" target="_blank" rel="noopener noreffer">https://www.delftstack.com/zh-tw/howto/cpp/how-to-convert-int-to-string-in-cpp/</a></li>
-</ol>
-</div><div class="post-footer" id="post-footer">
-    <div class="post-info">
-        <div class="post-info-line">
-            <div class="post-info-mod">
-                <span>Updated on 2021-10-04</span>
-            </div>
-            <div class="post-info-license"></div>
-        </div>
-        <div class="post-info-line">
-            <div class="post-info-md"></div>
-            <div class="post-info-share">
-                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://eyzim.github.io/posts/cpp/cpp_int_to_string/" data-title="【C&#43;&#43;】int to string &amp; string to int" data-hashtags="c&#43;&#43;"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://eyzim.github.io/posts/cpp/cpp_int_to_string/" data-hashtag="c&#43;&#43;"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://eyzim.github.io/posts/cpp/cpp_int_to_string/" data-title="【C&#43;&#43;】int to string &amp; string to int"><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="javascript:void(0);" title="Share on Blogger" data-sharer="blogger" data-url="https://eyzim.github.io/posts/cpp/cpp_int_to_string/" data-title="【C&#43;&#43;】int to string &amp; string to int" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="Share on Evernote" data-sharer="evernote" data-url="https://eyzim.github.io/posts/cpp/cpp_int_to_string/" data-title="【C&#43;&#43;】int to string &amp; string to int"><i class="fab fa-evernote fa-fw"></i></a><a href="javascript:void(0);" title="Share on Trello" data-sharer="trello" data-url="https://eyzim.github.io/posts/cpp/cpp_int_to_string/" data-title="【C&#43;&#43;】int to string &amp; string to int" data-description=""><i class="fab fa-trello fa-fw"></i></a></span>
-            </div>
-        </div>
-    </div>
-
-    <div class="post-info-more">
-        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/c&#43;&#43;/">c&#43;&#43;</a></section>
-        <section>
-            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
-        </section>
-    </div>
-
-    <div class="post-nav"><a href="/posts/leetcode/leetcode_387_first_unique_character_in_a_string/" class="prev" rel="prev" title="LeetCode 387. First Unique Character in a String 解題紀錄"><i class="fas fa-angle-left fa-fw"></i>LeetCode 387. First Unique Character in a String 解題紀錄</a>
-            <a href="/posts/leetcode/leetcode_191_number_of_1_bits/" class="next" rel="next" title="LeetCode 191. Number of 1 Bits 解題紀錄">LeetCode 191. Number of 1 Bits 解題紀錄<i class="fas fa-angle-right fa-fw"></i></a></div>
-</div>
-<div id="comments"><div id="disqus_thread" class="comment"></div><noscript>
-                Please enable JavaScript to view the comments powered by <a href="https://disqus.com/?ref_noscript">Disqus</a>.
-            </noscript></div></article></div>
-            </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.92.1">Hugo</a> | Theme - <a href="" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"> LoveIt</a>
-                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2014 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">elvire</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
-        </div>
-    </footer></div>
-
-        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
-                <i class="fas fa-arrow-up fa-fw"></i>
-            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
-                <i class="fas fa-comment fa-fw"></i>
-            </a>
-        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><script type="text/javascript" src="https://eyzim.disqus.com/embed.js" defer></script><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/twemoji/twemoji.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":50,"type":"lunr"},"twemoji":true};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
-</html>
+</code></pre><p>在 <code>int</code> 或 <code>char</code> 後面加上 <code>+'0'</code> 即可串上 <code>string</code>，當然最保險且最簡單的作法當然是強轉型成 <code>to_string</code> 啦。</p><h2 id=reference>Reference</h2><ol><li><a href=https://www.delftstack.com/zh-tw/howto/cpp/how-to-convert-int-to-string-in-cpp/ target=_blank rel="noopener noreffer">https://www.delftstack.com/zh-tw/howto/cpp/how-to-convert-int-to-string-in-cpp/</a></li></ol></div><div class=post-footer id=post-footer><div class=post-info><div class=post-info-line><div class=post-info-mod><span>Updated on 2021-10-04</span></div><div class=post-info-license></div></div><div class=post-info-line><div class=post-info-md></div><div class=post-info-share><span><a href=javascript:void(0); title="Share on Twitter" data-sharer=twitter data-url=https://eyzim.github.io/posts/cpp/cpp_int_to_string/ data-title="【C++】int to string & string to int" data-hashtags=c++><i class="fab fa-twitter fa-fw"></i></a><a href=javascript:void(0); title="Share on Facebook" data-sharer=facebook data-url=https://eyzim.github.io/posts/cpp/cpp_int_to_string/ data-hashtag=c++><i class="fab fa-facebook-square fa-fw"></i></a><a href=javascript:void(0); title="Share on Line" data-sharer=line data-url=https://eyzim.github.io/posts/cpp/cpp_int_to_string/ data-title="【C++】int to string & string to int"><i data-svg-src=/lib/simple-icons/icons/line.min.svg></i></a><a href=javascript:void(0); title="Share on Blogger" data-sharer=blogger data-url=https://eyzim.github.io/posts/cpp/cpp_int_to_string/ data-title="【C++】int to string & string to int" data-description><i class="fab fa-blogger fa-fw"></i></a><a href=javascript:void(0); title="Share on Evernote" data-sharer=evernote data-url=https://eyzim.github.io/posts/cpp/cpp_int_to_string/ data-title="【C++】int to string & string to int"><i class="fab fa-evernote fa-fw"></i></a><a href=javascript:void(0); title="Share on Trello" data-sharer=trello data-url=https://eyzim.github.io/posts/cpp/cpp_int_to_string/ data-title="【C++】int to string & string to int" data-description><i class="fab fa-trello fa-fw"></i></a></span></div></div></div><div class=post-info-more><section class=post-tags><i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/c++/>c++</a></section><section><span><a href=javascript:void(0); onclick=window.history.back()>Back</a></span>&nbsp;|&nbsp;<span><a href=/>Home</a></span></section></div><div class=post-nav><a href=/posts/leetcode/leetcode_387_first_unique_character_in_a_string/ class=prev rel=prev title="LeetCode 387. First Unique Character in a String 解題紀錄"><i class="fas fa-angle-left fa-fw"></i>LeetCode 387. First Unique Character in a String 解題紀錄</a>
+<a href=/posts/leetcode/leetcode_191_number_of_1_bits/ class=next rel=next title="LeetCode 191. Number of 1 Bits 解題紀錄">LeetCode 191. Number of 1 Bits 解題紀錄<i class="fas fa-angle-right fa-fw"></i></a></div></div><div id=comments><div id=disqus_thread class=comment></div><noscript>Please enable JavaScript to view the comments powered by <a href=https://disqus.com/?ref_noscript>Disqus</a>.</noscript></div></article></div></main><footer class=footer><div class=footer-container><div class=footer-line>Powered by <a href=https://gohugo.io/ target=_blank rel="noopener noreffer" title="Hugo 0.110.0">Hugo</a> | Theme - <a href=https://github.com/dillonzq/LoveIt target=_blank rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a></div><div class=footer-line><i class="far fa-copyright fa-fw"></i><span itemprop=copyrightYear>2014 - 2023</span><span class=author itemprop=copyrightHolder>&nbsp;<a href=/ target=_blank>elvire</a></span>&nbsp;|&nbsp;<span class=license><a rel="license external nofollow noopener noreffer" href=https://creativecommons.org/licenses/by-nc/4.0/ target=_blank>CC BY-NC 4.0</a></span></div></div></footer></div><div id=fixed-buttons><a href=# id=back-to-top class=fixed-button title="Back to Top"><i class="fas fa-arrow-up fa-fw"></i>
+</a><a href=# id=view-comments class=fixed-button title="View Comments"><i class="fas fa-comment fa-fw"></i></a></div><link rel=stylesheet href=/lib/katex/katex.min.css><link rel=stylesheet href=/lib/katex/copy-tex.min.css><script type=text/javascript src=https://eyzim.disqus.com/embed.js defer></script><script type=text/javascript src=/lib/smooth-scroll/smooth-scroll.min.js></script><script type=text/javascript src=/lib/autocomplete/autocomplete.min.js></script><script type=text/javascript src=/lib/lunr/lunr.min.js></script><script type=text/javascript src=/lib/lazysizes/lazysizes.min.js></script><script type=text/javascript src=/lib/twemoji/twemoji.min.js></script><script type=text/javascript src=/lib/clipboard/clipboard.min.js></script><script type=text/javascript src=/lib/sharer/sharer.min.js></script><script type=text/javascript src=/lib/katex/katex.min.js></script><script type=text/javascript src=/lib/katex/auto-render.min.js></script><script type=text/javascript src=/lib/katex/copy-tex.min.js></script><script type=text/javascript src=/lib/katex/mhchem.min.js></script><script type=text/javascript>window.config={code:{copyTitle:"Copy to clipboard",maxShownLines:50},comment:{},math:{delimiters:[{display:!0,left:"$$",right:"$$"},{display:!0,left:"\\[",right:"\\]"},{display:!1,left:"$",right:"$"},{display:!1,left:"\\(",right:"\\)"}],strict:!1},search:{highlightTag:"em",lunrIndexURL:"/index.json",maxResultLength:10,noResultsFound:"No results found",snippetLength:50,type:"lunr"},twemoji:!0}</script><script type=text/javascript src=/js/theme.min.js></script></body></html>

@@ -1,14 +1,1 @@
-<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
-    <channel>
-        <title>Graphics - Category - EVIEEE</title>
-        <link>https://eyzim.github.io/categories/graphics/</link>
-        <description>Graphics - Category - EVIEEE</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-TW</language><lastBuildDate>Wed, 05 Jun 2019 17:21:09 &#43;0800</lastBuildDate><atom:link href="https://eyzim.github.io/categories/graphics/" rel="self" type="application/rss+xml" /><item>
-    <title>【圖學】讀取 .obj 和 .mtl 檔案</title>
-    <link>https://eyzim.github.io/posts/graphics/graphics-load-obj-mtl/</link>
-    <pubDate>Wed, 05 Jun 2019 17:21:09 &#43;0800</pubDate>
-    <author>Author</author>
-    <guid>https://eyzim.github.io/posts/graphics/graphics-load-obj-mtl/</guid>
-    <description><![CDATA[手刻 C++ 讀取模型檔 .obj 和 .mtl。]]></description>
-</item></channel>
-</rss>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>Graphics - Category - EVIEEE</title><link>https://eyzim.github.io/categories/graphics/</link><description>Graphics - Category - EVIEEE</description><generator>Hugo -- gohugo.io</generator><language>zh-TW</language><lastBuildDate>Wed, 05 Jun 2019 17:21:09 +0800</lastBuildDate><atom:link href="https://eyzim.github.io/categories/graphics/" rel="self" type="application/rss+xml"/><item><title>【圖學】讀取 .obj 和 .mtl 檔案</title><link>https://eyzim.github.io/posts/graphics/graphics-load-obj-mtl/</link><pubDate>Wed, 05 Jun 2019 17:21:09 +0800</pubDate><author>Author</author><guid>https://eyzim.github.io/posts/graphics/graphics-load-obj-mtl/</guid><description>手刻 C++ 讀取模型檔 .obj 和 .mtl。</description></item></channel></rss>

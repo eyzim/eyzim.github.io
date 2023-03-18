@@ -1,211 +1,24 @@
-<!DOCTYPE html>
-<html lang="zh-TW">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="robots" content="noodp" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
-        <title>不靠 IDE 自己編譯 C&#43;&#43; (1) - 安裝 MinGW 指南 - EVIEEE</title><meta name="Description" content="Empassion, Endearing, Enthusiastic"><meta property="og:title" content="不靠 IDE 自己編譯 C&#43;&#43; (1) - 安裝 MinGW 指南" />
-<meta property="og:description" content="透過 MinGW 安裝 GCC 和困難排除，挑戰靠自己的手編譯 C&#43;&#43; 原始檔案。" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://eyzim.github.io/posts/cpp/compile_my_cpp_with_g&#43;&#43;/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2019-02-04T01:52:07+08:00" />
-<meta property="article:modified_time" content="2019-02-04T01:52:07+08:00" />
-
-<meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="不靠 IDE 自己編譯 C&#43;&#43; (1) - 安裝 MinGW 指南"/>
-<meta name="twitter:description" content="透過 MinGW 安裝 GCC 和困難排除，挑戰靠自己的手編譯 C&#43;&#43; 原始檔案。"/>
-<meta name="application-name" content="Evieees">
-<meta name="apple-mobile-web-app-title" content="Evieees"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
-        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://eyzim.github.io/posts/cpp/compile_my_cpp_with_g&#43;&#43;/" /><link rel="prev" href="https://eyzim.github.io/posts/leetcode/leetcode_1051_height_checker/" /><link rel="next" href="https://eyzim.github.io/posts/cpp/compile_my_cpp_with_g&#43;&#43;_2/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
-    {
-        "@context": "http://schema.org",
-        "@type": "BlogPosting",
-        "headline": "不靠 IDE 自己編譯 C++ (1) - 安裝 MinGW 指南",
-        "inLanguage": "zh-TW",
-        "mainEntityOfPage": {
-            "@type": "WebPage",
-            "@id": "https:\/\/eyzim.github.io\/posts\/cpp\/compile_my_cpp_with_g\u002b\u002b\/"
-        },"genre": "posts","keywords": "MinGW, windows 10, compile, c\u002b\u002b","wordcount":  366 ,
-        "url": "https:\/\/eyzim.github.io\/posts\/cpp\/compile_my_cpp_with_g\u002b\u002b\/","datePublished": "2019-02-04T01:52:07+08:00","dateModified": "2019-02-04T01:52:07+08:00","publisher": {
-            "@type": "Organization",
-            "name": "Evie"},"author": {
-                "@type": "Person",
-                "name": "Evie"
-            },"description": ""
-    }
-    </script></head>
-    <body header-desktop="" header-mobile=""><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : '' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
-
-        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
-    <div class="header-wrapper">
-        <div class="header-title">
-            <a href="/" title="EVIEEE">EVIEEE</a>
-        </div>
-        <div class="menu">
-            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 標籤 </a><a class="menu-item" href="/categories/"> 分類 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
-                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
-                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
-                            <i class="fas fa-search fa-fw"></i>
-                        </a>
-                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
-                            <i class="fas fa-times-circle fa-fw"></i>
-                        </a>
-                        <span class="search-button search-loading" id="search-loading-desktop">
-                            <i class="fas fa-spinner fa-fw fa-spin"></i>
-                        </span>
-                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
-                    <i class="fas fa-adjust fa-fw"></i>
-                </a>
-            </div>
-        </div>
-    </div>
-</header><header class="mobile" id="header-mobile">
-    <div class="header-container">
-        <div class="header-wrapper">
-            <div class="header-title">
-                <a href="/" title="EVIEEE">EVIEEE</a>
-            </div>
-            <div class="menu-toggle" id="menu-toggle-mobile">
-                <span></span><span></span><span></span>
-            </div>
-        </div>
-        <div class="menu" id="menu-mobile"><div class="search-wrapper">
-                    <div class="search mobile" id="search-mobile">
-                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
-                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
-                            <i class="fas fa-search fa-fw"></i>
-                        </a>
-                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
-                            <i class="fas fa-times-circle fa-fw"></i>
-                        </a>
-                        <span class="search-button search-loading" id="search-loading-mobile">
-                            <i class="fas fa-spinner fa-fw fa-spin"></i>
-                        </span>
-                    </div>
-                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
-                        Cancel
-                    </a>
-                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">標籤</a><a class="menu-item" href="/categories/" title="">分類</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
-                <i class="fas fa-adjust fa-fw"></i>
-            </a></div>
-    </div>
-</header>
-<div class="search-dropdown desktop">
-    <div id="search-dropdown-desktop"></div>
-</div>
-<div class="search-dropdown mobile">
-    <div id="search-dropdown-mobile"></div>
-</div>
-<main class="main">
-                <div class="container"><div class="toc" id="toc-auto">
-            <h2 class="toc-title">Contents</h2>
-            <div class="toc-content" id="toc-content-auto"></div>
-        </div><article class="page single"><h1 class="single-title animated flipInX">不靠 IDE 自己編譯 C&#43;&#43; (1) - 安裝 MinGW 指南</h1><div class="post-meta">
-            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Evie</a></span>&nbsp;<span class="post-category">included in <a href="/categories/computer-system/"><i class="far fa-folder fa-fw"></i>Computer System</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2019-02-04">2019-02-04</time>&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;One minute&nbsp;</div>
-        </div><div class="details toc" id="toc-static"  kept="">
-                <div class="details-summary toc-title">
-                    <span>Contents</span>
-                    <span><i class="details-icon fas fa-angle-right"></i></span>
-                </div>
-                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
-  <ul>
-    <li><a href="#1">1</a></li>
-    <li><a href="#2">2</a></li>
-    <li><a href="#3">3</a></li>
-    <li><a href="#4">4</a></li>
-    <li><a href="#5">5</a></li>
-    <li><a href="#6">6</a></li>
-    <li><a href="#7">7</a></li>
-  </ul>
-</nav></div>
-            </div><div class="content" id="content"><h1 id="安裝-mingw">安裝 MinGW</h1>
-<blockquote>
-<p><a href="https://sourceforge.net/projects/mingw/" target="_blank" rel="noopener noreffer">https://sourceforge.net/projects/mingw/</a></p>
-</blockquote>
-<h2 id="1">1</h2>
-<p>綠色的 <a href="https://sourceforge.net/projects/mingw/files/latest/download" target="_blank" rel="noopener noreffer">Download</a> 按下去，<code>mingw-get-setup.exe</code> 就會開始下載。</p>
-<h2 id="2">2</h2>
-<p>打開 mingw-get-setup.exe，在 Basic Setup 中，選取 <code>mingw32-base-bin</code> 和 <code>mingw32-gcc-g++-bin</code></p>
-<p><img
-        class="lazyload"
-        src="/svg/loading.min.svg"
-        data-src="/images/compile_my_cpp_with_g&#43;&#43;/choose_mingw.png"
-        data-srcset="/images/compile_my_cpp_with_g&#43;&#43;/choose_mingw.png, /images/compile_my_cpp_with_g&#43;&#43;/choose_mingw.png 1.5x, /images/compile_my_cpp_with_g&#43;&#43;/choose_mingw.png 2x"
-        data-sizes="auto"
-        alt="/images/compile_my_cpp_with_g&#43;&#43;/choose_mingw.png"
-        title="/images/compile_my_cpp_with_g&#43;&#43;/choose_mingw.png" /></p>
-<h2 id="3">3</h2>
-<p>選取完畢後，點擊左上角的 Installation，並 Apply Changes 後，就會開始下載，視網路速度，可能要花個幾分鐘</p>
-<h2 id="4">4</h2>
-<p>進入 windows 的「環境變數設定」 (直接在功能表內直接搜尋也可以)，在系統環境變數的 Path 中加入路徑：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-BASH" data-lang="BASH">C:<span class="se">\M</span>inGW<span class="se">\b</span>in
-</code></pre></div><h2 id="5">5</h2>
-<p>或是想要偷懶的話，可以在開啟 cmd 時，右鍵「以系統管理員身分執行」，直接設定路徑：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-BASH" data-lang="BASH">setx /m PATH <span class="s2">&#34;C:\MinGW\bin;%PATH%&#34;</span>
-</code></pre></div><h2 id="6">6</h2>
-<p>理論上到這邊就完成 gcc 的安裝，輸入：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-BASH" data-lang="BASH">g++ -v
-</code></pre></div><p>出現以下文字，代表安裝成功，恭喜恭喜！</p>
-<pre tabindex="0"><code>COLLECT_GCC=g++
+<!doctype html><html lang=zh-tw><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=robots content="noodp"><meta http-equiv=x-ua-compatible content="IE=edge, chrome=1"><title>不靠 IDE 自己編譯 C++ (1) - 安裝 MinGW 指南 - EVIEEE</title><meta name=Description content="Empassion, Endearing, Enthusiastic"><meta property="og:title" content="不靠 IDE 自己編譯 C++ (1) - 安裝 MinGW 指南"><meta property="og:description" content="透過 MinGW 安裝 GCC 和困難排除，挑戰靠自己的手編譯 C++ 原始檔案。"><meta property="og:type" content="article"><meta property="og:url" content="https://eyzim.github.io/posts/cpp/compile_my_cpp_with_g++/"><meta property="article:section" content="posts"><meta property="article:published_time" content="2019-02-04T01:52:07+08:00"><meta property="article:modified_time" content="2019-02-04T01:52:07+08:00"><meta name=twitter:card content="summary"><meta name=twitter:title content="不靠 IDE 自己編譯 C++ (1) - 安裝 MinGW 指南"><meta name=twitter:description content="透過 MinGW 安裝 GCC 和困難排除，挑戰靠自己的手編譯 C++ 原始檔案。"><meta name=application-name content="Evieees"><meta name=apple-mobile-web-app-title content="Evieees"><meta name=theme-color content="#ffffff"><meta name=msapplication-TileColor content="#da532c"><link rel="shortcut icon" type=image/x-icon href=/favicon.ico><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://eyzim.github.io/posts/cpp/compile_my_cpp_with_g++/><link rel=prev href=https://eyzim.github.io/posts/leetcode/leetcode_1051_height_checker/><link rel=next href=https://eyzim.github.io/posts/cpp/compile_my_cpp_with_g++_2/><link rel=stylesheet href=/lib/normalize/normalize.min.css><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=/lib/fontawesome-free/all.min.css><link rel=stylesheet href=/lib/animate/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"不靠 IDE 自己編譯 C++ (1) - 安裝 MinGW 指南","inLanguage":"zh-TW","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/eyzim.github.io\/posts\/cpp\/compile_my_cpp_with_g\u002b\u002b\/"},"genre":"posts","keywords":"MinGW, windows 10, compile, c\u002b\u002b","wordcount":366,"url":"https:\/\/eyzim.github.io\/posts\/cpp\/compile_my_cpp_with_g\u002b\u002b\/","datePublished":"2019-02-04T01:52:07+08:00","dateModified":"2019-02-04T01:52:07+08:00","publisher":{"@type":"Organization","name":"Evie"},"author":{"@type":"Person","name":"Evie"},"description":""}</script></head><body header-desktop header-mobile><script type=text/javascript>(window.localStorage&&localStorage.getItem("theme")?localStorage.getItem("theme")==="dark":""==="auto"?window.matchMedia("(prefers-color-scheme: dark)").matches:""==="dark")&&document.body.setAttribute("theme","dark")</script><div id=mask></div><div class=wrapper><header class=desktop id=header-desktop><div class=header-wrapper><div class=header-title><a href=/ title=EVIEEE>EVIEEE</a></div><div class=menu><div class=menu-inner><a class=menu-item href=/posts/>文章 </a><a class=menu-item href=/tags/>標籤 </a><a class=menu-item href=/categories/>分類 </a><span class="menu-item delimiter"></span><span class="menu-item search" id=search-desktop>
+<input type=text placeholder="Search titles or contents..." id=search-input-desktop>
+<a href=javascript:void(0); class="search-button search-toggle" id=search-toggle-desktop title=Search><i class="fas fa-search fa-fw"></i></a>
+<a href=javascript:void(0); class="search-button search-clear" id=search-clear-desktop title=Clear><i class="fas fa-times-circle fa-fw"></i></a>
+<span class="search-button search-loading" id=search-loading-desktop><i class="fas fa-spinner fa-fw fa-spin"></i></span>
+</span><a href=javascript:void(0); class="menu-item theme-switch" title="Switch Theme"><i class="fas fa-adjust fa-fw"></i></a></div></div></div></header><header class=mobile id=header-mobile><div class=header-container><div class=header-wrapper><div class=header-title><a href=/ title=EVIEEE>EVIEEE</a></div><div class=menu-toggle id=menu-toggle-mobile><span></span><span></span><span></span></div></div><div class=menu id=menu-mobile><div class=search-wrapper><div class="search mobile" id=search-mobile><input type=text placeholder="Search titles or contents..." id=search-input-mobile>
+<a href=javascript:void(0); class="search-button search-toggle" id=search-toggle-mobile title=Search><i class="fas fa-search fa-fw"></i></a>
+<a href=javascript:void(0); class="search-button search-clear" id=search-clear-mobile title=Clear><i class="fas fa-times-circle fa-fw"></i></a>
+<span class="search-button search-loading" id=search-loading-mobile><i class="fas fa-spinner fa-fw fa-spin"></i></span></div><a href=javascript:void(0); class=search-cancel id=search-cancel-mobile>Cancel</a></div><a class=menu-item href=/posts/ title>文章</a><a class=menu-item href=/tags/ title>標籤</a><a class=menu-item href=/categories/ title>分類</a><a href=javascript:void(0); class="menu-item theme-switch" title="Switch Theme">
+<i class="fas fa-adjust fa-fw"></i></a></div></div></header><div class="search-dropdown desktop"><div id=search-dropdown-desktop></div></div><div class="search-dropdown mobile"><div id=search-dropdown-mobile></div></div><main class=main><div class=container><div class=toc id=toc-auto><h2 class=toc-title>Contents</h2><div class=toc-content id=toc-content-auto></div></div><article class="page single"><h1 class="single-title animated flipInX">不靠 IDE 自己編譯 C++ (1) - 安裝 MinGW 指南</h1><div class=post-meta><div class=post-meta-line><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>Evie</a></span>&nbsp;<span class=post-category>included in <a href=/categories/computer-system/><i class="far fa-folder fa-fw"></i>Computer System</a></span></div><div class=post-meta-line><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2019-02-04>2019-02-04</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;366 words&nbsp;
+<i class="far fa-clock fa-fw"></i>&nbsp;One minute&nbsp;</div></div><div class="details toc" id=toc-static kept><div class="details-summary toc-title"><span>Contents</span>
+<span><i class="details-icon fas fa-angle-right"></i></span></div><div class="details-content toc-content" id=toc-content-static><nav id=TableOfContents><ul><li><a href=#1>1</a></li><li><a href=#2>2</a></li><li><a href=#3>3</a></li><li><a href=#4>4</a></li><li><a href=#5>5</a></li><li><a href=#6>6</a></li><li><a href=#7>7</a></li></ul></nav></div></div><div class=content id=content><h1 id=安裝-mingw>安裝 MinGW</h1><blockquote><p><a href=https://sourceforge.net/projects/mingw/ target=_blank rel="noopener noreffer">https://sourceforge.net/projects/mingw/</a></p></blockquote><h2 id=1>1</h2><p>綠色的 <a href=https://sourceforge.net/projects/mingw/files/latest/download target=_blank rel="noopener noreffer">Download</a> 按下去，<code>mingw-get-setup.exe</code> 就會開始下載。</p><h2 id=2>2</h2><p>打開 mingw-get-setup.exe，在 Basic Setup 中，選取 <code>mingw32-base-bin</code> 和 <code>mingw32-gcc-g++-bin</code></p><p><img class=lazyload src=/svg/loading.min.svg data-src=/images/compile_my_cpp_with_g++/choose_mingw.png data-srcset="/images/compile_my_cpp_with_g++/choose_mingw.png, /images/compile_my_cpp_with_g++/choose_mingw.png 1.5x, /images/compile_my_cpp_with_g++/choose_mingw.png 2x" data-sizes=auto alt=/images/compile_my_cpp_with_g++/choose_mingw.png title=/images/compile_my_cpp_with_g++/choose_mingw.png></p><h2 id=3>3</h2><p>選取完畢後，點擊左上角的 Installation，並 Apply Changes 後，就會開始下載，視網路速度，可能要花個幾分鐘</p><h2 id=4>4</h2><p>進入 windows 的「環境變數設定」 (直接在功能表內直接搜尋也可以)，在系統環境變數的 Path 中加入路徑：</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-BASH data-lang=BASH><span class=line><span class=cl>C:<span class=se>\M</span>inGW<span class=se>\b</span>in
+</span></span></code></pre></div><h2 id=5>5</h2><p>或是想要偷懶的話，可以在開啟 cmd 時，右鍵「以系統管理員身分執行」，直接設定路徑：</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-BASH data-lang=BASH><span class=line><span class=cl>setx /m PATH <span class=s2>&#34;C:\MinGW\bin;%PATH%&#34;</span>
+</span></span></code></pre></div><h2 id=6>6</h2><p>理論上到這邊就完成 gcc 的安裝，輸入：</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-BASH data-lang=BASH><span class=line><span class=cl>g++ -v
+</span></span></code></pre></div><p>出現以下文字，代表安裝成功，恭喜恭喜！</p><pre tabindex=0><code>COLLECT_GCC=g++
 COLLECT_LTO_WRAPPER=c:/mingw/bin/../libexec/gcc/mingw32/9.2.0/lto-wrapper.exe
 gcc version 9.2.0 (MinGW.org GCC Build-2)
-</code></pre><p>如果沒有出現 gcc version 的文字，代表安裝失敗，像是出現這樣的文字：</p>
-<pre tabindex="0"><code>'g++' 不是內部或外部命令
-</code></pre><p>怒，我們的起點就是比較艱難 QQ</p>
-<h2 id="7">7</h2>
-<p>回到剛才安裝的 <code>C:\MinGW\bin</code> 資料夾，直接下載 gcc</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-BASH" data-lang="BASH"><span class="nb">cd</span> MinGW/bin
-mingw-get install gcc g++
-</code></pre></div><p>就會開始下載文件囉，再次輸入</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-BASH" data-lang="BASH">g++ -v
-</code></pre></div><p>可以<a href="https://eyzim.github.io/posts/compile_my_cpp_with_g&#43;&#43;_2/" target="_blank" rel="noopener noreffer">開始 gcc 之旅了</a>！</p>
-<h1 id="refernce">Refernce:</h1>
-<ol>
-<li><a href="http://www.codebind.com/cprogramming/install-mingw-windows-10-gcc/" target="_blank" rel="noopener noreffer">http://www.codebind.com/cprogramming/install-mingw-windows-10-gcc/</a></li>
-<li><a href="https://stackoverflow.com/questions/19287379/how-do-i-add-to-the-windows-path-variable-using-setx-having-weird-problems" target="_blank" rel="noopener noreffer">https://stackoverflow.com/questions/19287379/how-do-i-add-to-the-windows-path-variable-using-setx-having-weird-problems</a></li>
-</ol>
-</div><div class="post-footer" id="post-footer">
-    <div class="post-info">
-        <div class="post-info-line">
-            <div class="post-info-mod">
-                <span>Updated on 2019-02-04</span>
-            </div>
-            <div class="post-info-license"></div>
-        </div>
-        <div class="post-info-line">
-            <div class="post-info-md"></div>
-            <div class="post-info-share">
-                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://eyzim.github.io/posts/cpp/compile_my_cpp_with_g&#43;&#43;/" data-title="不靠 IDE 自己編譯 C&#43;&#43; (1) - 安裝 MinGW 指南" data-hashtags="MinGW,windows 10,compile,c&#43;&#43;"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://eyzim.github.io/posts/cpp/compile_my_cpp_with_g&#43;&#43;/" data-hashtag="MinGW"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://eyzim.github.io/posts/cpp/compile_my_cpp_with_g&#43;&#43;/" data-title="不靠 IDE 自己編譯 C&#43;&#43; (1) - 安裝 MinGW 指南"><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="javascript:void(0);" title="Share on Blogger" data-sharer="blogger" data-url="https://eyzim.github.io/posts/cpp/compile_my_cpp_with_g&#43;&#43;/" data-title="不靠 IDE 自己編譯 C&#43;&#43; (1) - 安裝 MinGW 指南" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="Share on Evernote" data-sharer="evernote" data-url="https://eyzim.github.io/posts/cpp/compile_my_cpp_with_g&#43;&#43;/" data-title="不靠 IDE 自己編譯 C&#43;&#43; (1) - 安裝 MinGW 指南"><i class="fab fa-evernote fa-fw"></i></a><a href="javascript:void(0);" title="Share on Trello" data-sharer="trello" data-url="https://eyzim.github.io/posts/cpp/compile_my_cpp_with_g&#43;&#43;/" data-title="不靠 IDE 自己編譯 C&#43;&#43; (1) - 安裝 MinGW 指南" data-description=""><i class="fab fa-trello fa-fw"></i></a></span>
-            </div>
-        </div>
-    </div>
-
-    <div class="post-info-more">
-        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/mingw/">MinGW</a>,&nbsp;<a href="/tags/windows-10/">windows 10</a>,&nbsp;<a href="/tags/compile/">compile</a>,&nbsp;<a href="/tags/c&#43;&#43;/">c&#43;&#43;</a></section>
-        <section>
-            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
-        </section>
-    </div>
-
-    <div class="post-nav"><a href="/posts/leetcode/leetcode_1051_height_checker/" class="prev" rel="prev" title="LeetCode 1051. Height Checker 解題紀錄"><i class="fas fa-angle-left fa-fw"></i>LeetCode 1051. Height Checker 解題紀錄</a>
-            <a href="/posts/cpp/compile_my_cpp_with_g&#43;&#43;_2/" class="next" rel="next" title="不靠 IDE 自己編譯 C&#43;&#43; (2) - 編譯初心者">不靠 IDE 自己編譯 C&#43;&#43; (2) - 編譯初心者<i class="fas fa-angle-right fa-fw"></i></a></div>
-</div>
-<div id="comments"><div id="disqus_thread" class="comment"></div><noscript>
-                Please enable JavaScript to view the comments powered by <a href="https://disqus.com/?ref_noscript">Disqus</a>.
-            </noscript></div></article></div>
-            </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.92.1">Hugo</a> | Theme - <a href="" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"> LoveIt</a>
-                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2014 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">elvire</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
-        </div>
-    </footer></div>
-
-        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
-                <i class="fas fa-arrow-up fa-fw"></i>
-            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
-                <i class="fas fa-comment fa-fw"></i>
-            </a>
-        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><script type="text/javascript" src="https://eyzim.disqus.com/embed.js" defer></script><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/twemoji/twemoji.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":50,"type":"lunr"},"twemoji":true};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
-</html>
+</code></pre><p>如果沒有出現 gcc version 的文字，代表安裝失敗，像是出現這樣的文字：</p><pre tabindex=0><code>&#39;g++&#39; 不是內部或外部命令
+</code></pre><p>怒，我們的起點就是比較艱難 QQ</p><h2 id=7>7</h2><p>回到剛才安裝的 <code>C:\MinGW\bin</code> 資料夾，直接下載 gcc</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-BASH data-lang=BASH><span class=line><span class=cl><span class=nb>cd</span> MinGW/bin
+</span></span><span class=line><span class=cl>mingw-get install gcc g++
+</span></span></code></pre></div><p>就會開始下載文件囉，再次輸入</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-BASH data-lang=BASH><span class=line><span class=cl>g++ -v
+</span></span></code></pre></div><p>可以<a href=https://eyzim.github.io/posts/compile_my_cpp_with_g++_2/ target=_blank rel="noopener noreffer">開始 gcc 之旅了</a>！</p><h1 id=refernce>Refernce:</h1><ol><li><a href=http://www.codebind.com/cprogramming/install-mingw-windows-10-gcc/ target=_blank rel="noopener noreffer">http://www.codebind.com/cprogramming/install-mingw-windows-10-gcc/</a></li><li><a href=https://stackoverflow.com/questions/19287379/how-do-i-add-to-the-windows-path-variable-using-setx-having-weird-problems target=_blank rel="noopener noreffer">https://stackoverflow.com/questions/19287379/how-do-i-add-to-the-windows-path-variable-using-setx-having-weird-problems</a></li></ol></div><div class=post-footer id=post-footer><div class=post-info><div class=post-info-line><div class=post-info-mod><span>Updated on 2019-02-04</span></div><div class=post-info-license></div></div><div class=post-info-line><div class=post-info-md></div><div class=post-info-share><span><a href=javascript:void(0); title="Share on Twitter" data-sharer=twitter data-url=https://eyzim.github.io/posts/cpp/compile_my_cpp_with_g++/ data-title="不靠 IDE 自己編譯 C++ (1) - 安裝 MinGW 指南" data-hashtags="MinGW,windows 10,compile,c++"><i class="fab fa-twitter fa-fw"></i></a><a href=javascript:void(0); title="Share on Facebook" data-sharer=facebook data-url=https://eyzim.github.io/posts/cpp/compile_my_cpp_with_g++/ data-hashtag=MinGW><i class="fab fa-facebook-square fa-fw"></i></a><a href=javascript:void(0); title="Share on Line" data-sharer=line data-url=https://eyzim.github.io/posts/cpp/compile_my_cpp_with_g++/ data-title="不靠 IDE 自己編譯 C++ (1) - 安裝 MinGW 指南"><i data-svg-src=/lib/simple-icons/icons/line.min.svg></i></a><a href=javascript:void(0); title="Share on Blogger" data-sharer=blogger data-url=https://eyzim.github.io/posts/cpp/compile_my_cpp_with_g++/ data-title="不靠 IDE 自己編譯 C++ (1) - 安裝 MinGW 指南" data-description><i class="fab fa-blogger fa-fw"></i></a><a href=javascript:void(0); title="Share on Evernote" data-sharer=evernote data-url=https://eyzim.github.io/posts/cpp/compile_my_cpp_with_g++/ data-title="不靠 IDE 自己編譯 C++ (1) - 安裝 MinGW 指南"><i class="fab fa-evernote fa-fw"></i></a><a href=javascript:void(0); title="Share on Trello" data-sharer=trello data-url=https://eyzim.github.io/posts/cpp/compile_my_cpp_with_g++/ data-title="不靠 IDE 自己編譯 C++ (1) - 安裝 MinGW 指南" data-description><i class="fab fa-trello fa-fw"></i></a></span></div></div></div><div class=post-info-more><section class=post-tags><i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/mingw/>MinGW</a>,&nbsp;<a href=/tags/windows-10/>windows 10</a>,&nbsp;<a href=/tags/compile/>compile</a>,&nbsp;<a href=/tags/c++/>c++</a></section><section><span><a href=javascript:void(0); onclick=window.history.back()>Back</a></span>&nbsp;|&nbsp;<span><a href=/>Home</a></span></section></div><div class=post-nav><a href=/posts/leetcode/leetcode_1051_height_checker/ class=prev rel=prev title="LeetCode 1051. Height Checker 解題紀錄"><i class="fas fa-angle-left fa-fw"></i>LeetCode 1051. Height Checker 解題紀錄</a>
+<a href=/posts/cpp/compile_my_cpp_with_g++_2/ class=next rel=next title="不靠 IDE 自己編譯 C++ (2) - 編譯初心者">不靠 IDE 自己編譯 C++ (2) - 編譯初心者<i class="fas fa-angle-right fa-fw"></i></a></div></div><div id=comments><div id=disqus_thread class=comment></div><noscript>Please enable JavaScript to view the comments powered by <a href=https://disqus.com/?ref_noscript>Disqus</a>.</noscript></div></article></div></main><footer class=footer><div class=footer-container><div class=footer-line>Powered by <a href=https://gohugo.io/ target=_blank rel="noopener noreffer" title="Hugo 0.110.0">Hugo</a> | Theme - <a href=https://github.com/dillonzq/LoveIt target=_blank rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a></div><div class=footer-line><i class="far fa-copyright fa-fw"></i><span itemprop=copyrightYear>2014 - 2023</span><span class=author itemprop=copyrightHolder>&nbsp;<a href=/ target=_blank>elvire</a></span>&nbsp;|&nbsp;<span class=license><a rel="license external nofollow noopener noreffer" href=https://creativecommons.org/licenses/by-nc/4.0/ target=_blank>CC BY-NC 4.0</a></span></div></div></footer></div><div id=fixed-buttons><a href=# id=back-to-top class=fixed-button title="Back to Top"><i class="fas fa-arrow-up fa-fw"></i>
+</a><a href=# id=view-comments class=fixed-button title="View Comments"><i class="fas fa-comment fa-fw"></i></a></div><link rel=stylesheet href=/lib/katex/katex.min.css><link rel=stylesheet href=/lib/katex/copy-tex.min.css><script type=text/javascript src=https://eyzim.disqus.com/embed.js defer></script><script type=text/javascript src=/lib/smooth-scroll/smooth-scroll.min.js></script><script type=text/javascript src=/lib/autocomplete/autocomplete.min.js></script><script type=text/javascript src=/lib/lunr/lunr.min.js></script><script type=text/javascript src=/lib/lazysizes/lazysizes.min.js></script><script type=text/javascript src=/lib/twemoji/twemoji.min.js></script><script type=text/javascript src=/lib/clipboard/clipboard.min.js></script><script type=text/javascript src=/lib/sharer/sharer.min.js></script><script type=text/javascript src=/lib/katex/katex.min.js></script><script type=text/javascript src=/lib/katex/auto-render.min.js></script><script type=text/javascript src=/lib/katex/copy-tex.min.js></script><script type=text/javascript src=/lib/katex/mhchem.min.js></script><script type=text/javascript>window.config={code:{copyTitle:"Copy to clipboard",maxShownLines:50},comment:{},math:{delimiters:[{display:!0,left:"$$",right:"$$"},{display:!0,left:"\\[",right:"\\]"},{display:!1,left:"$",right:"$"},{display:!1,left:"\\(",right:"\\)"}],strict:!1},search:{highlightTag:"em",lunrIndexURL:"/index.json",maxResultLength:10,noResultsFound:"No results found",snippetLength:50,type:"lunr"},twemoji:!0}</script><script type=text/javascript src=/js/theme.min.js></script></body></html>

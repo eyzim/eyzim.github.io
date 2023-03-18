@@ -1,482 +1,196 @@
-<!DOCTYPE html>
-<html lang="zh-TW">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="robots" content="noodp" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
-        <title>LeetCode 204. Count Primes 解題紀錄 - EVIEEE</title><meta name="Description" content="Empassion, Endearing, Enthusiastic"><meta property="og:title" content="LeetCode 204. Count Primes 解題紀錄" />
-<meta property="og:description" content="請計算整數 n 以內有幾個質數。Given an integer n, return the number of prime numbers that are strictly less than n." />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://eyzim.github.io/posts/leetcode/leetcode_204_count_primes/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2014-07-07T23:57:34+08:00" />
-<meta property="article:modified_time" content="2014-07-07T23:57:34+08:00" />
-
-<meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="LeetCode 204. Count Primes 解題紀錄"/>
-<meta name="twitter:description" content="請計算整數 n 以內有幾個質數。Given an integer n, return the number of prime numbers that are strictly less than n."/>
-<meta name="application-name" content="Evieees">
-<meta name="apple-mobile-web-app-title" content="Evieees"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
-        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://eyzim.github.io/posts/leetcode/leetcode_204_count_primes/" /><link rel="next" href="https://eyzim.github.io/posts/leetcode/leetcode_448_find_all_numbers_disappeared_in_an_array/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
-    {
-        "@context": "http://schema.org",
-        "@type": "BlogPosting",
-        "headline": "LeetCode 204. Count Primes 解題紀錄",
-        "inLanguage": "zh-TW",
-        "mainEntityOfPage": {
-            "@type": "WebPage",
-            "@id": "https:\/\/eyzim.github.io\/posts\/leetcode\/leetcode_204_count_primes\/"
-        },"genre": "posts","keywords": "array, math, enumeration, number theory, medium, c\u002b\u002b","wordcount":  1451 ,
-        "url": "https:\/\/eyzim.github.io\/posts\/leetcode\/leetcode_204_count_primes\/","datePublished": "2014-07-07T23:57:34+08:00","dateModified": "2014-07-07T23:57:34+08:00","publisher": {
-            "@type": "Organization",
-            "name": "Evie"},"author": {
-                "@type": "Person",
-                "name": "Evie"
-            },"description": ""
-    }
-    </script></head>
-    <body header-desktop="" header-mobile=""><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : '' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
-
-        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
-    <div class="header-wrapper">
-        <div class="header-title">
-            <a href="/" title="EVIEEE">EVIEEE</a>
-        </div>
-        <div class="menu">
-            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 標籤 </a><a class="menu-item" href="/categories/"> 分類 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
-                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
-                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
-                            <i class="fas fa-search fa-fw"></i>
-                        </a>
-                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
-                            <i class="fas fa-times-circle fa-fw"></i>
-                        </a>
-                        <span class="search-button search-loading" id="search-loading-desktop">
-                            <i class="fas fa-spinner fa-fw fa-spin"></i>
-                        </span>
-                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
-                    <i class="fas fa-adjust fa-fw"></i>
-                </a>
-            </div>
-        </div>
-    </div>
-</header><header class="mobile" id="header-mobile">
-    <div class="header-container">
-        <div class="header-wrapper">
-            <div class="header-title">
-                <a href="/" title="EVIEEE">EVIEEE</a>
-            </div>
-            <div class="menu-toggle" id="menu-toggle-mobile">
-                <span></span><span></span><span></span>
-            </div>
-        </div>
-        <div class="menu" id="menu-mobile"><div class="search-wrapper">
-                    <div class="search mobile" id="search-mobile">
-                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
-                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
-                            <i class="fas fa-search fa-fw"></i>
-                        </a>
-                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
-                            <i class="fas fa-times-circle fa-fw"></i>
-                        </a>
-                        <span class="search-button search-loading" id="search-loading-mobile">
-                            <i class="fas fa-spinner fa-fw fa-spin"></i>
-                        </span>
-                    </div>
-                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
-                        Cancel
-                    </a>
-                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">標籤</a><a class="menu-item" href="/categories/" title="">分類</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
-                <i class="fas fa-adjust fa-fw"></i>
-            </a></div>
-    </div>
-</header>
-<div class="search-dropdown desktop">
-    <div id="search-dropdown-desktop"></div>
-</div>
-<div class="search-dropdown mobile">
-    <div id="search-dropdown-mobile"></div>
-</div>
-<main class="main">
-                <div class="container"><div class="toc" id="toc-auto">
-            <h2 class="toc-title">Contents</h2>
-            <div class="toc-content" id="toc-content-auto"></div>
-        </div><article class="page single"><h1 class="single-title animated flipInX">LeetCode 204. Count Primes 解題紀錄</h1><div class="post-meta">
-            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Evie</a></span>&nbsp;<span class="post-category">included in <a href="/categories/leetcode/"><i class="far fa-folder fa-fw"></i>leetcode</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2014-07-07">2014-07-07</time>&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;3 minutes&nbsp;</div>
-        </div><div class="details toc" id="toc-static"  kept="">
-                <div class="details-summary toc-title">
-                    <span>Contents</span>
-                    <span><i class="details-icon fas fa-angle-right"></i></span>
-                </div>
-                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
-  <ul>
-    <li><a href="#題目httpsleetcodecomproblemscount-primes"><a href="https://leetcode.com/problems/count-primes/">題目</a></a></li>
-    <li><a href="#想法">想法</a></li>
-    <li><a href="#解法">解法</a>
-      <ul>
-        <li><a href="#解法一sieve-of-eratosthenes-法">解法一：Sieve of Eratosthenes 法</a></li>
-        <li><a href="#解法二">解法二</a></li>
-      </ul>
-    </li>
-    <li><a href="#reference">Reference</a></li>
-  </ul>
-</nav></div>
-            </div><div class="content" id="content"><h2 id="題目httpsleetcodecomproblemscount-primes"><a href="https://leetcode.com/problems/count-primes/" target="_blank" rel="noopener noreffer">題目</a></h2>
-<div class="details admonition quote open">
-        <div class="details-summary admonition-title">
-            <i class="icon fas fa-quote-right fa-fw"></i>Problem<i class="details-icon fas fa-angle-right fa-fw"></i>
-        </div>
-        <div class="details-content">
-            <div class="admonition-content"><p>Given an integer n, return the number of prime numbers that are strictly less than n.</p>
-<p><strong>Example 1:</strong></p>
-<pre tabindex="0"><code>Input: n = 10
+<!doctype html><html lang=zh-tw><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=robots content="noodp"><meta http-equiv=x-ua-compatible content="IE=edge, chrome=1"><title>LeetCode 204. Count Primes 解題紀錄 - EVIEEE</title><meta name=Description content="Empassion, Endearing, Enthusiastic"><meta property="og:title" content="LeetCode 204. Count Primes 解題紀錄"><meta property="og:description" content="請計算整數 n 以內有幾個質數。Given an integer n, return the number of prime numbers that are strictly less than n."><meta property="og:type" content="article"><meta property="og:url" content="https://eyzim.github.io/posts/leetcode/leetcode_204_count_primes/"><meta property="article:section" content="posts"><meta property="article:published_time" content="2014-07-07T23:57:34+08:00"><meta property="article:modified_time" content="2014-07-07T23:57:34+08:00"><meta name=twitter:card content="summary"><meta name=twitter:title content="LeetCode 204. Count Primes 解題紀錄"><meta name=twitter:description content="請計算整數 n 以內有幾個質數。Given an integer n, return the number of prime numbers that are strictly less than n."><meta name=application-name content="Evieees"><meta name=apple-mobile-web-app-title content="Evieees"><meta name=theme-color content="#ffffff"><meta name=msapplication-TileColor content="#da532c"><link rel="shortcut icon" type=image/x-icon href=/favicon.ico><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://eyzim.github.io/posts/leetcode/leetcode_204_count_primes/><link rel=next href=https://eyzim.github.io/posts/leetcode/leetcode_448_find_all_numbers_disappeared_in_an_array/><link rel=stylesheet href=/lib/normalize/normalize.min.css><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=/lib/fontawesome-free/all.min.css><link rel=stylesheet href=/lib/animate/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"LeetCode 204. Count Primes 解題紀錄","inLanguage":"zh-TW","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/eyzim.github.io\/posts\/leetcode\/leetcode_204_count_primes\/"},"genre":"posts","keywords":"array, math, enumeration, number theory, medium, c\u002b\u002b","wordcount":1448,"url":"https:\/\/eyzim.github.io\/posts\/leetcode\/leetcode_204_count_primes\/","datePublished":"2014-07-07T23:57:34+08:00","dateModified":"2014-07-07T23:57:34+08:00","publisher":{"@type":"Organization","name":"Evie"},"author":{"@type":"Person","name":"Evie"},"description":""}</script></head><body header-desktop header-mobile><script type=text/javascript>(window.localStorage&&localStorage.getItem("theme")?localStorage.getItem("theme")==="dark":""==="auto"?window.matchMedia("(prefers-color-scheme: dark)").matches:""==="dark")&&document.body.setAttribute("theme","dark")</script><div id=mask></div><div class=wrapper><header class=desktop id=header-desktop><div class=header-wrapper><div class=header-title><a href=/ title=EVIEEE>EVIEEE</a></div><div class=menu><div class=menu-inner><a class=menu-item href=/posts/>文章 </a><a class=menu-item href=/tags/>標籤 </a><a class=menu-item href=/categories/>分類 </a><span class="menu-item delimiter"></span><span class="menu-item search" id=search-desktop>
+<input type=text placeholder="Search titles or contents..." id=search-input-desktop>
+<a href=javascript:void(0); class="search-button search-toggle" id=search-toggle-desktop title=Search><i class="fas fa-search fa-fw"></i></a>
+<a href=javascript:void(0); class="search-button search-clear" id=search-clear-desktop title=Clear><i class="fas fa-times-circle fa-fw"></i></a>
+<span class="search-button search-loading" id=search-loading-desktop><i class="fas fa-spinner fa-fw fa-spin"></i></span>
+</span><a href=javascript:void(0); class="menu-item theme-switch" title="Switch Theme"><i class="fas fa-adjust fa-fw"></i></a></div></div></div></header><header class=mobile id=header-mobile><div class=header-container><div class=header-wrapper><div class=header-title><a href=/ title=EVIEEE>EVIEEE</a></div><div class=menu-toggle id=menu-toggle-mobile><span></span><span></span><span></span></div></div><div class=menu id=menu-mobile><div class=search-wrapper><div class="search mobile" id=search-mobile><input type=text placeholder="Search titles or contents..." id=search-input-mobile>
+<a href=javascript:void(0); class="search-button search-toggle" id=search-toggle-mobile title=Search><i class="fas fa-search fa-fw"></i></a>
+<a href=javascript:void(0); class="search-button search-clear" id=search-clear-mobile title=Clear><i class="fas fa-times-circle fa-fw"></i></a>
+<span class="search-button search-loading" id=search-loading-mobile><i class="fas fa-spinner fa-fw fa-spin"></i></span></div><a href=javascript:void(0); class=search-cancel id=search-cancel-mobile>Cancel</a></div><a class=menu-item href=/posts/ title>文章</a><a class=menu-item href=/tags/ title>標籤</a><a class=menu-item href=/categories/ title>分類</a><a href=javascript:void(0); class="menu-item theme-switch" title="Switch Theme">
+<i class="fas fa-adjust fa-fw"></i></a></div></div></header><div class="search-dropdown desktop"><div id=search-dropdown-desktop></div></div><div class="search-dropdown mobile"><div id=search-dropdown-mobile></div></div><main class=main><div class=container><div class=toc id=toc-auto><h2 class=toc-title>Contents</h2><div class=toc-content id=toc-content-auto></div></div><article class="page single"><h1 class="single-title animated flipInX">LeetCode 204. Count Primes 解題紀錄</h1><div class=post-meta><div class=post-meta-line><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>Evie</a></span>&nbsp;<span class=post-category>included in <a href=/categories/leetcode/><i class="far fa-folder fa-fw"></i>leetcode</a></span></div><div class=post-meta-line><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2014-07-07>2014-07-07</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;1448 words&nbsp;
+<i class="far fa-clock fa-fw"></i>&nbsp;3 minutes&nbsp;</div></div><div class="details toc" id=toc-static kept><div class="details-summary toc-title"><span>Contents</span>
+<span><i class="details-icon fas fa-angle-right"></i></span></div><div class="details-content toc-content" id=toc-content-static><nav id=TableOfContents><ul><li><a href=#題目httpsleetcodecomproblemscount-primes><a href=https://leetcode.com/problems/count-primes/>題目</a></a></li><li><a href=#想法>想法</a></li><li><a href=#解法>解法</a><ul><li><a href=#解法一sieve-of-eratosthenes-法>解法一：Sieve of Eratosthenes 法</a></li><li><a href=#解法二>解法二</a></li></ul></li><li><a href=#reference>Reference</a></li></ul></nav></div></div><div class=content id=content><h2 id=題目httpsleetcodecomproblemscount-primes><a href=https://leetcode.com/problems/count-primes/ target=_blank rel="noopener noreffer">題目</a></h2><div class="details admonition quote open"><div class="details-summary admonition-title"><i class="icon fas fa-quote-right fa-fw"></i>Problem<i class="details-icon fas fa-angle-right fa-fw"></i></div><div class=details-content><div class=admonition-content><p>Given an integer n, return the number of prime numbers that are strictly less than n.</p><p><strong>Example 1:</strong></p><pre tabindex=0><code>Input: n = 10
 Output: 4
-</code></pre><p>Explanation: There are 4 prime numbers less than 10, they are 2, 3, 5, 7.</p>
-<p><strong>Example 2:</strong></p>
-<pre tabindex="0"><code>Input: n = 0
+</code></pre><p>Explanation: There are 4 prime numbers less than 10, they are 2, 3, 5, 7.</p><p><strong>Example 2:</strong></p><pre tabindex=0><code>Input: n = 0
 Output: 0
-</code></pre><p><strong>Example 3:</strong></p>
-<pre tabindex="0"><code>Input: n = 1
+</code></pre><p><strong>Example 3:</strong></p><pre tabindex=0><code>Input: n = 1
 Output: 0
-</code></pre><p><strong>Constraints:</strong></p>
-<p>0 $\leq$ n $\leq$ 5 $\times 10^6$</p>
-</div>
-        </div>
-    </div>
-<h2 id="想法">想法</h2>
-<div class="details admonition info open">
-        <div class="details-summary admonition-title">
-            <i class="icon fas fa-info-circle fa-fw"></i>質數<i class="details-icon fas fa-angle-right fa-fw"></i>
-        </div>
-        <div class="details-content">
-            <div class="admonition-content"><p>「質數」有兩個定義：</p>
-<ol>
-<li>必為大於 1 的<strong>整數</strong></li>
-<li>只有<strong>兩個因數</strong>，一個是 1、一個是自己</li>
-</ol>
-<p>100 以內的質數：
-2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97， 共 25 個。</p>
-</div>
-        </div>
-    </div>
-<p>根據以上定義，我們可以簡單寫出一個 isPrime function 來判斷這個數字是否為質數。</p>
-<p>給出一個數字 n，從 2 到 n-1 依序除除看，若能整除，代表這個數字有除了 1 和 n 以外的因數，也就意味著 n 並非質數。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">bool</span> <span class="nf">isPrime</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span>
-<span class="p">{</span>
-    <span class="k">if</span><span class="p">(</span><span class="n">n</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">)</span>   <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-    
-    <span class="c1">// 從 2 到 n-1 依序除除看
-</span><span class="c1"></span>    <span class="k">for</span><span class="p">(</span><span class="k">auto</span> <span class="n">i</span><span class="o">=</span><span class="mi">2</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
-    <span class="p">{</span>
-        <span class="k">if</span><span class="p">(</span><span class="n">n</span><span class="o">%</span><span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
-        <span class="p">{</span>
-            <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-
-    <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></div><ul>
-<li>1.215 <em>sec</em>.</li>
-</ul>
-<p>現在執行效率有點差，有哪些數字是一看就知道不是質數的數字呢？</p>
-<p>4, 6, 8, 10, 12, 14&hellip; 那些偶數，一看就知道它們能被 2 整除，可以排除計算，節省一點時間。</p>
-<p>希望能在檢查到偶數時直接回答 false，但是 2 又是質數，返回 n 是否為 2 即可。</p>
-<p>因為事先已經檢查過偶數了，接下來的迴圈檢查就可以跳過它們囉，節省一點時間！</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">bool</span> <span class="nf">isPrime</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span>
-<span class="p">{</span>
-    <span class="k">if</span><span class="p">(</span><span class="n">n</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">)</span>   <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-    
-    <span class="c1">// 若 n=2 則為質數，若為 2 的倍數則否
-</span><span class="c1"></span>    <span class="k">if</span><span class="p">(</span><span class="n">n</span><span class="o">%</span><span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>    <span class="k">return</span> <span class="n">n</span><span class="o">==</span><span class="mi">2</span><span class="p">;</span>
-
-    <span class="c1">// 從 3 到 n-1 依序除除看
-</span><span class="c1"></span>    <span class="k">for</span><span class="p">(</span><span class="k">auto</span> <span class="n">i</span><span class="o">=</span><span class="mi">3</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
-    <span class="p">{</span>
-        <span class="k">if</span><span class="p">(</span><span class="n">n</span><span class="o">%</span><span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
-        <span class="p">{</span>
-            <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-
-    <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></div><ul>
-<li>1.215 <em>sec</em>.</li>
-</ul>
-<p>好像&hellip;沒什麼差別，上面的方法還是依序檢查了 3 到 n-1 ，應該直接在迴圈中跳過 2 才對吧 XD</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">bool</span> <span class="nf">isPrime</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span>
-<span class="p">{</span>
-    <span class="k">if</span><span class="p">(</span><span class="n">n</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">)</span>   <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-
-    <span class="k">for</span><span class="p">(</span><span class="k">auto</span> <span class="n">i</span><span class="o">=</span><span class="mi">3</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">+=</span><span class="mi">2</span><span class="p">)</span>
-    <span class="p">{</span>
-        <span class="k">if</span><span class="p">(</span><span class="n">n</span><span class="o">%</span><span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
-        <span class="p">{</span>
-            <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-
-    <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></div><ul>
-<li>0.628 <em>sec</em>.</li>
-</ul>
-<p>現在的方法搜尋了 $\frac{n}{2}$ 次，效能也提升了將近一倍 😙</p>
-<p>小結一下，到目前為止的優化，時間複雜度是</p>
-<p><code>isPrime</code> $\mathcal{O}(n)$ $\times$<code>countPrimes</code>$ \mathcal{O}(n^2)=$ $\mathcal{O}(n^2)$</p>
-<p>又以 36 為例，</p>
-<p>$36$</p>
-<p>$= 1 \times 36 = 2 \times 18 = 3 \times 12$</p>
-<p>$= 4 \times 9 = 6 \times 6 = 9 \times 4$</p>
-<p>$= 12 \times 3 = 18 \times 2 = 36 \times 1$</p>
-<p>仔細想想，我們在遇到 6 之後，所有的因數組合全部都和前面相同：最後的 $36 \times 1$ 和第一段 $1 \times 36$ 是重複的，那麼我們只要計算到 $i \leq \sqrt{n}$ 或是 $i \times i \leq n$ 就能停止了，後半部都是一模一樣嘛！</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">bool</span> <span class="nf">isPrime</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span>
-<span class="p">{</span>
-    <span class="k">if</span><span class="p">(</span><span class="n">n</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">)</span>   <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-
-    <span class="k">for</span><span class="p">(</span><span class="k">auto</span> <span class="n">i</span><span class="o">=</span><span class="mi">3</span><span class="p">;</span> <span class="n">i</span><span class="o">*</span><span class="n">i</span><span class="o">&lt;=</span><span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
-    <span class="p">{</span>
-        <span class="k">if</span><span class="p">(</span><span class="n">n</span><span class="o">%</span><span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
-        <span class="p">{</span>
-            <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-
-    <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></div><ul>
-<li>0.007 <em>sec</em>.</li>
-</ul>
-<p>目前的複雜度是 $\mathcal{O}(n\sqrt{n})$</p>
-<p>雖然思考了一段時間，但是還是 Time Limit Exceeded 😢</p>
-<div class="details admonition info open">
-        <div class="details-summary admonition-title">
-            <i class="icon fas fa-info-circle fa-fw"></i>break &amp; continue<i class="details-icon fas fa-angle-right fa-fw"></i>
-        </div>
-        <div class="details-content">
-            <div class="admonition-content"><h3 id="break">break</h3>
-<p>在迴圈中執行時，只要 if 條件符合使用 break 的時機，立刻會離開 for/while 迴圈。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
-</span><span class="cp"></span>
-<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
-
-<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
-<span class="p">{</span>
-    <span class="k">for</span><span class="p">(</span><span class="k">auto</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="mi">6</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
-    <span class="p">{</span>
-        <span class="k">if</span><span class="p">(</span><span class="n">i</span><span class="o">==</span><span class="mi">3</span><span class="p">)</span>
-        <span class="p">{</span>
-            <span class="k">break</span><span class="p">;</span>
-        <span class="p">}</span>
-        
-        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">i</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;, &#34;</span><span class="p">;</span>
-    <span class="p">}</span>
-
-    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;end&#34;</span><span class="p">;</span>
-
-    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></div><pre tabindex="0"><code>0, 1, 2, end
-</code></pre><h3 id="continue">continue</h3>
-<p>在迴圈中執行時，只要 if 條件符合使用 continue 的時機，將會結束本次迴圈，進入下一次 for/while 的條件判斷 (ex: i++)</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
-</span><span class="cp"></span>
-<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
-
-<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
-<span class="p">{</span>
-    <span class="k">for</span><span class="p">(</span><span class="k">auto</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="mi">6</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
-    <span class="p">{</span>
-        <span class="k">if</span><span class="p">(</span><span class="n">i</span><span class="o">==</span><span class="mi">3</span><span class="p">)</span>
-        <span class="p">{</span>
-            <span class="k">continue</span><span class="p">;</span>
-        <span class="p">}</span>
-        
-        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">i</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;, &#34;</span><span class="p">;</span>
-    <span class="p">}</span>
-
-    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;end&#34;</span><span class="p">;</span>
-
-    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></div><pre tabindex="0"><code>0, 1, 2, 4, 5, end
-</code></pre></div>
-        </div>
-    </div>
-<h2 id="解法">解法</h2>
-<h3 id="解法一sieve-of-eratosthenes-法">解法一：Sieve of Eratosthenes 法</h3>
-<ol>
-<li>
-<p>預設 1 ~ n-1 所有數字都是質數。</p>
-</li>
-<li>
-<p>第一輪找到 2，2 是質數，但 2 的倍數則不是質數，所以我們可以剔除 4, 6, 8, 10, 12,&hellip;</p>
-</li>
-<li>
-<p>第二輪找到 3，3 是質數，但 3 的倍數則不是質數，所以我們可以剔除 <del>6</del>, 9, <del>12</del>,&hellip;，由於在第一輪 2 的倍數已經先移除 6 和 12 了，所以節省了相當多的時間。</p>
-</li>
-<li>
-<p>最後我們再一一清點 <code>isPrime</code> 中有多少質數。</p>
-</li>
-</ol>
-<figure><a class="lightgallery" href="https://upload.wikimedia.org/wikipedia/commons/b/b9/Sieve_of_Eratosthenes_animation.gif" title="https://upload.wikimedia.org/wikipedia/commons/b/b9/Sieve_of_Eratosthenes_animation.gif" data-thumbnail="https://upload.wikimedia.org/wikipedia/commons/b/b9/Sieve_of_Eratosthenes_animation.gif" data-sub-html="<h2>Sieve of Eratosthenes</h2>">
-        <img
-            class="lazyload"
-            src="/svg/loading.min.svg"
-            data-src="https://upload.wikimedia.org/wikipedia/commons/b/b9/Sieve_of_Eratosthenes_animation.gif"
-            data-srcset="https://upload.wikimedia.org/wikipedia/commons/b/b9/Sieve_of_Eratosthenes_animation.gif, https://upload.wikimedia.org/wikipedia/commons/b/b9/Sieve_of_Eratosthenes_animation.gif 1.5x, https://upload.wikimedia.org/wikipedia/commons/b/b9/Sieve_of_Eratosthenes_animation.gif 2x"
-            data-sizes="auto"
-            alt="https://upload.wikimedia.org/wikipedia/commons/b/b9/Sieve_of_Eratosthenes_animation.gif" height="200" />
-    </a><figcaption class="image-caption">Sieve of Eratosthenes</figcaption>
-    </figure>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">int</span> <span class="nf">countPrimes</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
-
-    <span class="k">if</span><span class="p">(</span><span class="n">n</span><span class="o">&lt;</span><span class="mi">2</span><span class="p">)</span> <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-
-    <span class="c1">// 預設 n 個數為質數
-</span><span class="c1"></span>    <span class="n">vector</span><span class="o">&lt;</span><span class="kt">bool</span><span class="o">&gt;</span> <span class="n">isPrime</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
-
-    <span class="c1">// 依序檢查是否為 n 的因數
-</span><span class="c1"></span>    <span class="k">for</span><span class="p">(</span><span class="k">auto</span> <span class="n">i</span><span class="o">=</span><span class="mi">2</span><span class="p">;</span> <span class="n">i</span><span class="o">*</span><span class="n">i</span><span class="o">&lt;</span><span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
-    <span class="p">{</span>
-        <span class="c1">// 如果這個數字確定是質數
-</span><span class="c1"></span>        <span class="k">if</span><span class="p">(</span><span class="n">isPrime</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
-        <span class="p">{</span>
-            <span class="c1">// 將 i 的倍數全部標示為「非質數」
-</span><span class="c1"></span>            <span class="k">for</span><span class="p">(</span><span class="k">auto</span> <span class="n">j</span><span class="o">=</span><span class="n">i</span><span class="o">*</span><span class="n">i</span><span class="p">;</span> <span class="n">j</span><span class="o">&lt;</span><span class="n">n</span><span class="p">;</span> <span class="n">j</span><span class="o">+=</span><span class="n">i</span><span class="p">)</span>
-            <span class="p">{</span>
-                <span class="n">isPrime</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-            <span class="p">}</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-
-    <span class="c1">// 計算總共有幾個質數
-</span><span class="c1"></span>    <span class="k">auto</span> <span class="n">ans</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-
-    <span class="k">for</span><span class="p">(</span><span class="k">auto</span> <span class="n">i</span><span class="o">=</span><span class="mi">2</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
-    <span class="p">{</span>
-        <span class="k">if</span><span class="p">(</span><span class="n">isPrime</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>  <span class="n">ans</span><span class="o">++</span><span class="p">;</span>
-    <span class="p">}</span>
-
-    <span class="k">return</span> <span class="n">ans</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></div><ul>
-<li>
-<p>0.003 <em>sec</em>.</p>
-</li>
-<li>
-<p>Time complexity:  $\mathcal{O}(n log (log(n)))$.</p>
-</li>
-<li>
-<p>Space complexity:  $\mathcal{O}(n)$.</p>
-</li>
-</ul>
-<h3 id="解法二">解法二</h3>
-<ol>
-<li>預設 1 ~ n 所有數字都是質數。</li>
-<li>第一個數字看到 3，3 是質數，但 3 的倍數不是質數，為了減少計算偶數的計算，3 的奇數倍為 $3 \times 3$, $3 \times 5$, $3 \times 7$, $3 \times 9$, $3 \times (2n-1)$：9, 15, 21, 27,&hellip;</li>
-<li>剩下作法同解法一</li>
-</ol>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">int</span> <span class="nf">countPrimes</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
-
-    <span class="k">if</span><span class="p">(</span><span class="n">n</span><span class="o">&lt;</span><span class="mi">2</span><span class="p">)</span>
-    <span class="p">{</span>
-        <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-    <span class="p">}</span>
-
-    <span class="c1">// 預設 n 個數是質數
-</span><span class="c1"></span>    <span class="n">vector</span><span class="o">&lt;</span><span class="kt">bool</span><span class="o">&gt;</span> <span class="n">prime</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
-
-    <span class="c1">// 2 本身就是一個質數，因為這個 function 沒有計算偶數的部分，故當作特例
-</span><span class="c1"></span>    <span class="k">auto</span> <span class="n">ans</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
-
-    <span class="c1">// 等同於 i*i &lt; n
-</span><span class="c1"></span>    <span class="kt">int</span> <span class="n">upper</span> <span class="o">=</span> <span class="n">sqrt</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
-
-    <span class="c1">// 依序掃描所有的「奇數」
-</span><span class="c1"></span>    <span class="k">for</span><span class="p">(</span><span class="k">auto</span> <span class="n">i</span><span class="o">=</span><span class="mi">3</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">+=</span><span class="mi">2</span><span class="p">)</span>
-    <span class="p">{</span>
-        <span class="c1">// 若此數已經不是質數，則逕行檢查下一個數字
-</span><span class="c1"></span>        <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">prime</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
-        <span class="p">{</span>
-            <span class="k">continue</span><span class="p">;</span>
-        <span class="p">}</span>
-
-        <span class="n">ans</span><span class="o">++</span><span class="p">;</span>
-
-        <span class="c1">// 防止 i^2 溢位
-</span><span class="c1"></span>        <span class="k">if</span><span class="p">(</span><span class="n">i</span> <span class="o">&gt;</span> <span class="n">upper</span><span class="p">)</span>
-        <span class="p">{</span>
-            <span class="k">continue</span><span class="p">;</span>
-        <span class="p">}</span>
-
-        <span class="c1">// 每次增加 2*i，讓 j 永遠都是奇數
-</span><span class="c1"></span>        <span class="k">for</span><span class="p">(</span><span class="k">auto</span> <span class="n">j</span><span class="o">=</span><span class="n">i</span><span class="o">*</span><span class="n">i</span><span class="p">;</span> <span class="n">j</span><span class="o">&lt;</span><span class="n">n</span><span class="p">;</span> <span class="n">j</span><span class="o">+=</span><span class="mi">2</span><span class="o">*</span><span class="n">i</span><span class="p">)</span>
-        <span class="p">{</span>
-            <span class="n">prime</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-
-    <span class="k">return</span> <span class="n">ans</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></div><ul>
-<li>
-<p>0.003 <em>sec</em>.</p>
-</li>
-<li>
-<p>Time complexity:  $\mathcal{O}(n log (log(n)))$.</p>
-</li>
-<li>
-<p>Space complexity:  $\mathcal{O}(n)$.</p>
-</li>
-</ul>
-<h2 id="reference">Reference</h2>
-<ol>
-<li><a href="https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes" target="_blank" rel="noopener noreffer">https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes</a></li>
-<li><a href="https://www.geeksforgeeks.org/sieve-of-eratosthenes/" target="_blank" rel="noopener noreffer">https://www.geeksforgeeks.org/sieve-of-eratosthenes/</a></li>
-</ol>
-</div><div class="post-footer" id="post-footer">
-    <div class="post-info">
-        <div class="post-info-line">
-            <div class="post-info-mod">
-                <span>Updated on 2014-07-07</span>
-            </div>
-            <div class="post-info-license"></div>
-        </div>
-        <div class="post-info-line">
-            <div class="post-info-md"></div>
-            <div class="post-info-share">
-                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://eyzim.github.io/posts/leetcode/leetcode_204_count_primes/" data-title="LeetCode 204. Count Primes 解題紀錄" data-hashtags="array,math,enumeration,number theory,medium,c&#43;&#43;"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://eyzim.github.io/posts/leetcode/leetcode_204_count_primes/" data-hashtag="array"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://eyzim.github.io/posts/leetcode/leetcode_204_count_primes/" data-title="LeetCode 204. Count Primes 解題紀錄"><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="javascript:void(0);" title="Share on Blogger" data-sharer="blogger" data-url="https://eyzim.github.io/posts/leetcode/leetcode_204_count_primes/" data-title="LeetCode 204. Count Primes 解題紀錄" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="Share on Evernote" data-sharer="evernote" data-url="https://eyzim.github.io/posts/leetcode/leetcode_204_count_primes/" data-title="LeetCode 204. Count Primes 解題紀錄"><i class="fab fa-evernote fa-fw"></i></a><a href="javascript:void(0);" title="Share on Trello" data-sharer="trello" data-url="https://eyzim.github.io/posts/leetcode/leetcode_204_count_primes/" data-title="LeetCode 204. Count Primes 解題紀錄" data-description=""><i class="fab fa-trello fa-fw"></i></a></span>
-            </div>
-        </div>
-    </div>
-
-    <div class="post-info-more">
-        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/array/">array</a>,&nbsp;<a href="/tags/math/">math</a>,&nbsp;<a href="/tags/enumeration/">enumeration</a>,&nbsp;<a href="/tags/number-theory/">number theory</a>,&nbsp;<a href="/tags/medium/">medium</a>,&nbsp;<a href="/tags/c&#43;&#43;/">c&#43;&#43;</a></section>
-        <section>
-            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
-        </section>
-    </div>
-
-    <div class="post-nav">
-            <a href="/posts/leetcode/leetcode_448_find_all_numbers_disappeared_in_an_array/" class="next" rel="next" title="LeetCode 448. Find All Numbers Disappeared in an Array 解題紀錄">LeetCode 448. Find All Numbers Disappeared in an Array 解題紀錄<i class="fas fa-angle-right fa-fw"></i></a></div>
-</div>
-<div id="comments"><div id="disqus_thread" class="comment"></div><noscript>
-                Please enable JavaScript to view the comments powered by <a href="https://disqus.com/?ref_noscript">Disqus</a>.
-            </noscript></div></article></div>
-            </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.92.1">Hugo</a> | Theme - <a href="" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"> LoveIt</a>
-                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2014 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">elvire</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
-        </div>
-    </footer></div>
-
-        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
-                <i class="fas fa-arrow-up fa-fw"></i>
-            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
-                <i class="fas fa-comment fa-fw"></i>
-            </a>
-        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><script type="text/javascript" src="https://eyzim.disqus.com/embed.js" defer></script><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/twemoji/twemoji.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":50,"type":"lunr"},"twemoji":true};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
-</html>
+</code></pre><p><strong>Constraints:</strong></p><p>0 $\leq$ n $\leq$ 5 $\times 10^6$</p></div></div></div><h2 id=想法>想法</h2><div class="details admonition info open"><div class="details-summary admonition-title"><i class="icon fas fa-info-circle fa-fw"></i>質數<i class="details-icon fas fa-angle-right fa-fw"></i></div><div class=details-content><div class=admonition-content><p>「質數」有兩個定義：</p><ol><li>必為大於 1 的<strong>整數</strong></li><li>只有<strong>兩個因數</strong>，一個是 1、一個是自己</li></ol><p>100 以內的質數：
+2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97， 共 25 個。</p></div></div></div><p>根據以上定義，我們可以簡單寫出一個 isPrime function 來判斷這個數字是否為質數。</p><p>給出一個數字 n，從 2 到 n-1 依序除除看，若能整除，代表這個數字有除了 1 和 n 以外的因數，也就意味著 n 並非質數。</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-cpp data-lang=cpp><span class=line><span class=cl><span class=kt>bool</span> <span class=nf>isPrime</span><span class=p>(</span><span class=kt>int</span> <span class=n>n</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=k>if</span><span class=p>(</span><span class=n>n</span> <span class=o>&lt;</span> <span class=mi>2</span><span class=p>)</span>   <span class=k>return</span> <span class=mi>0</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    
+</span></span><span class=line><span class=cl>    <span class=c1>// 從 2 到 n-1 依序除除看
+</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=k>for</span><span class=p>(</span><span class=k>auto</span> <span class=n>i</span><span class=o>=</span><span class=mi>2</span><span class=p>;</span> <span class=n>i</span><span class=o>&lt;</span><span class=n>n</span><span class=p>;</span> <span class=n>i</span><span class=o>++</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=k>if</span><span class=p>(</span><span class=n>n</span><span class=o>%</span><span class=n>i</span> <span class=o>==</span> <span class=mi>0</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=k>return</span> <span class=mi>0</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>        <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=mi>1</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></div><ul><li>1.215 <em>sec</em>.</li></ul><p>現在執行效率有點差，有哪些數字是一看就知道不是質數的數字呢？</p><p>4, 6, 8, 10, 12, 14&mldr; 那些偶數，一看就知道它們能被 2 整除，可以排除計算，節省一點時間。</p><p>希望能在檢查到偶數時直接回答 false，但是 2 又是質數，返回 n 是否為 2 即可。</p><p>因為事先已經檢查過偶數了，接下來的迴圈檢查就可以跳過它們囉，節省一點時間！</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-cpp data-lang=cpp><span class=line><span class=cl><span class=kt>bool</span> <span class=nf>isPrime</span><span class=p>(</span><span class=kt>int</span> <span class=n>n</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=k>if</span><span class=p>(</span><span class=n>n</span> <span class=o>&lt;</span> <span class=mi>2</span><span class=p>)</span>   <span class=k>return</span> <span class=mi>0</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    
+</span></span><span class=line><span class=cl>    <span class=c1>// 若 n=2 則為質數，若為 2 的倍數則否
+</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=k>if</span><span class=p>(</span><span class=n>n</span><span class=o>%</span><span class=mi>2</span> <span class=o>==</span> <span class=mi>0</span><span class=p>)</span>    <span class=k>return</span> <span class=n>n</span><span class=o>==</span><span class=mi>2</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=c1>// 從 3 到 n-1 依序除除看
+</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=k>for</span><span class=p>(</span><span class=k>auto</span> <span class=n>i</span><span class=o>=</span><span class=mi>3</span><span class=p>;</span> <span class=n>i</span><span class=o>&lt;</span><span class=n>n</span><span class=p>;</span> <span class=n>i</span><span class=o>++</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=k>if</span><span class=p>(</span><span class=n>n</span><span class=o>%</span><span class=n>i</span> <span class=o>==</span> <span class=mi>0</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=k>return</span> <span class=mi>0</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>        <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=mi>1</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></div><ul><li>1.215 <em>sec</em>.</li></ul><p>好像&mldr;沒什麼差別，上面的方法還是依序檢查了 3 到 n-1 ，應該直接在迴圈中跳過 2 才對吧 XD</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-cpp data-lang=cpp><span class=line><span class=cl><span class=kt>bool</span> <span class=nf>isPrime</span><span class=p>(</span><span class=kt>int</span> <span class=n>n</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=k>if</span><span class=p>(</span><span class=n>n</span> <span class=o>&lt;</span> <span class=mi>2</span><span class=p>)</span>   <span class=k>return</span> <span class=mi>0</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=k>for</span><span class=p>(</span><span class=k>auto</span> <span class=n>i</span><span class=o>=</span><span class=mi>3</span><span class=p>;</span> <span class=n>i</span><span class=o>&lt;</span><span class=n>n</span><span class=p>;</span> <span class=n>i</span><span class=o>+=</span><span class=mi>2</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=k>if</span><span class=p>(</span><span class=n>n</span><span class=o>%</span><span class=n>i</span> <span class=o>==</span> <span class=mi>0</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=k>return</span> <span class=mi>0</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>        <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=mi>1</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></div><ul><li>0.628 <em>sec</em>.</li></ul><p>現在的方法搜尋了 $\frac{n}{2}$ 次，效能也提升了將近一倍 😙</p><p>小結一下，到目前為止的優化，時間複雜度是</p><p><code>isPrime</code> $\mathcal{O}(n)$ $\times$<code>countPrimes</code>$ \mathcal{O}(n^2)=$ $\mathcal{O}(n^2)$</p><p>又以 36 為例，</p><p>$36$</p><p>$= 1 \times 36 = 2 \times 18 = 3 \times 12$</p><p>$= 4 \times 9 = 6 \times 6 = 9 \times 4$</p><p>$= 12 \times 3 = 18 \times 2 = 36 \times 1$</p><p>仔細想想，我們在遇到 6 之後，所有的因數組合全部都和前面相同：最後的 $36 \times 1$ 和第一段 $1 \times 36$ 是重複的，那麼我們只要計算到 $i \leq \sqrt{n}$ 或是 $i \times i \leq n$ 就能停止了，後半部都是一模一樣嘛！</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-cpp data-lang=cpp><span class=line><span class=cl><span class=kt>bool</span> <span class=nf>isPrime</span><span class=p>(</span><span class=kt>int</span> <span class=n>n</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=k>if</span><span class=p>(</span><span class=n>n</span> <span class=o>&lt;</span> <span class=mi>2</span><span class=p>)</span>   <span class=k>return</span> <span class=mi>0</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=k>for</span><span class=p>(</span><span class=k>auto</span> <span class=n>i</span><span class=o>=</span><span class=mi>3</span><span class=p>;</span> <span class=n>i</span><span class=o>*</span><span class=n>i</span><span class=o>&lt;=</span><span class=n>n</span><span class=p>;</span> <span class=n>i</span><span class=o>++</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=k>if</span><span class=p>(</span><span class=n>n</span><span class=o>%</span><span class=n>i</span> <span class=o>==</span> <span class=mi>0</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=k>return</span> <span class=mi>0</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>        <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=mi>1</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></div><ul><li>0.007 <em>sec</em>.</li></ul><p>目前的複雜度是 $\mathcal{O}(n\sqrt{n})$</p><p>雖然思考了一段時間，但是還是 Time Limit Exceeded 😢</p><div class="details admonition info open"><div class="details-summary admonition-title"><i class="icon fas fa-info-circle fa-fw"></i>break & continue<i class="details-icon fas fa-angle-right fa-fw"></i></div><div class=details-content><div class=admonition-content><h3 id=break>break</h3><p>在迴圈中執行時，只要 if 條件符合使用 break 的時機，立刻會離開 for/while 迴圈。</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-cpp data-lang=cpp><span class=line><span class=cl><span class=cp>#include</span> <span class=cpf>&lt;iostream&gt;</span><span class=cp>
+</span></span></span><span class=line><span class=cl><span class=cp></span>
+</span></span><span class=line><span class=cl><span class=k>using</span> <span class=k>namespace</span> <span class=n>std</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kt>int</span> <span class=nf>main</span><span class=p>()</span>
+</span></span><span class=line><span class=cl><span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=k>for</span><span class=p>(</span><span class=k>auto</span> <span class=n>i</span><span class=o>=</span><span class=mi>0</span><span class=p>;</span> <span class=n>i</span><span class=o>&lt;</span><span class=mi>6</span><span class=p>;</span> <span class=n>i</span><span class=o>++</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=k>if</span><span class=p>(</span><span class=n>i</span><span class=o>==</span><span class=mi>3</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=k>break</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>        <span class=p>}</span>
+</span></span><span class=line><span class=cl>        
+</span></span><span class=line><span class=cl>        <span class=n>cout</span> <span class=o>&lt;&lt;</span> <span class=n>i</span> <span class=o>&lt;&lt;</span> <span class=s>&#34;, &#34;</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=n>cout</span> <span class=o>&lt;&lt;</span> <span class=s>&#34;end&#34;</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=mi>0</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></div><pre tabindex=0><code>0, 1, 2, end
+</code></pre><h3 id=continue>continue</h3><p>在迴圈中執行時，只要 if 條件符合使用 continue 的時機，將會結束本次迴圈，進入下一次 for/while 的條件判斷 (ex: i++)</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-cpp data-lang=cpp><span class=line><span class=cl><span class=cp>#include</span> <span class=cpf>&lt;iostream&gt;</span><span class=cp>
+</span></span></span><span class=line><span class=cl><span class=cp></span>
+</span></span><span class=line><span class=cl><span class=k>using</span> <span class=k>namespace</span> <span class=n>std</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kt>int</span> <span class=nf>main</span><span class=p>()</span>
+</span></span><span class=line><span class=cl><span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=k>for</span><span class=p>(</span><span class=k>auto</span> <span class=n>i</span><span class=o>=</span><span class=mi>0</span><span class=p>;</span> <span class=n>i</span><span class=o>&lt;</span><span class=mi>6</span><span class=p>;</span> <span class=n>i</span><span class=o>++</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=k>if</span><span class=p>(</span><span class=n>i</span><span class=o>==</span><span class=mi>3</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=k>continue</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>        <span class=p>}</span>
+</span></span><span class=line><span class=cl>        
+</span></span><span class=line><span class=cl>        <span class=n>cout</span> <span class=o>&lt;&lt;</span> <span class=n>i</span> <span class=o>&lt;&lt;</span> <span class=s>&#34;, &#34;</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=n>cout</span> <span class=o>&lt;&lt;</span> <span class=s>&#34;end&#34;</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=mi>0</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></div><pre tabindex=0><code>0, 1, 2, 4, 5, end
+</code></pre></div></div></div><h2 id=解法>解法</h2><h3 id=解法一sieve-of-eratosthenes-法>解法一：Sieve of Eratosthenes 法</h3><ol><li><p>預設 1 ~ n-1 所有數字都是質數。</p></li><li><p>第一輪找到 2，2 是質數，但 2 的倍數則不是質數，所以我們可以剔除 4, 6, 8, 10, 12,&mldr;</p></li><li><p>第二輪找到 3，3 是質數，但 3 的倍數則不是質數，所以我們可以剔除 <del>6</del>, 9, <del>12</del>,&mldr;，由於在第一輪 2 的倍數已經先移除 6 和 12 了，所以節省了相當多的時間。</p></li><li><p>最後我們再一一清點 <code>isPrime</code> 中有多少質數。</p></li></ol><figure><a class=lightgallery href=https://upload.wikimedia.org/wikipedia/commons/b/b9/Sieve_of_Eratosthenes_animation.gif title=https://upload.wikimedia.org/wikipedia/commons/b/b9/Sieve_of_Eratosthenes_animation.gif data-thumbnail=https://upload.wikimedia.org/wikipedia/commons/b/b9/Sieve_of_Eratosthenes_animation.gif data-sub-html="<h2>Sieve of Eratosthenes</h2>"><img class=lazyload src=/svg/loading.min.svg data-src=https://upload.wikimedia.org/wikipedia/commons/b/b9/Sieve_of_Eratosthenes_animation.gif data-srcset="https://upload.wikimedia.org/wikipedia/commons/b/b9/Sieve_of_Eratosthenes_animation.gif, https://upload.wikimedia.org/wikipedia/commons/b/b9/Sieve_of_Eratosthenes_animation.gif 1.5x, https://upload.wikimedia.org/wikipedia/commons/b/b9/Sieve_of_Eratosthenes_animation.gif 2x" data-sizes=auto alt=https://upload.wikimedia.org/wikipedia/commons/b/b9/Sieve_of_Eratosthenes_animation.gif height=200></a><figcaption class=image-caption>Sieve of Eratosthenes</figcaption></figure><div class=highlight><pre tabindex=0 class=chroma><code class=language-cpp data-lang=cpp><span class=line><span class=cl><span class=kt>int</span> <span class=nf>countPrimes</span><span class=p>(</span><span class=kt>int</span> <span class=n>n</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=k>if</span><span class=p>(</span><span class=n>n</span><span class=o>&lt;</span><span class=mi>2</span><span class=p>)</span> <span class=k>return</span> <span class=mi>0</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=c1>// 預設 n 個數為質數
+</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=n>vector</span><span class=o>&lt;</span><span class=kt>bool</span><span class=o>&gt;</span> <span class=n>isPrime</span><span class=p>(</span><span class=n>n</span><span class=p>,</span> <span class=mi>1</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=c1>// 依序檢查是否為 n 的因數
+</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=k>for</span><span class=p>(</span><span class=k>auto</span> <span class=n>i</span><span class=o>=</span><span class=mi>2</span><span class=p>;</span> <span class=n>i</span><span class=o>*</span><span class=n>i</span><span class=o>&lt;</span><span class=n>n</span><span class=p>;</span> <span class=n>i</span><span class=o>++</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=c1>// 如果這個數字確定是質數
+</span></span></span><span class=line><span class=cl><span class=c1></span>        <span class=k>if</span><span class=p>(</span><span class=n>isPrime</span><span class=p>[</span><span class=n>i</span><span class=p>])</span>
+</span></span><span class=line><span class=cl>        <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=c1>// 將 i 的倍數全部標示為「非質數」
+</span></span></span><span class=line><span class=cl><span class=c1></span>            <span class=k>for</span><span class=p>(</span><span class=k>auto</span> <span class=n>j</span><span class=o>=</span><span class=n>i</span><span class=o>*</span><span class=n>i</span><span class=p>;</span> <span class=n>j</span><span class=o>&lt;</span><span class=n>n</span><span class=p>;</span> <span class=n>j</span><span class=o>+=</span><span class=n>i</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>            <span class=p>{</span>
+</span></span><span class=line><span class=cl>                <span class=n>isPrime</span><span class=p>[</span><span class=n>j</span><span class=p>]</span> <span class=o>=</span> <span class=mi>0</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>            <span class=p>}</span>
+</span></span><span class=line><span class=cl>        <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=c1>// 計算總共有幾個質數
+</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=k>auto</span> <span class=n>ans</span> <span class=o>=</span> <span class=mi>0</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=k>for</span><span class=p>(</span><span class=k>auto</span> <span class=n>i</span><span class=o>=</span><span class=mi>2</span><span class=p>;</span> <span class=n>i</span><span class=o>&lt;</span><span class=n>n</span><span class=p>;</span> <span class=n>i</span><span class=o>++</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=k>if</span><span class=p>(</span><span class=n>isPrime</span><span class=p>[</span><span class=n>i</span><span class=p>])</span>  <span class=n>ans</span><span class=o>++</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=n>ans</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></div><ul><li><p>0.003 <em>sec</em>.</p></li><li><p>Time complexity: $\mathcal{O}(n log (log(n)))$.</p></li><li><p>Space complexity: $\mathcal{O}(n)$.</p></li></ul><h3 id=解法二>解法二</h3><ol><li>預設 1 ~ n 所有數字都是質數。</li><li>第一個數字看到 3，3 是質數，但 3 的倍數不是質數，為了減少計算偶數的計算，3 的奇數倍為 $3 \times 3$, $3 \times 5$, $3 \times 7$, $3 \times 9$, $3 \times (2n-1)$：9, 15, 21, 27,&mldr;</li><li>剩下作法同解法一</li></ol><div class=highlight><pre tabindex=0 class=chroma><code class=language-cpp data-lang=cpp><span class=line><span class=cl><span class=kt>int</span> <span class=nf>countPrimes</span><span class=p>(</span><span class=kt>int</span> <span class=n>n</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=k>if</span><span class=p>(</span><span class=n>n</span><span class=o>&lt;</span><span class=mi>2</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=k>return</span> <span class=mi>0</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=c1>// 預設 n 個數是質數
+</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=n>vector</span><span class=o>&lt;</span><span class=kt>bool</span><span class=o>&gt;</span> <span class=n>prime</span><span class=p>(</span><span class=n>n</span><span class=p>,</span> <span class=mi>1</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=c1>// 2 本身就是一個質數，因為這個 function 沒有計算偶數的部分，故當作特例
+</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=k>auto</span> <span class=n>ans</span> <span class=o>=</span> <span class=mi>1</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=c1>// 等同於 i*i &lt; n
+</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=kt>int</span> <span class=n>upper</span> <span class=o>=</span> <span class=n>sqrt</span><span class=p>(</span><span class=n>n</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=c1>// 依序掃描所有的「奇數」
+</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=k>for</span><span class=p>(</span><span class=k>auto</span> <span class=n>i</span><span class=o>=</span><span class=mi>3</span><span class=p>;</span> <span class=n>i</span><span class=o>&lt;</span><span class=n>n</span><span class=p>;</span> <span class=n>i</span><span class=o>+=</span><span class=mi>2</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=c1>// 若此數已經不是質數，則逕行檢查下一個數字
+</span></span></span><span class=line><span class=cl><span class=c1></span>        <span class=k>if</span><span class=p>(</span><span class=o>!</span><span class=n>prime</span><span class=p>[</span><span class=n>i</span><span class=p>])</span>
+</span></span><span class=line><span class=cl>        <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=k>continue</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>        <span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>        <span class=n>ans</span><span class=o>++</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>        <span class=c1>// 防止 i^2 溢位
+</span></span></span><span class=line><span class=cl><span class=c1></span>        <span class=k>if</span><span class=p>(</span><span class=n>i</span> <span class=o>&gt;</span> <span class=n>upper</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=k>continue</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>        <span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>        <span class=c1>// 每次增加 2*i，讓 j 永遠都是奇數
+</span></span></span><span class=line><span class=cl><span class=c1></span>        <span class=k>for</span><span class=p>(</span><span class=k>auto</span> <span class=n>j</span><span class=o>=</span><span class=n>i</span><span class=o>*</span><span class=n>i</span><span class=p>;</span> <span class=n>j</span><span class=o>&lt;</span><span class=n>n</span><span class=p>;</span> <span class=n>j</span><span class=o>+=</span><span class=mi>2</span><span class=o>*</span><span class=n>i</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=n>prime</span><span class=p>[</span><span class=n>j</span><span class=p>]</span> <span class=o>=</span> <span class=mi>0</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>        <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=n>ans</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></div><ul><li><p>0.003 <em>sec</em>.</p></li><li><p>Time complexity: $\mathcal{O}(n log (log(n)))$.</p></li><li><p>Space complexity: $\mathcal{O}(n)$.</p></li></ul><h2 id=reference>Reference</h2><ol><li><a href=https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes target=_blank rel="noopener noreffer">https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes</a></li><li><a href=https://www.geeksforgeeks.org/sieve-of-eratosthenes/ target=_blank rel="noopener noreffer">https://www.geeksforgeeks.org/sieve-of-eratosthenes/</a></li></ol></div><div class=post-footer id=post-footer><div class=post-info><div class=post-info-line><div class=post-info-mod><span>Updated on 2014-07-07</span></div><div class=post-info-license></div></div><div class=post-info-line><div class=post-info-md></div><div class=post-info-share><span><a href=javascript:void(0); title="Share on Twitter" data-sharer=twitter data-url=https://eyzim.github.io/posts/leetcode/leetcode_204_count_primes/ data-title="LeetCode 204. Count Primes 解題紀錄" data-hashtags="array,math,enumeration,number theory,medium,c++"><i class="fab fa-twitter fa-fw"></i></a><a href=javascript:void(0); title="Share on Facebook" data-sharer=facebook data-url=https://eyzim.github.io/posts/leetcode/leetcode_204_count_primes/ data-hashtag=array><i class="fab fa-facebook-square fa-fw"></i></a><a href=javascript:void(0); title="Share on Line" data-sharer=line data-url=https://eyzim.github.io/posts/leetcode/leetcode_204_count_primes/ data-title="LeetCode 204. Count Primes 解題紀錄"><i data-svg-src=/lib/simple-icons/icons/line.min.svg></i></a><a href=javascript:void(0); title="Share on Blogger" data-sharer=blogger data-url=https://eyzim.github.io/posts/leetcode/leetcode_204_count_primes/ data-title="LeetCode 204. Count Primes 解題紀錄" data-description><i class="fab fa-blogger fa-fw"></i></a><a href=javascript:void(0); title="Share on Evernote" data-sharer=evernote data-url=https://eyzim.github.io/posts/leetcode/leetcode_204_count_primes/ data-title="LeetCode 204. Count Primes 解題紀錄"><i class="fab fa-evernote fa-fw"></i></a><a href=javascript:void(0); title="Share on Trello" data-sharer=trello data-url=https://eyzim.github.io/posts/leetcode/leetcode_204_count_primes/ data-title="LeetCode 204. Count Primes 解題紀錄" data-description><i class="fab fa-trello fa-fw"></i></a></span></div></div></div><div class=post-info-more><section class=post-tags><i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/array/>array</a>,&nbsp;<a href=/tags/math/>math</a>,&nbsp;<a href=/tags/enumeration/>enumeration</a>,&nbsp;<a href=/tags/number-theory/>number theory</a>,&nbsp;<a href=/tags/medium/>medium</a>,&nbsp;<a href=/tags/c++/>c++</a></section><section><span><a href=javascript:void(0); onclick=window.history.back()>Back</a></span>&nbsp;|&nbsp;<span><a href=/>Home</a></span></section></div><div class=post-nav><a href=/posts/leetcode/leetcode_448_find_all_numbers_disappeared_in_an_array/ class=next rel=next title="LeetCode 448. Find All Numbers Disappeared in an Array 解題紀錄">LeetCode 448. Find All Numbers Disappeared in an Array 解題紀錄<i class="fas fa-angle-right fa-fw"></i></a></div></div><div id=comments><div id=disqus_thread class=comment></div><noscript>Please enable JavaScript to view the comments powered by <a href=https://disqus.com/?ref_noscript>Disqus</a>.</noscript></div></article></div></main><footer class=footer><div class=footer-container><div class=footer-line>Powered by <a href=https://gohugo.io/ target=_blank rel="noopener noreffer" title="Hugo 0.110.0">Hugo</a> | Theme - <a href=https://github.com/dillonzq/LoveIt target=_blank rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a></div><div class=footer-line><i class="far fa-copyright fa-fw"></i><span itemprop=copyrightYear>2014 - 2023</span><span class=author itemprop=copyrightHolder>&nbsp;<a href=/ target=_blank>elvire</a></span>&nbsp;|&nbsp;<span class=license><a rel="license external nofollow noopener noreffer" href=https://creativecommons.org/licenses/by-nc/4.0/ target=_blank>CC BY-NC 4.0</a></span></div></div></footer></div><div id=fixed-buttons><a href=# id=back-to-top class=fixed-button title="Back to Top"><i class="fas fa-arrow-up fa-fw"></i>
+</a><a href=# id=view-comments class=fixed-button title="View Comments"><i class="fas fa-comment fa-fw"></i></a></div><link rel=stylesheet href=/lib/katex/katex.min.css><link rel=stylesheet href=/lib/katex/copy-tex.min.css><script type=text/javascript src=https://eyzim.disqus.com/embed.js defer></script><script type=text/javascript src=/lib/smooth-scroll/smooth-scroll.min.js></script><script type=text/javascript src=/lib/autocomplete/autocomplete.min.js></script><script type=text/javascript src=/lib/lunr/lunr.min.js></script><script type=text/javascript src=/lib/lazysizes/lazysizes.min.js></script><script type=text/javascript src=/lib/twemoji/twemoji.min.js></script><script type=text/javascript src=/lib/clipboard/clipboard.min.js></script><script type=text/javascript src=/lib/sharer/sharer.min.js></script><script type=text/javascript src=/lib/katex/katex.min.js></script><script type=text/javascript src=/lib/katex/auto-render.min.js></script><script type=text/javascript src=/lib/katex/copy-tex.min.js></script><script type=text/javascript src=/lib/katex/mhchem.min.js></script><script type=text/javascript>window.config={code:{copyTitle:"Copy to clipboard",maxShownLines:50},comment:{},math:{delimiters:[{display:!0,left:"$$",right:"$$"},{display:!0,left:"\\[",right:"\\]"},{display:!1,left:"$",right:"$"},{display:!1,left:"\\(",right:"\\)"}],strict:!1},search:{highlightTag:"em",lunrIndexURL:"/index.json",maxResultLength:10,noResultsFound:"No results found",snippetLength:50,type:"lunr"},twemoji:!0}</script><script type=text/javascript src=/js/theme.min.js></script></body></html>

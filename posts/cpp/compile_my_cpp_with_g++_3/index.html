@@ -1,305 +1,76 @@
-<!DOCTYPE html>
-<html lang="zh-TW">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="robots" content="noodp" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
-        <title>不靠 IDE 自己編譯 C&#43;&#43; (3) - 翻譯課 - EVIEEE</title><meta name="Description" content="Empassion, Endearing, Enthusiastic"><meta property="og:title" content="不靠 IDE 自己編譯 C&#43;&#43; (3) - 翻譯課" />
-<meta property="og:description" content="使用 g&#43;&#43;，了解編譯器在做什麼。" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://eyzim.github.io/posts/cpp/compile_my_cpp_with_g&#43;&#43;_3/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2019-02-18T17:29:53+08:00" />
-<meta property="article:modified_time" content="2019-02-18T17:29:53+08:00" />
-
-<meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="不靠 IDE 自己編譯 C&#43;&#43; (3) - 翻譯課"/>
-<meta name="twitter:description" content="使用 g&#43;&#43;，了解編譯器在做什麼。"/>
-<meta name="application-name" content="Evieees">
-<meta name="apple-mobile-web-app-title" content="Evieees"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
-        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://eyzim.github.io/posts/cpp/compile_my_cpp_with_g&#43;&#43;_3/" /><link rel="prev" href="https://eyzim.github.io/posts/cpp/compile_my_cpp_with_g&#43;&#43;_2/" /><link rel="next" href="https://eyzim.github.io/posts/graphics/graphics-load-obj-mtl/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
-    {
-        "@context": "http://schema.org",
-        "@type": "BlogPosting",
-        "headline": "不靠 IDE 自己編譯 C++ (3) - 翻譯課",
-        "inLanguage": "zh-TW",
-        "mainEntityOfPage": {
-            "@type": "WebPage",
-            "@id": "https:\/\/eyzim.github.io\/posts\/cpp\/compile_my_cpp_with_g\u002b\u002b_3\/"
-        },"genre": "posts","keywords": "MinGW, windows 10, compile, c\u002b\u002b","wordcount":  1067 ,
-        "url": "https:\/\/eyzim.github.io\/posts\/cpp\/compile_my_cpp_with_g\u002b\u002b_3\/","datePublished": "2019-02-18T17:29:53+08:00","dateModified": "2019-02-18T17:29:53+08:00","publisher": {
-            "@type": "Organization",
-            "name": "Evie"},"author": {
-                "@type": "Person",
-                "name": "Evie"
-            },"description": ""
-    }
-    </script></head>
-    <body header-desktop="" header-mobile=""><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : '' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
-
-        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
-    <div class="header-wrapper">
-        <div class="header-title">
-            <a href="/" title="EVIEEE">EVIEEE</a>
-        </div>
-        <div class="menu">
-            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 標籤 </a><a class="menu-item" href="/categories/"> 分類 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
-                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
-                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
-                            <i class="fas fa-search fa-fw"></i>
-                        </a>
-                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
-                            <i class="fas fa-times-circle fa-fw"></i>
-                        </a>
-                        <span class="search-button search-loading" id="search-loading-desktop">
-                            <i class="fas fa-spinner fa-fw fa-spin"></i>
-                        </span>
-                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
-                    <i class="fas fa-adjust fa-fw"></i>
-                </a>
-            </div>
-        </div>
-    </div>
-</header><header class="mobile" id="header-mobile">
-    <div class="header-container">
-        <div class="header-wrapper">
-            <div class="header-title">
-                <a href="/" title="EVIEEE">EVIEEE</a>
-            </div>
-            <div class="menu-toggle" id="menu-toggle-mobile">
-                <span></span><span></span><span></span>
-            </div>
-        </div>
-        <div class="menu" id="menu-mobile"><div class="search-wrapper">
-                    <div class="search mobile" id="search-mobile">
-                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
-                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
-                            <i class="fas fa-search fa-fw"></i>
-                        </a>
-                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
-                            <i class="fas fa-times-circle fa-fw"></i>
-                        </a>
-                        <span class="search-button search-loading" id="search-loading-mobile">
-                            <i class="fas fa-spinner fa-fw fa-spin"></i>
-                        </span>
-                    </div>
-                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
-                        Cancel
-                    </a>
-                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">標籤</a><a class="menu-item" href="/categories/" title="">分類</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
-                <i class="fas fa-adjust fa-fw"></i>
-            </a></div>
-    </div>
-</header>
-<div class="search-dropdown desktop">
-    <div id="search-dropdown-desktop"></div>
-</div>
-<div class="search-dropdown mobile">
-    <div id="search-dropdown-mobile"></div>
-</div>
-<main class="main">
-                <div class="container"><div class="toc" id="toc-auto">
-            <h2 class="toc-title">Contents</h2>
-            <div class="toc-content" id="toc-content-auto"></div>
-        </div><article class="page single"><h1 class="single-title animated flipInX">不靠 IDE 自己編譯 C&#43;&#43; (3) - 翻譯課</h1><div class="post-meta">
-            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Evie</a></span>&nbsp;<span class="post-category">included in <a href="/categories/computer-system/"><i class="far fa-folder fa-fw"></i>Computer System</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2019-02-18">2019-02-18</time>&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;3 minutes&nbsp;</div>
-        </div><div class="details toc" id="toc-static"  kept="">
-                <div class="details-summary toc-title">
-                    <span>Contents</span>
-                    <span><i class="details-icon fas fa-angle-right"></i></span>
-                </div>
-                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
-  <ul>
-    <li><a href="#編譯系統">編譯系統</a></li>
-    <li><a href="#preprocess-預處理">Preprocess 預處理</a></li>
-    <li><a href="#compile-編譯">Compile 編譯</a></li>
-    <li><a href="#assemble-組譯">Assemble 組譯</a></li>
-    <li><a href="#link-連結">Link 連結</a></li>
-    <li><a href="#reference">Reference</a></li>
-  </ul>
-</nav></div>
-            </div><div class="content" id="content"><p><a href="https://eyzim.github.io/posts/compile_my_cpp_with_g&#43;&#43;_2/" target="_blank" rel="noopener noreffer">上一篇</a> 我們知道只要下了</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">g++ -o myLord.exe myLord.cpp
-myLord
-</code></pre></div><p>這兩行指令就能印出想印的文字。</p>
-<hr>
-<div class="mermaid" id="id-1"></div>
-<h2 id="編譯系統">編譯系統</h2>
-<p>每一行 C++ 的文字都會被電腦編譯成低階的<!-- raw HTML omitted --><strong>機器語言</strong><sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup><!-- raw HTML omitted -->，然後再以可以直接執行的格式打包，最後以二進位的格式封裝保存。</p>
-<p>一系列工作都是由 GCC 編譯器所完成的，總共又可分為四個階段：預處理器、編譯器、組譯器、連結器，它們構成了<strong>編譯系統</strong> <code>complication system</code>。</p>
-<p>下為範例檔，歡迎各位跟著動手試試看！</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="c1">// file name: myLord.cpp
-</span><span class="c1"></span>
-<span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
-</span><span class="cp">#define DEBUG
-</span><span class="cp">#define SIZE 10
-</span><span class="cp"></span>
-<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
- 
-<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> 
-<span class="p">{</span>
-   <span class="cp">#ifdef DEBUG
-</span><span class="cp"></span>      <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;DEBUG MODE is On.&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
-   <span class="cp">#else
-</span><span class="cp"></span>      <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;Your Majesty, my Lord.&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
-   <span class="cp">#endif   
-</span><span class="cp"></span>
-   <span class="k">if</span><span class="p">(</span><span class="n">size</span><span class="o">&gt;</span><span class="mi">5</span><span class="p">)</span>
-   <span class="p">{</span>
-       <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">size</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
-   <span class="p">}</span>
-
-   <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></div><h2 id="preprocess-預處理">Preprocess 預處理</h2>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">g++ -E myLord.cpp -o myLord.i
-</code></pre></div><p>負責處理編譯之前的工作，原則上就是字串代換的過程，大致分為三個：</p>
-<ol>
-<li>
-<p>引入</p>
-<pre tabindex="0"><code>#include &lt;iostream&gt;
-</code></pre><p>以 <strong>#include</strong> 開頭的明令會告訴預處理器讀取其他 .h 檔案的內容。</p>
-</li>
-<li>
-<p>處理條件編譯</p>
-<pre tabindex="0"><code>#define DEBUG
-</code></pre><p>以 #define、#ifdef、#ifndef、#if、#else、#endif 等等方式設計條件判斷，阻止某些部分的程式碼執行。</p>
-</li>
-</ol>
-<div class="details admonition tip open">
-        <div class="details-summary admonition-title">
-            <i class="icon fas fa-lightbulb fa-fw"></i>#ifndef<i class="details-icon fas fa-angle-right fa-fw"></i>
-        </div>
-        <div class="details-content">
-            <div class="admonition-content"><p>通常我們新增一個標頭檔案 <code>.h</code> 時，會加上 guard：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-H" data-lang="H"><span class="cp">#ifndef SAMPLE_H
-</span><span class="cp">#define SAMPLE_H
-</span><span class="cp"></span>
-<span class="p">...</span>
-
-<span class="cp">#endif  </span><span class="cm">/* SAMPLE_H */</span><span class="cp">
-</span></code></pre></div><p>但若是原始檔中出現兩個 <code>SAMPLE_H</code> 的話，會造成巨集名稱衝突，加上</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-h" data-lang="h"><span class="cp">#pragma once
-</span></code></pre></div><p>有相同效果，卻不會再產生衝突。</p>
-</div>
-        </div>
-    </div>
-<ol start="3">
-<li>
-<p>將 macro 代換成程式碼片段 (code snippet)</p>
-<pre tabindex="0"><code>#define SIZE 10
-</code></pre><p>或是走火入魔一點</p>
-<pre tabindex="0"><code>#define MAX(a, b) ((a) &gt; (b) ? (a) : (b))
-</code></pre><p>對了，記得 macro 要把「所有」變數一一括起來，以免發生奇怪的錯誤。</p>
-<p>另外，還有一些是和程式相關的 macro：</p>
-<ul>
-<li><code>__LINE__</code>：目前在程式中的行數</li>
-<li><code>__FILE__</code>：檔案名稱</li>
-<li><code>__DATE__</code>：(前置處理器)執行的日期</li>
-<li><code>__TIME__</code>：(前置處理器)執行的時間</li>
-</ul>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span> <span class="o">&lt;&lt;</span> <span class="n">__FILE__</span><span class="p">;</span>
-<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span> <span class="o">&lt;&lt;</span> <span class="n">__LINE__</span><span class="p">;</span>
-<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span> <span class="o">&lt;&lt;</span> <span class="n">__DATE__</span> <span class="o">&lt;&lt;</span> <span class="s">&#34; &#34;</span> <span class="o">&lt;&lt;</span> <span class="n">__TIME__</span><span class="p">;</span>
-</code></pre></div><pre tabindex="0"><code>D:\Project\find\main.cpp
+<!doctype html><html lang=zh-tw><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=robots content="noodp"><meta http-equiv=x-ua-compatible content="IE=edge, chrome=1"><title>不靠 IDE 自己編譯 C++ (3) - 翻譯課 - EVIEEE</title><meta name=Description content="Empassion, Endearing, Enthusiastic"><meta property="og:title" content="不靠 IDE 自己編譯 C++ (3) - 翻譯課"><meta property="og:description" content="使用 g++，了解編譯器在做什麼。"><meta property="og:type" content="article"><meta property="og:url" content="https://eyzim.github.io/posts/cpp/compile_my_cpp_with_g++_3/"><meta property="article:section" content="posts"><meta property="article:published_time" content="2019-02-18T17:29:53+08:00"><meta property="article:modified_time" content="2019-02-18T17:29:53+08:00"><meta name=twitter:card content="summary"><meta name=twitter:title content="不靠 IDE 自己編譯 C++ (3) - 翻譯課"><meta name=twitter:description content="使用 g++，了解編譯器在做什麼。"><meta name=application-name content="Evieees"><meta name=apple-mobile-web-app-title content="Evieees"><meta name=theme-color content="#ffffff"><meta name=msapplication-TileColor content="#da532c"><link rel="shortcut icon" type=image/x-icon href=/favicon.ico><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://eyzim.github.io/posts/cpp/compile_my_cpp_with_g++_3/><link rel=prev href=https://eyzim.github.io/posts/cpp/compile_my_cpp_with_g++_2/><link rel=next href=https://eyzim.github.io/posts/graphics/graphics-load-obj-mtl/><link rel=stylesheet href=/lib/normalize/normalize.min.css><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=/lib/fontawesome-free/all.min.css><link rel=stylesheet href=/lib/animate/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"不靠 IDE 自己編譯 C++ (3) - 翻譯課","inLanguage":"zh-TW","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/eyzim.github.io\/posts\/cpp\/compile_my_cpp_with_g\u002b\u002b_3\/"},"genre":"posts","keywords":"MinGW, windows 10, compile, c\u002b\u002b","wordcount":1020,"url":"https:\/\/eyzim.github.io\/posts\/cpp\/compile_my_cpp_with_g\u002b\u002b_3\/","datePublished":"2019-02-18T17:29:53+08:00","dateModified":"2019-02-18T17:29:53+08:00","publisher":{"@type":"Organization","name":"Evie"},"author":{"@type":"Person","name":"Evie"},"description":""}</script></head><body header-desktop header-mobile><script type=text/javascript>(window.localStorage&&localStorage.getItem("theme")?localStorage.getItem("theme")==="dark":""==="auto"?window.matchMedia("(prefers-color-scheme: dark)").matches:""==="dark")&&document.body.setAttribute("theme","dark")</script><div id=mask></div><div class=wrapper><header class=desktop id=header-desktop><div class=header-wrapper><div class=header-title><a href=/ title=EVIEEE>EVIEEE</a></div><div class=menu><div class=menu-inner><a class=menu-item href=/posts/>文章 </a><a class=menu-item href=/tags/>標籤 </a><a class=menu-item href=/categories/>分類 </a><span class="menu-item delimiter"></span><span class="menu-item search" id=search-desktop>
+<input type=text placeholder="Search titles or contents..." id=search-input-desktop>
+<a href=javascript:void(0); class="search-button search-toggle" id=search-toggle-desktop title=Search><i class="fas fa-search fa-fw"></i></a>
+<a href=javascript:void(0); class="search-button search-clear" id=search-clear-desktop title=Clear><i class="fas fa-times-circle fa-fw"></i></a>
+<span class="search-button search-loading" id=search-loading-desktop><i class="fas fa-spinner fa-fw fa-spin"></i></span>
+</span><a href=javascript:void(0); class="menu-item theme-switch" title="Switch Theme"><i class="fas fa-adjust fa-fw"></i></a></div></div></div></header><header class=mobile id=header-mobile><div class=header-container><div class=header-wrapper><div class=header-title><a href=/ title=EVIEEE>EVIEEE</a></div><div class=menu-toggle id=menu-toggle-mobile><span></span><span></span><span></span></div></div><div class=menu id=menu-mobile><div class=search-wrapper><div class="search mobile" id=search-mobile><input type=text placeholder="Search titles or contents..." id=search-input-mobile>
+<a href=javascript:void(0); class="search-button search-toggle" id=search-toggle-mobile title=Search><i class="fas fa-search fa-fw"></i></a>
+<a href=javascript:void(0); class="search-button search-clear" id=search-clear-mobile title=Clear><i class="fas fa-times-circle fa-fw"></i></a>
+<span class="search-button search-loading" id=search-loading-mobile><i class="fas fa-spinner fa-fw fa-spin"></i></span></div><a href=javascript:void(0); class=search-cancel id=search-cancel-mobile>Cancel</a></div><a class=menu-item href=/posts/ title>文章</a><a class=menu-item href=/tags/ title>標籤</a><a class=menu-item href=/categories/ title>分類</a><a href=javascript:void(0); class="menu-item theme-switch" title="Switch Theme">
+<i class="fas fa-adjust fa-fw"></i></a></div></div></header><div class="search-dropdown desktop"><div id=search-dropdown-desktop></div></div><div class="search-dropdown mobile"><div id=search-dropdown-mobile></div></div><main class=main><div class=container><div class=toc id=toc-auto><h2 class=toc-title>Contents</h2><div class=toc-content id=toc-content-auto></div></div><article class="page single"><h1 class="single-title animated flipInX">不靠 IDE 自己編譯 C++ (3) - 翻譯課</h1><div class=post-meta><div class=post-meta-line><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>Evie</a></span>&nbsp;<span class=post-category>included in <a href=/categories/computer-system/><i class="far fa-folder fa-fw"></i>Computer System</a></span></div><div class=post-meta-line><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2019-02-18>2019-02-18</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;1020 words&nbsp;
+<i class="far fa-clock fa-fw"></i>&nbsp;3 minutes&nbsp;</div></div><div class="details toc" id=toc-static kept><div class="details-summary toc-title"><span>Contents</span>
+<span><i class="details-icon fas fa-angle-right"></i></span></div><div class="details-content toc-content" id=toc-content-static><nav id=TableOfContents><ul><li><a href=#編譯系統>編譯系統</a></li><li><a href=#preprocess-預處理>Preprocess 預處理</a></li><li><a href=#compile-編譯>Compile 編譯</a></li><li><a href=#assemble-組譯>Assemble 組譯</a></li><li><a href=#link-連結>Link 連結</a></li><li><a href=#reference>Reference</a></li></ul></nav></div></div><div class=content id=content><p><a href=https://eyzim.github.io/posts/compile_my_cpp_with_g++_2/ target=_blank rel="noopener noreffer">上一篇</a> 我們知道只要下了</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>g++ -o myLord.exe myLord.cpp
+</span></span><span class=line><span class=cl>myLord
+</span></span></code></pre></div><p>這兩行指令就能印出想印的文字。</p><hr><div class=mermaid id=id-1></div><h2 id=編譯系統>編譯系統</h2><p>每一行 C++ 的文字都會被電腦編譯成低階的<strong>機器語言</strong><sup id=fnref:1><a href=#fn:1 class=footnote-ref role=doc-noteref>1</a></sup>，然後再以可以直接執行的格式打包，最後以二進位的格式封裝保存。</p><p>一系列工作都是由 GCC 編譯器所完成的，總共又可分為四個階段：預處理器、編譯器、組譯器、連結器，它們構成了<strong>編譯系統</strong> <code>complication system</code>。</p><p>下為範例檔，歡迎各位跟著動手試試看！</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-cpp data-lang=cpp><span class=line><span class=cl><span class=c1>// file name: myLord.cpp
+</span></span></span><span class=line><span class=cl><span class=c1></span>
+</span></span><span class=line><span class=cl><span class=cp>#include</span> <span class=cpf>&lt;iostream&gt;</span><span class=cp>
+</span></span></span><span class=line><span class=cl><span class=cp>#define DEBUG
+</span></span></span><span class=line><span class=cl><span class=cp>#define SIZE 10
+</span></span></span><span class=line><span class=cl><span class=cp></span>
+</span></span><span class=line><span class=cl><span class=k>using</span> <span class=k>namespace</span> <span class=n>std</span><span class=p>;</span>
+</span></span><span class=line><span class=cl> 
+</span></span><span class=line><span class=cl><span class=kt>int</span> <span class=nf>main</span><span class=p>()</span> 
+</span></span><span class=line><span class=cl><span class=p>{</span>
+</span></span><span class=line><span class=cl>   <span class=cp>#ifdef DEBUG
+</span></span></span><span class=line><span class=cl><span class=cp></span>      <span class=n>cout</span> <span class=o>&lt;&lt;</span> <span class=s>&#34;DEBUG MODE is On.&#34;</span> <span class=o>&lt;&lt;</span> <span class=n>endl</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>   <span class=cp>#else
+</span></span></span><span class=line><span class=cl><span class=cp></span>      <span class=n>cout</span> <span class=o>&lt;&lt;</span> <span class=s>&#34;Your Majesty, my Lord.&#34;</span> <span class=o>&lt;&lt;</span> <span class=n>endl</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>   <span class=cp>#endif   
+</span></span></span><span class=line><span class=cl><span class=cp></span>
+</span></span><span class=line><span class=cl>   <span class=k>if</span><span class=p>(</span><span class=n>size</span><span class=o>&gt;</span><span class=mi>5</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>   <span class=p>{</span>
+</span></span><span class=line><span class=cl>       <span class=n>cout</span> <span class=o>&lt;&lt;</span> <span class=n>size</span> <span class=o>&lt;&lt;</span> <span class=n>endl</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>   <span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>   <span class=k>return</span> <span class=mi>0</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></div><h2 id=preprocess-預處理>Preprocess 預處理</h2><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>g++ -E myLord.cpp -o myLord.i
+</span></span></code></pre></div><p>負責處理編譯之前的工作，原則上就是字串代換的過程，大致分為三個：</p><ol><li><p>引入</p><pre tabindex=0><code>#include &lt;iostream&gt;
+</code></pre><p>以 <strong>#include</strong> 開頭的明令會告訴預處理器讀取其他 .h 檔案的內容。</p></li><li><p>處理條件編譯</p><pre tabindex=0><code>#define DEBUG
+</code></pre><p>以 #define、#ifdef、#ifndef、#if、#else、#endif 等等方式設計條件判斷，阻止某些部分的程式碼執行。</p></li></ol><div class="details admonition tip open"><div class="details-summary admonition-title"><i class="icon fas fa-lightbulb fa-fw"></i>#ifndef<i class="details-icon fas fa-angle-right fa-fw"></i></div><div class=details-content><div class=admonition-content><p>通常我們新增一個標頭檔案 <code>.h</code> 時，會加上 guard：</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-H data-lang=H><span class=line><span class=cl><span class=cp>#ifndef SAMPLE_H
+</span></span></span><span class=line><span class=cl><span class=cp>#define SAMPLE_H
+</span></span></span><span class=line><span class=cl><span class=cp></span>
+</span></span><span class=line><span class=cl><span class=p>...</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=cp>#endif  </span><span class=cm>/* SAMPLE_H */</span><span class=cp>
+</span></span></span></code></pre></div><p>但若是原始檔中出現兩個 <code>SAMPLE_H</code> 的話，會造成巨集名稱衝突，加上</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-h data-lang=h><span class=line><span class=cl><span class=cp>#pragma once
+</span></span></span></code></pre></div><p>有相同效果，卻不會再產生衝突。</p></div></div></div><ol start=3><li><p>將 macro 代換成程式碼片段 (code snippet)</p><pre tabindex=0><code>#define SIZE 10
+</code></pre><p>或是走火入魔一點</p><pre tabindex=0><code>#define MAX(a, b) ((a) &gt; (b) ? (a) : (b))
+</code></pre><p>對了，記得 macro 要把「所有」變數一一括起來，以免發生奇怪的錯誤。</p><p>另外，還有一些是和程式相關的 macro：</p><ul><li><code>__LINE__</code>：目前在程式中的行數</li><li><code>__FILE__</code>：檔案名稱</li><li><code>__DATE__</code>：(前置處理器)執行的日期</li><li><code>__TIME__</code>：(前置處理器)執行的時間</li></ul><div class=highlight><pre tabindex=0 class=chroma><code class=language-cpp data-lang=cpp><span class=line><span class=cl><span class=n>cout</span> <span class=o>&lt;&lt;</span> <span class=n>endl</span> <span class=o>&lt;&lt;</span> <span class=n>__FILE__</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=n>cout</span> <span class=o>&lt;&lt;</span> <span class=n>endl</span> <span class=o>&lt;&lt;</span> <span class=n>__LINE__</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=n>cout</span> <span class=o>&lt;&lt;</span> <span class=n>endl</span> <span class=o>&lt;&lt;</span> <span class=n>__DATE__</span> <span class=o>&lt;&lt;</span> <span class=s>&#34; &#34;</span> <span class=o>&lt;&lt;</span> <span class=n>__TIME__</span><span class=p>;</span>
+</span></span></code></pre></div><pre tabindex=0><code>D:\Project\find\main.cpp
 61
 Feb  18 2019 21:58:20
-</code></pre></li>
-</ol>
-<figure><a class="lightgallery" href="/images/compile_my_cpp_with_g&#43;&#43;_3/myLord.i.png" title="myLord.i" data-thumbnail="/images/compile_my_cpp_with_g&#43;&#43;_3/myLord.i.png" data-sub-html="<h2>myLord.i 檔的內容大部分都是環境設定變數和函式庫路徑</h2>">
-        <img
-            class="lazyload"
-            src="/svg/loading.min.svg"
-            data-src="/images/compile_my_cpp_with_g&#43;&#43;_3/myLord.i.png"
-            data-srcset="/images/compile_my_cpp_with_g&#43;&#43;_3/myLord.i.png, /images/compile_my_cpp_with_g&#43;&#43;_3/myLord.i.png 1.5x, /images/compile_my_cpp_with_g&#43;&#43;_3/myLord.i.png 2x"
-            data-sizes="auto"
-            alt="myLord.i" height="200" />
-    </a><figcaption class="image-caption"><code>myLord.i</code> 檔的內容大部分都是環境設定變數和函式庫路徑</figcaption>
-    </figure>
-<h2 id="compile-編譯">Compile 編譯</h2>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">g++ -S myLord.i
-</code></pre></div><p>編譯器將 <code>.i</code> 檔翻譯成 <code>.s</code> 檔，<code>.s</code> 檔包含完整的低階的組合語言程式，組合語言的優點在於不同高階語言能夠經由不同編譯器得到<strong>相同</strong>的輸出<!-- raw HTML omitted --><strong>組合語言</strong><sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup><!-- raw HTML omitted -->，例如：C 和 Fortran 都會被編譯成組合語言。</p>
-<p>這個時候，編譯器也會幫我們檢查語法上的錯誤！</p>
-<figure><a class="lightgallery" href="/images/compile_my_cpp_with_g&#43;&#43;_3/myLord.s.png" title="myLord.s" data-thumbnail="/images/compile_my_cpp_with_g&#43;&#43;_3/myLord.s.png" data-sub-html="<h2>myLord.s 檔中， _main: 後每個句子都代表一條低階機器語言指令</h2>">
-        <img
-            class="lazyload"
-            src="/svg/loading.min.svg"
-            data-src="/images/compile_my_cpp_with_g&#43;&#43;_3/myLord.s.png"
-            data-srcset="/images/compile_my_cpp_with_g&#43;&#43;_3/myLord.s.png, /images/compile_my_cpp_with_g&#43;&#43;_3/myLord.s.png 1.5x, /images/compile_my_cpp_with_g&#43;&#43;_3/myLord.s.png 2x"
-            data-sizes="auto"
-            alt="myLord.s" height="200" />
-    </a><figcaption class="image-caption"><code>myLord.s</code> 檔中， _main: 後每個句子都代表一條低階機器語言指令</figcaption>
-    </figure>
-<h2 id="assemble-組譯">Assemble 組譯</h2>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">g++ -c myLord.s myLord.o
-</code></pre></div><p>再來，組譯器會把 <code>myLord.s</code> 翻譯成機器語言，把指令打包成一個 relocatable object program 格式，並將結果保存在 <code>myLord.o</code> 中。</p>
-<p><code>myLord.o</code> 是一個二進位文件，無法在文字編輯器中打開。</p>
-<h2 id="link-連結">Link 連結</h2>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 只有單一檔案</span>
-g++ -o myLord myLord.o
-
-<span class="c1"># 有複數檔案</span>
-g++ -o myLord myLord.o a.o b.o c.o d.o e.o
-</code></pre></div><p>在 <code>myLord.cpp</code> 中，我們使用了 <code>cout</code> 函數，而這個函數存放在 <code>iostream.o</code> 這個已經預先編譯好的文件中，而這個文件必須合併到 <code>myLord.o</code> 中，我們才能順利的印出文字，這就是 Linker 的工作。</p>
-<p><code>myLord</code> 執行檔運作時，<code>iostream.o</code> 會被 load 到記憶體中，由系統執行。</p>
-<div class="mermaid" id="id-2"></div>
-<h2 id="reference">Reference</h2>
-<ol>
-<li><a href="https://opensourcedoc.com/c-programming/preprocessor/" target="_blank" rel="noopener noreffer">https://opensourcedoc.com/c-programming/preprocessor/</a></li>
-<li><a href="http://blog.udn.com/chungchia/3327025" target="_blank" rel="noopener noreffer">http://blog.udn.com/chungchia/3327025</a></li>
-</ol>
-<section class="footnotes" role="doc-endnotes">
-<hr>
-<ol>
-<li id="fn:1" role="doc-endnote">
-<p>機器語言 <a href="https://en.wikipedia.org/wiki/Machine_code" target="_blank" rel="noopener noreffer">wiki</a>&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
-</li>
-<li id="fn:2" role="doc-endnote">
-<p>組合語言 <a href="https://iter01.com/547102.html" target="_blank" rel="noopener noreffer">組合語言零基礎入門</a>&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
-</li>
-</ol>
-</section>
-</div><div class="post-footer" id="post-footer">
-    <div class="post-info">
-        <div class="post-info-line">
-            <div class="post-info-mod">
-                <span>Updated on 2019-02-18</span>
-            </div>
-            <div class="post-info-license"></div>
-        </div>
-        <div class="post-info-line">
-            <div class="post-info-md"></div>
-            <div class="post-info-share">
-                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://eyzim.github.io/posts/cpp/compile_my_cpp_with_g&#43;&#43;_3/" data-title="不靠 IDE 自己編譯 C&#43;&#43; (3) - 翻譯課" data-hashtags="MinGW,windows 10,compile,c&#43;&#43;"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://eyzim.github.io/posts/cpp/compile_my_cpp_with_g&#43;&#43;_3/" data-hashtag="MinGW"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://eyzim.github.io/posts/cpp/compile_my_cpp_with_g&#43;&#43;_3/" data-title="不靠 IDE 自己編譯 C&#43;&#43; (3) - 翻譯課"><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="javascript:void(0);" title="Share on Blogger" data-sharer="blogger" data-url="https://eyzim.github.io/posts/cpp/compile_my_cpp_with_g&#43;&#43;_3/" data-title="不靠 IDE 自己編譯 C&#43;&#43; (3) - 翻譯課" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="Share on Evernote" data-sharer="evernote" data-url="https://eyzim.github.io/posts/cpp/compile_my_cpp_with_g&#43;&#43;_3/" data-title="不靠 IDE 自己編譯 C&#43;&#43; (3) - 翻譯課"><i class="fab fa-evernote fa-fw"></i></a><a href="javascript:void(0);" title="Share on Trello" data-sharer="trello" data-url="https://eyzim.github.io/posts/cpp/compile_my_cpp_with_g&#43;&#43;_3/" data-title="不靠 IDE 自己編譯 C&#43;&#43; (3) - 翻譯課" data-description=""><i class="fab fa-trello fa-fw"></i></a></span>
-            </div>
-        </div>
-    </div>
-
-    <div class="post-info-more">
-        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/mingw/">MinGW</a>,&nbsp;<a href="/tags/windows-10/">windows 10</a>,&nbsp;<a href="/tags/compile/">compile</a>,&nbsp;<a href="/tags/c&#43;&#43;/">c&#43;&#43;</a></section>
-        <section>
-            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
-        </section>
-    </div>
-
-    <div class="post-nav"><a href="/posts/cpp/compile_my_cpp_with_g&#43;&#43;_2/" class="prev" rel="prev" title="不靠 IDE 自己編譯 C&#43;&#43; (2) - 編譯初心者"><i class="fas fa-angle-left fa-fw"></i>不靠 IDE 自己編譯 C&#43;&#43; (2) - 編譯初心者</a>
-            <a href="/posts/graphics/graphics-load-obj-mtl/" class="next" rel="next" title="【圖學】讀取 .obj 和 .mtl 檔案">【圖學】讀取 .obj 和 .mtl 檔案<i class="fas fa-angle-right fa-fw"></i></a></div>
-</div>
-<div id="comments"><div id="disqus_thread" class="comment"></div><noscript>
-                Please enable JavaScript to view the comments powered by <a href="https://disqus.com/?ref_noscript">Disqus</a>.
-            </noscript></div></article></div>
-            </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.92.1">Hugo</a> | Theme - <a href="" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"> LoveIt</a>
-                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2014 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">elvire</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
-        </div>
-    </footer></div>
-
-        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
-                <i class="fas fa-arrow-up fa-fw"></i>
-            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
-                <i class="fas fa-comment fa-fw"></i>
-            </a>
-        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><link rel="stylesheet" href="/lib/mermaid/mermaid.min.css"><script type="text/javascript" src="https://eyzim.disqus.com/embed.js" defer></script><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/twemoji/twemoji.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript" src="/lib/mermaid/mermaid.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"data":{"id-1":"graph LR;\n    A[原始檔] --\u003e|myLord.cpp| B(Preprocessor\u003cbr\u003e預處理器)\n    B --\u003e|myLord.i| C(Compiler\u003cbr\u003e編譯器)\n    C --\u003e|myLord.s| D(Assembler\u003cbr\u003e組譯器)\n    D --\u003e|myLord.o| E(Linker\u003cbr\u003e連結器)\n    E --\u003e|myLord.exe| F[執行檔]\n    A --\u003e F","id-2":"classDiagram\n    原始檔 --\u003e 執行檔\n    原始檔 --\u003e Preprocessor 預處理器: myLord.cpp\n    Preprocessor 預處理器 --\u003e Compiler 編譯器: myLord.i\n    Compiler 編譯器 --\u003e Assembler 組譯器: myLord.s\n    Assembler 組譯器 --\u003e Linker 連結器 : myLord.o\n    Linker 連結器 --\u003e 執行檔: myLord.exe"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":50,"type":"lunr"},"twemoji":true};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
-</html>
+</code></pre></li></ol><figure><a class=lightgallery href=/images/compile_my_cpp_with_g++_3/myLord.i.png title=myLord.i data-thumbnail=/images/compile_my_cpp_with_g++_3/myLord.i.png data-sub-html="<h2>myLord.i 檔的內容大部分都是環境設定變數和函式庫路徑</h2>"><img class=lazyload src=/svg/loading.min.svg data-src=/images/compile_my_cpp_with_g++_3/myLord.i.png data-srcset="/images/compile_my_cpp_with_g++_3/myLord.i.png, /images/compile_my_cpp_with_g++_3/myLord.i.png 1.5x, /images/compile_my_cpp_with_g++_3/myLord.i.png 2x" data-sizes=auto alt=myLord.i height=200></a><figcaption class=image-caption><code>myLord.i</code> 檔的內容大部分都是環境設定變數和函式庫路徑</figcaption></figure><h2 id=compile-編譯>Compile 編譯</h2><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>g++ -S myLord.i
+</span></span></code></pre></div><p>編譯器將 <code>.i</code> 檔翻譯成 <code>.s</code> 檔，<code>.s</code> 檔包含完整的低階的組合語言程式，組合語言的優點在於不同高階語言能夠經由不同編譯器得到<strong>相同</strong>的輸出<strong>組合語言</strong><sup id=fnref:2><a href=#fn:2 class=footnote-ref role=doc-noteref>2</a></sup>，例如：C 和 Fortran 都會被編譯成組合語言。</p><p>這個時候，編譯器也會幫我們檢查語法上的錯誤！</p><figure><a class=lightgallery href=/images/compile_my_cpp_with_g++_3/myLord.s.png title=myLord.s data-thumbnail=/images/compile_my_cpp_with_g++_3/myLord.s.png data-sub-html="<h2>myLord.s 檔中， _main: 後每個句子都代表一條低階機器語言指令</h2>"><img class=lazyload src=/svg/loading.min.svg data-src=/images/compile_my_cpp_with_g++_3/myLord.s.png data-srcset="/images/compile_my_cpp_with_g++_3/myLord.s.png, /images/compile_my_cpp_with_g++_3/myLord.s.png 1.5x, /images/compile_my_cpp_with_g++_3/myLord.s.png 2x" data-sizes=auto alt=myLord.s height=200></a><figcaption class=image-caption><code>myLord.s</code> 檔中， _main: 後每個句子都代表一條低階機器語言指令</figcaption></figure><h2 id=assemble-組譯>Assemble 組譯</h2><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>g++ -c myLord.s myLord.o
+</span></span></code></pre></div><p>再來，組譯器會把 <code>myLord.s</code> 翻譯成機器語言，把指令打包成一個 relocatable object program 格式，並將結果保存在 <code>myLord.o</code> 中。</p><p><code>myLord.o</code> 是一個二進位文件，無法在文字編輯器中打開。</p><h2 id=link-連結>Link 連結</h2><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># 只有單一檔案</span>
+</span></span><span class=line><span class=cl>g++ -o myLord myLord.o
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 有複數檔案</span>
+</span></span><span class=line><span class=cl>g++ -o myLord myLord.o a.o b.o c.o d.o e.o
+</span></span></code></pre></div><p>在 <code>myLord.cpp</code> 中，我們使用了 <code>cout</code> 函數，而這個函數存放在 <code>iostream.o</code> 這個已經預先編譯好的文件中，而這個文件必須合併到 <code>myLord.o</code> 中，我們才能順利的印出文字，這就是 Linker 的工作。</p><p><code>myLord</code> 執行檔運作時，<code>iostream.o</code> 會被 load 到記憶體中，由系統執行。</p><div class=mermaid id=id-2></div><h2 id=reference>Reference</h2><ol><li><a href=https://opensourcedoc.com/c-programming/preprocessor/ target=_blank rel="noopener noreffer">https://opensourcedoc.com/c-programming/preprocessor/</a></li><li><a href=http://blog.udn.com/chungchia/3327025 target=_blank rel="noopener noreffer">http://blog.udn.com/chungchia/3327025</a></li></ol><div class=footnotes role=doc-endnotes><hr><ol><li id=fn:1><p>機器語言 <a href=https://en.wikipedia.org/wiki/Machine_code target=_blank rel="noopener noreffer">wiki</a>&#160;<a href=#fnref:1 class=footnote-backref role=doc-backlink>&#8617;&#xfe0e;</a></p></li><li id=fn:2><p>組合語言 <a href=https://iter01.com/547102.html target=_blank rel="noopener noreffer">組合語言零基礎入門</a>&#160;<a href=#fnref:2 class=footnote-backref role=doc-backlink>&#8617;&#xfe0e;</a></p></li></ol></div></div><div class=post-footer id=post-footer><div class=post-info><div class=post-info-line><div class=post-info-mod><span>Updated on 2019-02-18</span></div><div class=post-info-license></div></div><div class=post-info-line><div class=post-info-md></div><div class=post-info-share><span><a href=javascript:void(0); title="Share on Twitter" data-sharer=twitter data-url=https://eyzim.github.io/posts/cpp/compile_my_cpp_with_g++_3/ data-title="不靠 IDE 自己編譯 C++ (3) - 翻譯課" data-hashtags="MinGW,windows 10,compile,c++"><i class="fab fa-twitter fa-fw"></i></a><a href=javascript:void(0); title="Share on Facebook" data-sharer=facebook data-url=https://eyzim.github.io/posts/cpp/compile_my_cpp_with_g++_3/ data-hashtag=MinGW><i class="fab fa-facebook-square fa-fw"></i></a><a href=javascript:void(0); title="Share on Line" data-sharer=line data-url=https://eyzim.github.io/posts/cpp/compile_my_cpp_with_g++_3/ data-title="不靠 IDE 自己編譯 C++ (3) - 翻譯課"><i data-svg-src=/lib/simple-icons/icons/line.min.svg></i></a><a href=javascript:void(0); title="Share on Blogger" data-sharer=blogger data-url=https://eyzim.github.io/posts/cpp/compile_my_cpp_with_g++_3/ data-title="不靠 IDE 自己編譯 C++ (3) - 翻譯課" data-description><i class="fab fa-blogger fa-fw"></i></a><a href=javascript:void(0); title="Share on Evernote" data-sharer=evernote data-url=https://eyzim.github.io/posts/cpp/compile_my_cpp_with_g++_3/ data-title="不靠 IDE 自己編譯 C++ (3) - 翻譯課"><i class="fab fa-evernote fa-fw"></i></a><a href=javascript:void(0); title="Share on Trello" data-sharer=trello data-url=https://eyzim.github.io/posts/cpp/compile_my_cpp_with_g++_3/ data-title="不靠 IDE 自己編譯 C++ (3) - 翻譯課" data-description><i class="fab fa-trello fa-fw"></i></a></span></div></div></div><div class=post-info-more><section class=post-tags><i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/mingw/>MinGW</a>,&nbsp;<a href=/tags/windows-10/>windows 10</a>,&nbsp;<a href=/tags/compile/>compile</a>,&nbsp;<a href=/tags/c++/>c++</a></section><section><span><a href=javascript:void(0); onclick=window.history.back()>Back</a></span>&nbsp;|&nbsp;<span><a href=/>Home</a></span></section></div><div class=post-nav><a href=/posts/cpp/compile_my_cpp_with_g++_2/ class=prev rel=prev title="不靠 IDE 自己編譯 C++ (2) - 編譯初心者"><i class="fas fa-angle-left fa-fw"></i>不靠 IDE 自己編譯 C++ (2) - 編譯初心者</a>
+<a href=/posts/graphics/graphics-load-obj-mtl/ class=next rel=next title="【圖學】讀取 .obj 和 .mtl 檔案">【圖學】讀取 .obj 和 .mtl 檔案<i class="fas fa-angle-right fa-fw"></i></a></div></div><div id=comments><div id=disqus_thread class=comment></div><noscript>Please enable JavaScript to view the comments powered by <a href=https://disqus.com/?ref_noscript>Disqus</a>.</noscript></div></article></div></main><footer class=footer><div class=footer-container><div class=footer-line>Powered by <a href=https://gohugo.io/ target=_blank rel="noopener noreffer" title="Hugo 0.110.0">Hugo</a> | Theme - <a href=https://github.com/dillonzq/LoveIt target=_blank rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a></div><div class=footer-line><i class="far fa-copyright fa-fw"></i><span itemprop=copyrightYear>2014 - 2023</span><span class=author itemprop=copyrightHolder>&nbsp;<a href=/ target=_blank>elvire</a></span>&nbsp;|&nbsp;<span class=license><a rel="license external nofollow noopener noreffer" href=https://creativecommons.org/licenses/by-nc/4.0/ target=_blank>CC BY-NC 4.0</a></span></div></div></footer></div><div id=fixed-buttons><a href=# id=back-to-top class=fixed-button title="Back to Top"><i class="fas fa-arrow-up fa-fw"></i>
+</a><a href=# id=view-comments class=fixed-button title="View Comments"><i class="fas fa-comment fa-fw"></i></a></div><link rel=stylesheet href=/lib/katex/katex.min.css><link rel=stylesheet href=/lib/katex/copy-tex.min.css><link rel=stylesheet href=/lib/mermaid/mermaid.min.css><script type=text/javascript src=https://eyzim.disqus.com/embed.js defer></script><script type=text/javascript src=/lib/smooth-scroll/smooth-scroll.min.js></script><script type=text/javascript src=/lib/autocomplete/autocomplete.min.js></script><script type=text/javascript src=/lib/lunr/lunr.min.js></script><script type=text/javascript src=/lib/lazysizes/lazysizes.min.js></script><script type=text/javascript src=/lib/twemoji/twemoji.min.js></script><script type=text/javascript src=/lib/clipboard/clipboard.min.js></script><script type=text/javascript src=/lib/sharer/sharer.min.js></script><script type=text/javascript src=/lib/katex/katex.min.js></script><script type=text/javascript src=/lib/katex/auto-render.min.js></script><script type=text/javascript src=/lib/katex/copy-tex.min.js></script><script type=text/javascript src=/lib/katex/mhchem.min.js></script><script type=text/javascript src=/lib/mermaid/mermaid.min.js></script><script type=text/javascript>window.config={code:{copyTitle:"Copy to clipboard",maxShownLines:50},comment:{},data:{"id-1":`graph LR;
+    A[原始檔] --\u003e|myLord.cpp| B(Preprocessor\u003cbr\u003e預處理器)
+    B --\u003e|myLord.i| C(Compiler\u003cbr\u003e編譯器)
+    C --\u003e|myLord.s| D(Assembler\u003cbr\u003e組譯器)
+    D --\u003e|myLord.o| E(Linker\u003cbr\u003e連結器)
+    E --\u003e|myLord.exe| F[執行檔]
+    A --\u003e F`,"id-2":`classDiagram
+    原始檔 --\u003e 執行檔
+    原始檔 --\u003e Preprocessor 預處理器: myLord.cpp
+    Preprocessor 預處理器 --\u003e Compiler 編譯器: myLord.i
+    Compiler 編譯器 --\u003e Assembler 組譯器: myLord.s
+    Assembler 組譯器 --\u003e Linker 連結器 : myLord.o
+    Linker 連結器 --\u003e 執行檔: myLord.exe`},math:{delimiters:[{display:!0,left:"$$",right:"$$"},{display:!0,left:"\\[",right:"\\]"},{display:!1,left:"$",right:"$"},{display:!1,left:"\\(",right:"\\)"}],strict:!1},search:{highlightTag:"em",lunrIndexURL:"/index.json",maxResultLength:10,noResultsFound:"No results found",snippetLength:50,type:"lunr"},twemoji:!0}</script><script type=text/javascript src=/js/theme.min.js></script></body></html>

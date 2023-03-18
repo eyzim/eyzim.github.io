@@ -1,14 +1,1 @@
-<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
-    <channel>
-        <title>unordered map - Tag - EVIEEE</title>
-        <link>https://eyzim.github.io/tags/unordered-map/</link>
-        <description>unordered map - Tag - EVIEEE</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-TW</language><lastBuildDate>Mon, 14 Jul 2014 00:07:47 &#43;0800</lastBuildDate><atom:link href="https://eyzim.github.io/tags/unordered-map/" rel="self" type="application/rss+xml" /><item>
-    <title>LeetCode 448. Find All Numbers Disappeared in an Array 解題紀錄</title>
-    <link>https://eyzim.github.io/posts/leetcode/leetcode_448_find_all_numbers_disappeared_in_an_array/</link>
-    <pubDate>Mon, 14 Jul 2014 00:07:47 &#43;0800</pubDate>
-    <author>Author</author>
-    <guid>https://eyzim.github.io/posts/leetcode/leetcode_448_find_all_numbers_disappeared_in_an_array/</guid>
-    <description><![CDATA[檢查一個 array 中漏掉的數字。Return an array of all the integers in the range <code>[1, n]</code> that do not appear in nums.]]></description>
-</item></channel>
-</rss>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>unordered map - Tag - EVIEEE</title><link>https://eyzim.github.io/tags/unordered-map/</link><description>unordered map - Tag - EVIEEE</description><generator>Hugo -- gohugo.io</generator><language>zh-TW</language><lastBuildDate>Mon, 14 Jul 2014 00:07:47 +0800</lastBuildDate><atom:link href="https://eyzim.github.io/tags/unordered-map/" rel="self" type="application/rss+xml"/><item><title>LeetCode 448. Find All Numbers Disappeared in an Array 解題紀錄</title><link>https://eyzim.github.io/posts/leetcode/leetcode_448_find_all_numbers_disappeared_in_an_array/</link><pubDate>Mon, 14 Jul 2014 00:07:47 +0800</pubDate><author>Author</author><guid>https://eyzim.github.io/posts/leetcode/leetcode_448_find_all_numbers_disappeared_in_an_array/</guid><description>檢查一個 array 中漏掉的數字。Return an array of all the integers in the range &lt;code>[1, n]&lt;/code> that do not appear in nums.</description></item></channel></rss>

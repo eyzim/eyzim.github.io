@@ -1,14 +1,1 @@
-<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
-    <channel>
-        <title>other - Category - EVIEEE</title>
-        <link>https://eyzim.github.io/categories/other/</link>
-        <description>other - Category - EVIEEE</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-TW</language><lastBuildDate>Mon, 25 Jan 2016 15:19:33 &#43;0800</lastBuildDate><atom:link href="https://eyzim.github.io/categories/other/" rel="self" type="application/rss+xml" /><item>
-    <title>【生活】清潔成分整理</title>
-    <link>https://eyzim.github.io/posts/cleaning_my_room_keep_calm/</link>
-    <pubDate>Mon, 25 Jan 2016 15:19:33 &#43;0800</pubDate>
-    <author>Author</author>
-    <guid>https://eyzim.github.io/posts/cleaning_my_room_keep_calm/</guid>
-    <description><![CDATA[清潔成分整理]]></description>
-</item></channel>
-</rss>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>other - Category - EVIEEE</title><link>https://eyzim.github.io/categories/other/</link><description>other - Category - EVIEEE</description><generator>Hugo -- gohugo.io</generator><language>zh-TW</language><lastBuildDate>Mon, 25 Jan 2016 15:19:33 +0800</lastBuildDate><atom:link href="https://eyzim.github.io/categories/other/" rel="self" type="application/rss+xml"/><item><title>【生活】清潔成分整理</title><link>https://eyzim.github.io/posts/cleaning_my_room_keep_calm/</link><pubDate>Mon, 25 Jan 2016 15:19:33 +0800</pubDate><author>Author</author><guid>https://eyzim.github.io/posts/cleaning_my_room_keep_calm/</guid><description>清潔成分整理</description></item></channel></rss>
