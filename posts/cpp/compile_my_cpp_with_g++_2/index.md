@@ -9,23 +9,24 @@
 #include <iostream>
 
 using namespace std;
- 
-int main() 
+
+int main()
 {
    cout << "Your Majesty, my Lord." << endl;
 
    return 0;
 }
 ```
+
 ## 1
+
 接著，打開 cmd，進入剛才存放 myLord.cpp 的資料夾
- 
+
 ```bash
 g++ myLord.cpp
 ```
 
 可以看到新增了一個 `a.exe` 檔案
-
 
 ![](/images/compile_my_cpp_with_g++_2/a.exe_myLord.cpp.png)
 
@@ -34,7 +35,9 @@ g++ myLord.cpp
 ```bash
 a
 ```
+
 馬上會印出
+
 ```
 Your Majesty, my Lord.
 ```
@@ -44,7 +47,7 @@ Your Majesty, my Lord.
 若是我們希望產生的執行檔名稱能夠變成喜歡的名稱，在前面加上 **-o** 和命名即可。
 
 ```bash
-g++ -o myLord.exe myLord.cpp 
+g++ -o myLord.exe myLord.cpp
 ```
 
 ![](/images/compile_my_cpp_with_g++_2/myLord.exe_myLord.cpp.png)
@@ -52,7 +55,9 @@ g++ -o myLord.exe myLord.cpp
 ```bash
 myLord
 ```
+
 也會印出
+
 ```
 Your Majesty, my Lord.
 ```
@@ -79,4 +84,6 @@ g++ -o servants.exe gardeners.o laundress.o butler.o housemaids.o
 ```
 
 ## Reference
+
 1. https://www3.ntu.edu.sg/home/ehchua/programming/cpp/gcc_make.html
+

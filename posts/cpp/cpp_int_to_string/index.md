@@ -15,8 +15,8 @@ using namespace std;
 int main()
 {
   string num = "1234";
-  
-  cout << 
+
+  cout <<
   "Type of num is: " << typeid(num).name() << endl <<
   "Type of num[0] is: " << typeid(num[0]).name() << endl <<
   "Type of num[0]-'0' is: " << typeid(num[0]-'0').name() << endl <<
@@ -24,7 +24,7 @@ int main()
 ```
 
 輸出為：
-    
+
 ```
 Type of num is: Ss          -> string
 Type of num[0] is: c        -> char
@@ -35,8 +35,7 @@ Type of num[0]-'0' is: i    -> integer
 
 `string` ➡ `char` ➡ `int`
 
-`num`    ➡ `num[0]` ➡ `num[0]-'0'`
-
+`num` ➡ `num[0]` ➡ `num[0]-'0'`
 
 # int to string
 
@@ -52,10 +51,10 @@ using namespace std;
 int main()
 {
     string num = "1234";
-  
+
     int intNum = num[0]-'0';
-  
-    cout << 
+
+    cout <<
     "Type of intNum is: " << typeid(intNum).name() << endl <<
     "Type of intNum+'0' is: " << typeid(intNum+'0').name() << endl <<
     "Type of char(intNum) is: " << typeid(char(intNum)).name() << endl <<
@@ -63,6 +62,7 @@ int main()
     "Type of to_string(intNum) is: " << typeid(to_string(intNum)).name() << endl;
 }
 ```
+
 ```
 Type of intNum is: i
 Type of intNum+'0' is: i
@@ -85,19 +85,19 @@ using namespace std;
 int main()
 {
     string num = "1234";
-  
+
     num += 1;
     cout << num << endl;
 
     num += 2+'0';
     cout << num << endl;
-    
+
     num += char(3);
     cout << num << endl;
-    
+
     num += char(4)+'0';
     cout << num << endl;
-    
+
     num += to_string(5);
     cout << num << endl;
 }
@@ -113,6 +113,7 @@ int main()
 
 在 `int` 或 `char` 後面加上 `+'0'` 即可串上 `string`，當然最保險且最簡單的作法當然是強轉型成 `to_string` 啦。
 
-
 ## Reference
+
 1. https://www.delftstack.com/zh-tw/howto/cpp/how-to-convert-int-to-string-in-cpp/
+

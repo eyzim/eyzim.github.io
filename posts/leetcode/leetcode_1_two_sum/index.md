@@ -1,9 +1,7 @@
 # LeetCode 1. Two Sum 解題紀錄
 
 
-
 ## [題目](https://leetcode.com/problems/two-sum/)
-
 
 {{< admonition type=quote title="Problem">}}
 
@@ -13,21 +11,24 @@ You may assume that each input would have **exactly one solution**, and you may 
 
 You can return the answer in any order.
 
- 
-
 **Example 1:**
+
 ```
 Input: nums = [2,7,11,15], target = 9
 Output: [0,1]
 ```
+
 Explanation: Because nums[0] + nums[1] == 9, we return [0, 1].
 
 **Example 2:**
+
 ```
 Input: nums = [3,2,4], target = 6
 Output: [1,2]
 ```
+
 **Example 3:**
+
 ```
 Input: nums = [3,3], target = 6
 Output: [0,1]
@@ -35,16 +36,14 @@ Output: [0,1]
 
 **Constraints:**
 
-- 2 $\leq$ `nums.length` $\leq 10^4$
-- $-10^9 \leq$ `nums[i]` $\leq 10^9$
-- $-10^9 \leq$ `target` $\leq 10^9$
-- **Only one valid answer exists.**
- 
+-   2 $\leq$ `nums.length` $\leq 10^4$
+-   $-10^9 \leq$ `nums[i]` $\leq 10^9$
+-   $-10^9 \leq$ `target` $\leq 10^9$
+-   **Only one valid answer exists.**
 
 **Follow-up:** Can you come up with an algorithm that is less than $\mathcal{O}(n^2)$ time complexity?
 
 {{< /admonition >}}
-
 
 ## 想法
 
@@ -58,7 +57,7 @@ Output: [0,1]
 
 using namespace std;
 
-vector<int> twoSum(vector<int>& nums, int target) 
+vector<int> twoSum(vector<int>& nums, int target)
 {
 
     return {};
@@ -85,7 +84,7 @@ int main()
 
 ---
 
-在 hash table 內尋找想要的 9(target) -2 (目前數字) 為欲尋找的數字 7，若有找到的話，將這個數字傳回vector 作答；若沒有找到，則將目前數字 2 加入 hash 中，供後人搜尋。
+在 hash table 內尋找想要的 9(target) -2 (目前數字) 為欲尋找的數字 7，若有找到的話，將這個數字傳回 vector 作答；若沒有找到，則將目前數字 2 加入 hash 中，供後人搜尋。
 
 ## 解法
 
@@ -93,9 +92,9 @@ int main()
 
 全部的數字全部找過一輪 ❌(TLE)
 
-Time complexity:  $\mathcal{O}(n^2)$.
+Time complexity: $\mathcal{O}(n^2)$.
 
-Space complexity:  $\mathcal{O}(1)$.
+Space complexity: $\mathcal{O}(1)$.
 
 ### 解法二：`unordered_map`
 
@@ -103,11 +102,11 @@ Space complexity:  $\mathcal{O}(1)$.
 class Solution {
 public:
     vector<int> twoSum(vector<int>& nums, int target) {
-        
+
         unordered_map<int, int> mp;
-        
+
         for(auto i=0; i<nums.size(); i++)
-        {            
+        {
             if(mp.find(target-nums[i]) != mp.end())
             {
                 return {i, mp[target-nums[i]]};
@@ -115,17 +114,17 @@ public:
             else
             {
                 mp[nums[i]] = i;
-            }                   
+            }
         }
-        
+
         return {};
     }
 };
 ```
 
-Time complexity:  $\mathcal{O}(n)$.
+Time complexity: $\mathcal{O}(n)$.
 
-Space complexity:  $\mathcal{O}(1)$.
+Space complexity: $\mathcal{O}(1)$.
 
 ---
 
@@ -139,7 +138,7 @@ Space complexity:  $\mathcal{O}(1)$.
 #include <unordered_map>
 using namespace std;
 
-vector<int> twoSum(vector<int>& nums, int target) 
+vector<int> twoSum(vector<int>& nums, int target)
 {
 
     unordered_map<int, int> mp;
@@ -179,3 +178,4 @@ int main()
     return 0;
 }
 ```
+

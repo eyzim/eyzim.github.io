@@ -1,14 +1,11 @@
 # 【圖學】讀取 .obj 和 .mtl 檔案
 
 
-
 成功 trace 過球、三角形之後，我們想要試著畫出更複雜的圖片，這時候就需要幫程式加入讀取 `.obj` 和 `.mtl` 的功能。
 
 當然，這些都是不用背起來的內容，更有許多 load .obj 的現成工具，這篇的目的在於渲染出奇怪的影像時，能順利肉眼 parse 出一點問題。
 
-
 ## obj 格式
-
 
 obj 檔案使用記事本開啟後，長成下面這副模樣。
 
@@ -31,13 +28,13 @@ f 4//1 1//1 3//1
 
 字母後面接著一串數字，就是這個物件的內容。
 
-| 字母 | 英文全名       |    意義    |
-| ---  | ---           |    ---    |
-|  v   | vertex        | 頂點座標   |
-| vn   | vertex normal | 法向量座標 |
-| vt   | vertex texture| 紋理座標   |
-| f    | surface       | 面         |
-| g    | group         | 群組       |
+| 字母 | 英文全名       | 意義       |
+| ---- | -------------- | ---------- |
+| v    | vertex         | 頂點座標   |
+| vn   | vertex normal  | 法向量座標 |
+| vt   | vertex texture | 紋理座標   |
+| f    | surface        | 面         |
+| g    | group          | 群組       |
 
 ### v 頂點
 
@@ -50,6 +47,7 @@ v -0.5 -0.5 0.0
 {{< / highlight >}}
 
 ### vn 法向量
+
 每個平面圖形都會擁有一個**法向量**，在 obj 檔案中，已經幫我們算好了，待會一一對應即可。
 
 {{< highlight g "linenos=table, linenostart=6" >}}
@@ -74,8 +72,6 @@ f 2//1 3//1 1//1
 
 且這一個三角形的法向量是 **第一個** 法向量 `vn`。
 {{% /admonition %}}
-
-
 
 ## 用 C++ 讀取 obj
 
@@ -214,7 +210,9 @@ for (unsigned i = 0; i < vSurface.size(); i++)
     vTriangle.push_back(triangle);
 }
 ```
+
 試著印出這個 obj 檔案的第一個 triangle 的資料
+
 ```
 triangle data
 vertex 1: (-0.5 -0.5 1)
@@ -226,12 +224,13 @@ normal: (0 -1 0)
 成功！
 
 {{% admonition tip "Hint"%}}
--  windows 10 有內建 3D 檢視器，可以直接打開 obj 檔案
+
+-   windows 10 有內建 3D 檢視器，可以直接打開 obj 檔案
 
 <br>
 
--  眼睛記得要設定為 (0, 0, 0) 才能跟 3D 軟體打開的樣子相同
-{{% /admonition %}}
+-   眼睛記得要設定為 (0, 0, 0) 才能跟 3D 軟體打開的樣子相同
+    {{% /admonition %}}
 
 ---
 
@@ -242,21 +241,21 @@ newmtl Reflection001
   Ns 8.0000
   Ni 2.5000
   d  1.0000
-  illum 2 
+  illum 2
   Ka 0.0000 0.0000 0.0000
   Kd 0.5080 0.5080 0.5080
   Ks 0.2000 0.2000 0.2000
   Ke 0.1000 0.1000 0.1000
 ```
 
-- Ka: 材質的陰影色 `ambient color`
-- Kd: 材質本身的顏色 `diffuse color`
-- Ks: 材質的鏡面光 `specular color`，若設為 `Ks 0.000 0.000 0.000` 則為無反光。
-- Ke: 材質的放射光 `emissive color`，物體自己會發光
-- Ns: 反射係數，範圍從 0 到 1000
-- Ni: 折射值，範圍從 0.001 到 10，若值為 1.0，光線通過時不會偏移。
-- d / Tr: 材質可以是透明的，範圍從 0.0 到 1.0，數值愈低，表示背景越明顯。
-- illum: 光照模型 `illumination`
+-   Ka: 材質的陰影色 `ambient color`
+-   Kd: 材質本身的顏色 `diffuse color`
+-   Ks: 材質的鏡面光 `specular color`，若設為 `Ks 0.000 0.000 0.000` 則為無反光。
+-   Ke: 材質的放射光 `emissive color`，物體自己會發光
+-   Ns: 反射係數，範圍從 0 到 1000
+-   Ni: 折射值，範圍從 0.001 到 10，若值為 1.0，光線通過時不會偏移。
+-   d / Tr: 材質可以是透明的，範圍從 0.0 到 1.0，數值愈低，表示背景越明顯。
+-   illum: 光照模型 `illumination`
 
     0. 色彩開，陰影色關
 
@@ -280,8 +279,9 @@ newmtl Reflection001
 
     10. 投射陰影於不可見表面
 
-
 ## Reference
-1. [pcd，obj，mtl檔案格式解析](https://www.itread01.com/content/1541574853.html)
-2. [(C++\openGL)讀取.obj模型檔](http://jackraken.github.io/2014/07/24/5-opengl-loadOBJ/)
+
+1. [pcd，obj，mtl 檔案格式解析](https://www.itread01.com/content/1541574853.html)
+2. [(C++\openGL)讀取.obj 模型檔](http://jackraken.github.io/2014/07/24/5-opengl-loadOBJ/)
 3. [obj + mtl 格式](https://read01.com/8765Gn.html)
+

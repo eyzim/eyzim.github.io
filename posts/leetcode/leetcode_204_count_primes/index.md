@@ -3,13 +3,12 @@
 
 ## [題目](https://leetcode.com/problems/count-primes/)
 
-
 {{< admonition type=quote title="Problem">}}
 
 Given an integer n, return the number of prime numbers that are strictly less than n.
 
-
 **Example 1:**
+
 ```
 Input: n = 10
 Output: 4
@@ -17,14 +16,15 @@ Output: 4
 
 Explanation: There are 4 prime numbers less than 10, they are 2, 3, 5, 7.
 
-
 **Example 2:**
+
 ```
 Input: n = 0
 Output: 0
 ```
 
 **Example 3:**
+
 ```
 Input: n = 1
 Output: 0
@@ -36,13 +36,12 @@ Output: 0
 
 {{< /admonition >}}
 
-
 ## 想法
-
 
 {{< admonition type=info title="質數">}}
 
 「質數」有兩個定義：
+
 1. 必為大於 1 的**整數**
 2. 只有**兩個因數**，一個是 1、一個是自己
 
@@ -53,15 +52,13 @@ Output: 0
 
 根據以上定義，我們可以簡單寫出一個 isPrime function 來判斷這個數字是否為質數。
 
-
 給出一個數字 n，從 2 到 n-1 依序除除看，若能整除，代表這個數字有除了 1 和 n 以外的因數，也就意味著 n 並非質數。
-
 
 ```cpp
 bool isPrime(int n)
 {
     if(n < 2)   return 0;
-    
+
     // 從 2 到 n-1 依序除除看
     for(auto i=2; i<n; i++)
     {
@@ -74,11 +71,10 @@ bool isPrime(int n)
     return 1;
 }
 ```
-- 1.215 *sec*.
 
+-   1.215 _sec_.
 
 現在執行效率有點差，有哪些數字是一看就知道不是質數的數字呢？
-
 
 4, 6, 8, 10, 12, 14... 那些偶數，一看就知道它們能被 2 整除，可以排除計算，節省一點時間。
 
@@ -90,7 +86,7 @@ bool isPrime(int n)
 bool isPrime(int n)
 {
     if(n < 2)   return 0;
-    
+
     // 若 n=2 則為質數，若為 2 的倍數則否
     if(n%2 == 0)    return n==2;
 
@@ -106,10 +102,10 @@ bool isPrime(int n)
     return 1;
 }
 ```
-- 1.215 *sec*.
+
+-   1.215 _sec_.
 
 好像...沒什麼差別，上面的方法還是依序檢查了 3 到 n-1 ，應該直接在迴圈中跳過 2 才對吧 XD
-
 
 ```cpp
 bool isPrime(int n)
@@ -127,32 +123,26 @@ bool isPrime(int n)
     return 1;
 }
 ```
-- 0.628 *sec*.
+
+-   0.628 _sec_.
 
 現在的方法搜尋了 $\frac{n}{2}$ 次，效能也提升了將近一倍 :kissing_smiling_eyes:
 
-
-小結一下，到目前為止的優化，時間複雜度是 
+小結一下，到目前為止的優化，時間複雜度是
 
 `isPrime` $\mathcal{O}(n)$ $\times$`countPrimes`$ \mathcal{O}(n^2)=$ $\mathcal{O}(n^2)$
-
 
 又以 36 為例，
 
 $36$
 
-
 $= 1 \times 36 = 2 \times 18 = 3 \times 12$
-
 
 $= 4 \times 9 = 6 \times 6 = 9 \times 4$
 
-
 $= 12 \times 3 = 18 \times 2 = 36 \times 1$
 
-
 仔細想想，我們在遇到 6 之後，所有的因數組合全部都和前面相同：最後的 $36 \times 1$ 和第一段 $1 \times 36$ 是重複的，那麼我們只要計算到 $i \leq \sqrt{n}$ 或是 $i \times i \leq n$ 就能停止了，後半部都是一模一樣嘛！
-
 
 ```cpp
 bool isPrime(int n)
@@ -170,13 +160,12 @@ bool isPrime(int n)
     return 1;
 }
 ```
-- 0.007 *sec*.
+
+-   0.007 _sec_.
 
 目前的複雜度是 $\mathcal{O}(n\sqrt{n})$
 
-
 雖然思考了一段時間，但是還是 Time Limit Exceeded :cry:
-
 
 {{< admonition type=info title="break & continue">}}
 
@@ -197,7 +186,7 @@ int main()
         {
             break;
         }
-        
+
         cout << i << ", ";
     }
 
@@ -206,6 +195,7 @@ int main()
     return 0;
 }
 ```
+
 ```
 0, 1, 2, end
 ```
@@ -227,7 +217,7 @@ int main()
         {
             continue;
         }
-        
+
         cout << i << ", ";
     }
 
@@ -243,25 +233,19 @@ int main()
 
 {{< /admonition >}}
 
-
-
 ## 解法
 
 ### 解法一：Sieve of Eratosthenes 法
 
 1. 預設 1 ~ n-1 所有數字都是質數。
 
-
 2. 第一輪找到 2，2 是質數，但 2 的倍數則不是質數，所以我們可以剔除 4, 6, 8, 10, 12,...
-
 
 3. 第二輪找到 3，3 是質數，但 3 的倍數則不是質數，所以我們可以剔除 ~~6~~, 9, ~~12~~,...，由於在第一輪 2 的倍數已經先移除 6 和 12 了，所以節省了相當多的時間。
 
-
 4. 最後我們再一一清點 `isPrime` 中有多少質數。
 
-
-{{< image src="https://upload.wikimedia.org/wikipedia/commons/b/b9/Sieve_of_Eratosthenes_animation.gif"  height="200" src_s="https://upload.wikimedia.org/wikipedia/commons/b/b9/Sieve_of_Eratosthenes_animation.gif" src_l="https://upload.wikimedia.org/wikipedia/commons/b/b9/Sieve_of_Eratosthenes_animation.gif" 
+{{< image src="https://upload.wikimedia.org/wikipedia/commons/b/b9/Sieve_of_Eratosthenes_animation.gif"  height="200" src_s="https://upload.wikimedia.org/wikipedia/commons/b/b9/Sieve_of_Eratosthenes_animation.gif" src_l="https://upload.wikimedia.org/wikipedia/commons/b/b9/Sieve_of_Eratosthenes_animation.gif"
 caption="Sieve of Eratosthenes" linked="false">}}
 
 ```cpp
@@ -297,12 +281,11 @@ int countPrimes(int n) {
     return ans;
 }
 ```
-- 0.003 *sec*.
 
+-   0.003 _sec_.
 
-- Time complexity:  $\mathcal{O}(n log (log(n)))$.
-- Space complexity:  $\mathcal{O}(n)$.
-
+-   Time complexity: $\mathcal{O}(n log (log(n)))$.
+-   Space complexity: $\mathcal{O}(n)$.
 
 ### 解法二
 
@@ -354,14 +337,14 @@ int countPrimes(int n) {
     return ans;
 }
 ```
-- 0.003 *sec*.
 
+-   0.003 _sec_.
 
-- Time complexity:  $\mathcal{O}(n log (log(n)))$.
-- Space complexity:  $\mathcal{O}(n)$.
-
+-   Time complexity: $\mathcal{O}(n log (log(n)))$.
+-   Space complexity: $\mathcal{O}(n)$.
 
 ## Reference
+
 1. https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes
 2. https://www.geeksforgeeks.org/sieve-of-eratosthenes/
 

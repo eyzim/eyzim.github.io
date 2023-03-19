@@ -18,29 +18,30 @@
 → 他們現在很先進，都會自己帶入路徑免煩惱 🙂
 
 ## 3. 下載 [Tomcat](https://tomcat.apache.org/download-10.cgi) 才能開啟 web viewer
-    
+
 下載後解壓縮至此，確定資料夾名稱是 `apache-tomcat-版本號`
-    
+
 ## 4. 打開 IntelliJ
-    
+
 ![](/images/install_intellij_build_java_web/open_intellij.png)
-    
+
 ## 5. 點擊 New Project
-    
+
 ![](/images/install_intellij_build_java_web/new_proj.png)
-    
+
 ## 6. 選擇新增 Java Enterprise 專案
-    
+
 ![](/images/install_intellij_build_java_web/new_java_enterprise_proj.png)
-    
+
 ## 7. 點選下一步，就完成專案建置啦~
+
 ## 8. 瀏覽器自己打開！
 
 右上角箭頭按下去，Run 專案後，console 會有一些 apache 跑起來的 log，接著瀏覽器就會自己打開
-    
-![](/images/install_intellij_build_java_web/run.png)
-    
 
+![](/images/install_intellij_build_java_web/run.png)
 
 ## Reference
+
 1. https://juejin.cn/post/6844904020780253191
+

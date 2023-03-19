@@ -1,31 +1,33 @@
 # LeetCode 412. Fizz Buzz 解題紀錄
 
 
-
 ## [題目](https://leetcode.com/problems/fizz-buzz/)
-
 
 {{< admonition type=quote title="Problem">}}
 
-Given an integer $n$, return a string array `answer` *(1-indexed)* where:
+Given an integer $n$, return a string array `answer` _(1-indexed)_ where:
 
-- `answer[i] == "FizzBuzz"` if $i$ is divisible by 3 and 5.
-- `answer[i] == "Fizz"` if i is divisible by 3.
-- `answer[i] == "Buzz"` if i is divisible by 5.
-- `answer[i] == i` (as a string) if none of the above conditions are true.
- 
+-   `answer[i] == "FizzBuzz"` if $i$ is divisible by 3 and 5.
+-   `answer[i] == "Fizz"` if i is divisible by 3.
+-   `answer[i] == "Buzz"` if i is divisible by 5.
+-   `answer[i] == i` (as a string) if none of the above conditions are true.
 
 **Example 1:**
+
 ```
 Input: n = 3
 Output: ["1","2","Fizz"]
 ```
+
 **Example 2:**
+
 ```
 Input: n = 5
 Output: ["1","2","Fizz","4","Buzz"]
 ```
+
 **Example 3:**
+
 ```
 Input: n = 15
 Output: ["1","2","Fizz","4","Buzz","Fizz","7","8","Fizz","Buzz","11","Fizz","13","14","FizzBuzz"]
@@ -37,7 +39,6 @@ Output: ["1","2","Fizz","4","Buzz","Fizz","7","8","Fizz","Buzz","11","Fizz","13"
 
 {{< /admonition >}}
 
-
 ## 想法
 
 依序插入每一元素的值，如果遇到 3、5、15 的倍數，換成插入 "Fizz"、"Buzz"、"FizzBuzz"
@@ -48,9 +49,8 @@ Output: ["1","2","Fizz","4","Buzz","Fizz","7","8","Fizz","Buzz","11","Fizz","13"
 ```cpp
 #include <string>
 ```
+
 {{< /admonition >}}
-
-
 
 ## 解法
 
@@ -88,8 +88,9 @@ vector<string> fizzBuzz(int n) {
     return ans;
 }
 ```
-- Time complexity:  $\mathcal{O}(n)$.
-- Space complexity:  $\mathcal{O}(n)$.
+
+-   Time complexity: $\mathcal{O}(n)$.
+-   Space complexity: $\mathcal{O}(n)$.
 
 ### 解法二
 
@@ -126,9 +127,8 @@ vector<string> fizzBuzz(int n) {
 }
 ```
 
-- Time complexity:  $\mathcal{O}(n)$.
-- Space complexity:  $\mathcal{O}(n)$.
-
+-   Time complexity: $\mathcal{O}(n)$.
+-   Space complexity: $\mathcal{O}(n)$.
 
 {{< admonition type=question title="兩種做法的時間、空間複雜度都是 $O(n)$，哪個比較好呢？">}}
 
@@ -136,9 +136,11 @@ vector<string> fizzBuzz(int n) {
 
 反而是多次地在 memory 做寫入還比較好。
 
-> *Doing __extra writes__ is better than __expensive arithmetic__.*
+> _Doing **extra writes** is better than **expensive arithmetic**._
 
 {{< /admonition >}}
 
 ## Reference
+
 1. https://www.cplusplus.com/reference/string/to_string/
+

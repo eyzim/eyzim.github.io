@@ -1,20 +1,21 @@
 # LeetCode 976. Largest Perimeter Triangle 解題紀錄
 
 
-
 ## [題目](https://leetcode.com/problems/largest-perimeter-triangle/)
-
 
 {{< admonition type=quote title="Problem">}}
 
-Given an integer array `nums`, return the *largest perimeter of a triangle with a non-zero area, formed from three of these lengths*. If it is impossible to form any triangle of a non-zero area, return `0`.
+Given an integer array `nums`, return the _largest perimeter of a triangle with a non-zero area, formed from three of these lengths_. If it is impossible to form any triangle of a non-zero area, return `0`.
 
 **Example 1:**
+
 ```
 Input: nums = [2,1,2]
 Output: 5
 ```
+
 **Example 2:**
+
 ```
 Input: nums = [1,2,1]
 Output: 0
@@ -22,11 +23,10 @@ Output: 0
 
 **Constraints:**
 
-- 3 $\leq$ `nums.length` $\leq$ 104
-- 1 $\leq$ `nums[i]` $\leq$ 106
+-   3 $\leq$ `nums.length` $\leq$ 104
+-   1 $\leq$ `nums[i]` $\leq$ 106
 
 {{< /admonition >}}
-
 
 ## 想法
 
@@ -38,10 +38,10 @@ Output: 0
 
 ```cpp
 int largestPerimeter(vector<int>& nums) {
-    
+
     // 由小排到大
     sort(nums.begin(), nums.end());
-    
+
     // 從最有可能的最長元素開始
     for(auto i=nums.size()-1; i>=2; i--)
     {
@@ -51,12 +51,11 @@ int largestPerimeter(vector<int>& nums) {
             return nums[i] + nums[i-1] + nums[i-2];
         }
     }
-    
+
     return 0;
 }
 ```
 
-- Time complexity:  $\mathcal{O}(n)$.
-- Space complexity:  $\mathcal{O}(1)$.
-
+-   Time complexity: $\mathcal{O}(n)$.
+-   Space complexity: $\mathcal{O}(1)$.
 

@@ -19,18 +19,17 @@ git commit -m "一些標籤"
 git push
 ```
 
-
 ### 建立分支
 
-- 新增分支並且移動到那個分支
+-   新增分支並且移動到那個分支
     ```bash
     git checkout -b <分支的名字>
     ```
-- 移動到那個分支
+-   移動到那個分支
     ```bash
     git checkout <分支的名字>
     ```
-- 查看現在分支位置
+-   查看現在分支位置
     ```bash
     git branch
     git push origin newBranch
@@ -38,13 +37,15 @@ git push
 
 ### 將版本 merge 到主枝幹
 
-- 在某一個 branch 上
+-   在某一個 branch 上
+
     ```bash
     git rebase master
     ```
+
     把 branch 的所有紀錄合併到 master 上囉
 
-- 把別的 branch 的 comit 移動成目前的最新 commit
+-   把別的 branch 的 comit 移動成目前的最新 commit
     ```bash
     git branch -f <branch> <commitID>
     ```
@@ -53,38 +54,37 @@ git push
 
 ### 復原
 
-- 往上走兩格
+-   往上走兩格
     ```bash
     git reset HEAD~2
     ```
-    
-- 回復到某 id 並新增相同的模樣節點
+-   回復到某 id 並新增相同的模樣節點
     ```bash
     git revert commitID
     ```
 
 ### 回到上次 commit 的版本
 
-- 重設 local 端的修改，回復至上次 commit 完當下的面貌
+-   重設 local 端的修改，回復至上次 commit 完當下的面貌
     ```bash
     git reset --hard HEAD
     ```
-- 回到上n次的版本
+-   回到上 n 次的版本
     ```bash
     git reset --hard HEAD~n
     ```
-- 取消剛剛的 commit，把 commit 收回，回到已經修改過的檔案，但只有 git add 的狀態
-git reset --soft HEAD
+-   取消剛剛的 commit，把 commit 收回，回到已經修改過的檔案，但只有 git add 的狀態
+    git reset --soft HEAD
 
 ### 修改記錄檔
 
-- 在現在的 head 後面加上 v3 v5 兩個 commit (不用同分支)
+-   在現在的 head 後面加上 v3 v5 兩個 commit (不用同分支)
     ```bash
     git cherry-pick v3 v5
     ```
-- 開一個 VIM 直接編輯
+-   開一個 VIM 直接編輯
     ```bash
-    git rebase -i HEAD~5 
+    git rebase -i HEAD~5
     ```
 
 ## Reference

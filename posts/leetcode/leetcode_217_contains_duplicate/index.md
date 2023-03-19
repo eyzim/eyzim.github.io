@@ -1,27 +1,28 @@
 # LeetCode 217. Contains Duplicate 解題紀錄
 
 
-
 ## [題目](https://leetcode.com/problems/contains-duplicate/)
-
 
 {{< admonition type=quote title="Problem">}}
 
 Given an integer array nums, return true if any value appears at least twice in the array, and return false if every element is distinct.
 
- 
-
 **Example 1:**
+
 ```
 Input: nums = [1,2,3,1]
 Output: true
 ```
+
 **Example 2:**
+
 ```
 Input: nums = [1,2,3,4]
 Output: false
 ```
+
 **Example 3:**
+
 ```
 Input: nums = [1,1,1,3,3,4,3,2,4,2]
 Output: true
@@ -29,11 +30,10 @@ Output: true
 
 **Constraints:**
 
-- 1 $\leq$ `nums.length` $\leq 10^5$
-- $-10^9 \leq$ `nums[i]` $\leq 10^9$
+-   1 $\leq$ `nums.length` $\leq 10^5$
+-   $-10^9 \leq$ `nums[i]` $\leq 10^9$
 
 {{< /admonition >}}
-
 
 ## 想法
 
@@ -65,8 +65,9 @@ bool containsDuplicate(vector<int>& nums) {
     return 0;
 }
 ```
-- Time complexity:  $\mathcal{O}(n)$.
-- Space complexity:  $\mathcal{O}(n)$.
+
+-   Time complexity: $\mathcal{O}(n)$.
+-   Space complexity: $\mathcal{O}(n)$.
 
 ### 解法二：`unordered_map`
 
@@ -74,9 +75,9 @@ bool containsDuplicate(vector<int>& nums) {
 
 ```cpp
 bool containsDuplicate(vector<int>& nums) {
-    
+
     unordered_map<int, bool> mp;
-    
+
     for(auto i:nums)
     {
         /* 若 mp[i] 的值已經註記為出現過 */
@@ -88,12 +89,13 @@ bool containsDuplicate(vector<int>& nums) {
         /* 將 mp[i] 註記為出現過 */
         mp[i] = 1;
     }
-    
+
     return 0;
 }
 ```
-- Time complexity:  $\mathcal{O}(n)$.
-- Space complexity:  $\mathcal{O}(n)$.
+
+-   Time complexity: $\mathcal{O}(n)$.
+-   Space complexity: $\mathcal{O}(n)$.
 
 ### 解法三：`sort`
 
@@ -101,9 +103,9 @@ bool containsDuplicate(vector<int>& nums) {
 
 ```cpp
 bool containsDuplicate(vector<int>& nums) {
-    
+
     sort(nums.begin(), nums.end());
-    
+
     /* 檢查相鄰的數字是否相等 */
     for(auto i=0; i<nums.size()-1; i++)
     {
@@ -112,15 +114,15 @@ bool containsDuplicate(vector<int>& nums) {
             return 1;
         }
     }
-    
+
     return 0;
 }
 ```
+
 C++ 中 `sort` 的時間複雜度為 $\mathcal{O}(n log(n))$，加上一一檢查相鄰元素的時間 $\mathcal{O}(n)$ ==> $\mathcal{O}(n)$.
 
-- Time complexity:  $\mathcal{O}(n)$.
-- Space complexity:  $\mathcal{O}(n)$.
-
+-   Time complexity: $\mathcal{O}(n)$.
+-   Space complexity: $\mathcal{O}(n)$.
 
 ### 解法四：`bitset`
 
@@ -130,37 +132,36 @@ C++ 中 `sort` 的時間複雜度為 $\mathcal{O}(n log(n))$，加上一一檢�
 
 ```cpp
 bool containsDuplicate(vector<int>& nums) {
-    
+
     bitset<2000000> bset;
-    
+
     for(auto i:nums)
     {
         i += 1000000;
-        
+
         if(bset.test(i))
         {
             return 1;
             break;
         }
-        
+
         bset.set(i);
     }
-    
+
     return 0;
 }
 ```
-- Time complexity:  $\mathcal{O}(n)$.
-- Space complexity:  $\mathcal{O}(n)$.
 
+-   Time complexity: $\mathcal{O}(n)$.
+-   Space complexity: $\mathcal{O}(n)$.
 
 ### 各方法比較
 
 記得曾經看過有人說，LeetCode 的時間跟你當下的網路順暢有關 :cry:
 
-|方法|時間|記憶體|
-|:---|:---|:---|
-|Unordered set|90 ms|20.2 MB|
-|Sort|54 ms|15.6 MB|
-|Bitmap|27 ms|15.8 MB|
-
+| 方法          | 時間  | 記憶體  |
+| :------------ | :---- | :------ |
+| Unordered set | 90 ms | 20.2 MB |
+| Sort          | 54 ms | 15.6 MB |
+| Bitmap        | 27 ms | 15.8 MB |
 

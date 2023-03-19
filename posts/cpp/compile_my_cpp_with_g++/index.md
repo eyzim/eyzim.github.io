@@ -5,17 +5,17 @@
 
 > https://sourceforge.net/projects/mingw/
 
-## 1 
+## 1
 
 綠色的 [Download](https://sourceforge.net/projects/mingw/files/latest/download) 按下去，`mingw-get-setup.exe` 就會開始下載。
 
-## 2 
+## 2
 
 打開 mingw-get-setup.exe，在 Basic Setup 中，選取 `mingw32-base-bin` 和 `mingw32-gcc-g++-bin`
 
 ![](/images/compile_my_cpp_with_g++/choose_mingw.png)
 
-## 3 
+## 3
 
 選取完畢後，點擊左上角的 Installation，並 Apply Changes 後，就會開始下載，視網路速度，可能要花個幾分鐘
 
@@ -38,7 +38,6 @@ setx /m PATH "C:\MinGW\bin;%PATH%"
 ## 6
 
 理論上到這邊就完成 gcc 的安裝，輸入：
-
 
 ```BASH
 g++ -v
@@ -77,9 +76,8 @@ g++ -v
 
 可以[開始 gcc 之旅了](https://eyzim.github.io/posts/compile_my_cpp_with_g++_2/)！
 
-
-
-
 # Refernce:
+
 1. http://www.codebind.com/cprogramming/install-mingw-windows-10-gcc/
 2. https://stackoverflow.com/questions/19287379/how-do-i-add-to-the-windows-path-variable-using-setx-having-weird-problems
+

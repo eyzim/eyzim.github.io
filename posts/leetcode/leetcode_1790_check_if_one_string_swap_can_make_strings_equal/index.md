@@ -1,26 +1,25 @@
 # LeetCode 1790. Check if One String Swap Can Make Strings Equal 解題紀錄
 
 
-
 ## [題目](https://leetcode.com/problems/check-if-one-string-swap-can-make-strings-equal/)
-
 
 {{< admonition type=quote title="Problem">}}
 
 You are given two strings `s1` and `s2` of equal length. A **string swap** is an operation where you choose two indices in a string (not necessarily different) and swap the characters at these indices.
 
-Return `true` *if it is possible to make both strings equal by performing ***at most one string swap*** on ***exactly one*** of the strings*. Otherwise, return `false`.
-
- 
+Return `true` \*if it is possible to make both strings equal by performing **_at most one string swap_** on **_exactly one_** of the strings\*. Otherwise, return `false`.
 
 **Example 1:**
+
 ```
 Input: s1 = "bank", s2 = "kanb"
 Output: true
 ```
+
 Explanation: For example, swap the first character with the last character of s2 to make "bank".
 
 **Example 2:**
+
 ```
 Input: s1 = "attack", s2 = "defend"
 Output: false
@@ -28,23 +27,22 @@ Output: false
 
 Explanation: It is impossible to make them equal with one string swap.
 
-
 **Example 3:**
+
 ```
 Input: s1 = "kelb", s2 = "kelb"
 Output: true
 ```
+
 Explanation: The two strings are already equal, so no string swap operation is required.
- 
 
 **Constraints:**
 
-- 1 $\leq$ `s1.length`, `s2.length` $\leq$ 100
-- `s1.length` == `s2.length`
-- `s1` and `s2` consist of only lowercase English letters.
+-   1 $\leq$ `s1.length`, `s2.length` $\leq$ 100
+-   `s1.length` == `s2.length`
+-   `s1` and `s2` consist of only lowercase English letters.
 
 {{< /admonition >}}
-
 
 ## 想法
 
@@ -60,10 +58,10 @@ Explanation: The two strings are already equal, so no string swap operation is r
 
 ```cpp
 bool areAlmostEqual(string s1, string s2) {
-    
+
     // 兩個 string 長度不一致
     if(s1.size() != s2.size())  return 0;
-        
+
     // 紀錄兩個 string 不同之處
     vector<int> mp;
 
@@ -74,10 +72,10 @@ bool areAlmostEqual(string s1, string s2) {
             mp.push_back(i);
         }
     }
-    
+
     // 兩個 string 完全相同
     if(!mp.size())  return 1;
-    
+
     // 兩個 string 共有兩處不同
     if(mp.size() == 2)
     {
@@ -87,13 +85,11 @@ bool areAlmostEqual(string s1, string s2) {
             return 1;
         }
     }
-    
+
     return 0;
 }
 ```
 
-
-- Time complexity:  $\mathcal{O}(n)$.
-- Space complexity:  $\mathcal{O}(n)$.
-
+-   Time complexity: $\mathcal{O}(n)$.
+-   Space complexity: $\mathcal{O}(n)$.
 
