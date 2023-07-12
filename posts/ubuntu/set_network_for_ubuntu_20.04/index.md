@@ -27,43 +27,43 @@ alt="`ifconfig` and check the mac address of lan" caption="`ifconfig` and check 
 
 1. 先關掉這個 lan
 
-    ```
+    ```bash
     sudo ifconfig enp5s0 down
     ```
 
 2. 加入 mac address
 
-    ```
+    ```bash
     sudo ifconfig enp5s0 hw ether AA:BB:CC:DD:EE:FF (mac address)
     ```
 
 3. 重新開啟 lan
 
-    ```
+    ```bash
     sudo dhclient enp5s0
     ```
 
 ## 重新跟 DHCP 要一個新的 IP
 
-在已經確認網路線有插好，Lan 燈有亮後，還可能是 DHCP ~~太廢~~
+在已經確認網路線有插好，LAN 燈有亮後，還可能是 DHCP ~~太廢~~
 
 也許是其他人亂設 static IP 造成問題，這時我們就只好重啟網路，跟 DHCP 重新要一個新的 IP
 
 1. 一樣關閉 lan
 
-    ```
+    ```bash
     sudo ifconfig enp5s0 down
     ```
 
 2. 重啟 lan
 
-    ```
+    ```bash
     sudo ifconfig enp5s0 up
     ```
 
 3. ~~強迫~~跟 DHCP 重新要一個 IP
 
-    ```
+    ```bash
     sudo dhclient enp5s0
     ```
 
